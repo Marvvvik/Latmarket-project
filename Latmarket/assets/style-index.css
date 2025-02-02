@@ -1,0 +1,353 @@
+.stats{
+
+background: var(--black);
+padding: 4rem 15%;
+position: relative;
+
+}
+
+.neon {
+
+position: absolute;
+top: 0;
+left: 50%;
+width: 0%;
+height: 5px;
+box-shadow: 0 0 20px var(--second), 0 0 10px var(--second);
+background: var(--second);
+transform: translate(-50%);
+animation: expandWidth 1s ease-out forwards;
+
+}
+    
+@keyframes expandWidth {
+from {
+    width: 0%;
+}
+to {
+    width: 100%;
+}
+}
+
+.statboxs{
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.statboxs .box{
+
+margin: 0 3rem 0 3rem;
+color: var(--white);
+font-weight: 100;
+text-align: center;
+border-radius: 50%;
+border: var(--second) solid .3rem;
+width: 10rem;
+height: 10rem;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+.statboxs .box h1{
+
+font-size: 1.5rem; 
+
+}
+
+.statboxs .box h2{
+
+font-size: 1rem;
+
+}
+
+
+.search{
+
+padding: 7rem 12% 10rem 12%;
+background: var(--main);
+    
+}
+
+.searchbox{
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+margin-top: 5rem;
+        
+}
+
+.searchbox .box{
+
+width:  auto;
+padding: 0 1.5rem;
+height: 3rem;
+position: relative;
+z-index: 2;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+flex-direction: column;
+background: var(--black);
+
+}
+
+.searchbox .box.active{
+
+background: var(--second);
+
+}
+
+.neo-line{
+
+width: 0%;
+height: 3px;
+background: var(--second);
+position: absolute;
+top: 0;
+left: 50%;
+transform: translate(-50%);
+z-index: 1;
+box-shadow: 0 0 20px var(--second);
+border-radius: 3rem;
+
+}
+
+
+.searchbox .box:hover .neo-line{
+
+animation: serchline 1s ease-out forwards;
+
+}
+
+@keyframes serchline {
+0%{
+height: 3px;
+width: 0%;
+left: 50%;
+top: 0;
+}
+
+10%{
+height: 3px;
+width: 20%;
+top: 0;
+}
+
+
+20%{
+height: 3px;
+width: 0%;
+left: 100%;
+top: 0;
+}
+
+21%{
+height: 3px;
+width: 0%;
+left: 100%;
+top: 0;
+}
+
+
+30%{
+height: 40%;
+width: 3px;
+left: 100%;
+}
+
+40%{
+height: 0%;
+width: 3px;
+left: 100%;
+top: 100%;
+}
+
+41%{
+height: 0%;
+width: 3px;
+left: 100%;
+top: 100%;
+}
+
+50%{
+height: 3px;
+width: 20%;
+top: 100%;
+}
+
+60%{
+height: 5px;
+width: 0;
+left: 0%;
+top: 100%;
+}
+
+61%{
+height: 3px;
+width: 0;
+left: 0%;
+top: 100%;
+}
+
+70%{
+width: 3px;
+height: 40%;
+left: 0;
+}
+
+80%{
+width: 3px;
+height: 0%;
+top: 0;
+left: 0;
+}
+
+
+81%{
+width: 3px;
+height: 0%;
+top: 0;
+left: 0;
+}
+
+90%{
+width: 20%;
+height: 3px;
+top: 0;
+}
+
+100%{
+width: 0%;
+height: 3px;
+top: 0;
+left: 50% 
+}
+
+}
+
+
+.searchbox .box h2{
+
+color: var(--white);
+width: 100%;
+text-align: center;
+font-size: .8rem;
+
+}
+
+
+.marker {
+
+position: absolute;
+width: 1px;
+height: 1px;
+top: 50%; 
+left: 50%; 
+transform: translate(-50%, -50%);
+pointer-events: none;
+visibility: hidden; 
+
+}
+
+.dynamic-line{
+
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+    
+}
+
+.dline{
+
+width: 100%;
+height: 3px;
+background: var(--black);
+margin-top: 3rem;
+
+}
+
+.triangle{
+
+font-size: 2rem;
+color: var(--second);
+position: absolute;
+top: 45%;
+left: 5%;
+
+}
+
+
+.grupbox{
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+margin-top: 7rem;
+display: none;
+
+}
+
+
+.grupbox .box{
+
+width:  auto;
+height: 5rem;
+box-shadow: 0 0 20px #000;
+margin: .7rem .7rem;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+background: var(--black);
+padding: 0 1.5rem;
+position: relative;
+
+}
+
+.link{
+
+width: 100%;
+height: 100%;
+position: absolute;
+
+}
+
+.grupbox .box:hover{
+
+background: rgba(255, 87, 51, 30%);
+
+}
+
+
+.grupbox .box i{
+
+color: var(--second);
+font-size: 1.3rem;
+
+}
+
+.grupbox .box p{
+
+color: var(--white);
+margin: 0 .5rem;
+font-size: .9rem;
+
+}
+
+
+#carbox.active, #darbbox.active, #nekustbox.active, #celtbox.active, #elektrobox.active, #drebbox.active, #majbox.active{
+
+display: flex;
+
+}

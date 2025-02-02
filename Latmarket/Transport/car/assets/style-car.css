@@ -1,0 +1,420 @@
+.search-line{
+
+background: var(--white);
+padding: 10rem 10% 4rem 10%;
+
+}
+
+
+.grupboxs{
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+display: none;
+
+}
+
+
+.grupboxs .box{
+
+width:  auto;
+height: 5rem;
+box-shadow: 0 0 20px #000;
+margin: .7rem .7rem;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+background: var(--black);
+padding: 0 1.5rem;
+position: relative;
+
+}
+
+.link{
+
+width: 100%;
+height: 100%;
+position: absolute;
+
+}
+
+.grupboxs .box:hover{
+
+background: rgba(255, 87, 51, 30%);
+
+}
+
+.grupboxs .box:hover p{
+
+color: var(--black);
+
+}
+
+
+.grupboxs .box i{
+
+color: var(--second);
+font-size: 1.3rem;
+
+}
+
+.grupboxs .box p{
+
+color: var(--white);
+margin: 0 .5rem;
+font-size: .9rem;
+
+}
+
+.filter{
+
+background: var(--white);
+padding: 2rem 5%;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.filter-menu{
+
+width: 80%;
+height: auto;
+box-shadow: var(--shadow);
+background: var(--black);
+
+}
+
+.filterbox{
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+
+}
+
+.filterbox .box{
+
+margin: 1rem;
+padding: 0%;
+
+}
+
+.list-choice{
+
+width: 250px;
+margin:1em auto;
+position: relative;
+cursor: pointer; 
+
+}
+
+.list-choice input[type="radio"]{
+
+position:absolute;
+left:-9999px;
+
+}
+
+.list-choice-title {
+
+width: 100%;
+display: block;
+background: var(--second);
+text-align: center;
+padding: 1em 1em;
+box-sizing: border-box;
+color: #FFF;
+
+}
+
+
+.list-choice input[type="radio"] + span {
+
+color: #FFF;
+background: var(--second);
+padding: 1em 1em;
+display: block;
+text-align: center;
+box-sizing: border-box;
+cursor: pointer;
+width: 100%;
+z-index: 1;
+min-height: 3.2em; 
+
+}
+
+.list-choice-objects {
+
+position: absolute;
+top: 0;
+padding-top: 3.2em;
+box-sizing: border-box;
+width: 100%;
+overflow: hidden;
+max-height: 0;
+transition: all 250ms ease;
+
+}
+
+.list-choice:hover .list-choice-objects  input[type="radio"] + span {
+
+position: relative;
+top: 5;
+transition: all 250ms ease-in-out;
+
+}
+
+.list-choice:hover input[type="radio"] + span:hover {
+
+background: var(--main);
+
+}
+
+.list-choice:hover input[type="radio"]:checked + span:hover {
+
+background:#74D68E;
+
+}
+
+.list-choice input[type="radio"]:checked + span {
+
+background: #74D68E;
+position: absolute;
+top: 0em;
+
+}
+
+.list-choice:hover .list-choice-objects {
+
+max-height: 1040px;
+
+}
+
+
+.offers{
+
+background: var(--white);
+padding: 3rem 10%;
+
+}
+
+
+.offerbox{
+
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+
+}
+
+.carsbox{
+
+width: 75%;
+height: 25rem;
+box-shadow: var(--shadow);
+margin: 2rem 0;
+display: flex;
+cursor: pointer;
+position: relative;
+
+}
+
+.cblink{
+
+position: absolute;
+width: 100%;
+height: 100%;
+
+}
+
+.carNosFlex{
+
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: auto;
+width: 100%;
+margin-bottom: 1rem;
+
+}
+
+.car-foto{
+
+width: 40%;
+height: 25rem;
+
+}
+
+.car-foto img{
+
+width: 100%;
+height: 100%;
+object-fit: cover;
+
+}
+
+.carNosakums{
+
+margin: 0 0 0 1rem;
+
+}
+
+.carNosakums h3{
+
+font-size: 2rem;
+
+}
+
+.carNosakums p{
+
+font-size: 1.5rem;
+
+}
+
+.carCena p{
+
+font-size: 1.5rem;
+margin-right: 1.5rem;
+background: var(--second);
+padding: .5rem;
+
+}
+
+.carinfo{
+
+width: 60%;
+display: flex;
+align-items: center;
+flex-direction: column;
+margin-top: 1rem;
+
+}
+
+.infotable{
+
+width: 90%;
+height: auto;
+border: .2rem solid var(--second);
+margin: 2rem 1rem 0 1rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 1rem;
+
+
+}
+
+.colon1, .colon2{
+
+width: 50%;
+
+}
+
+.info-icon{
+
+display: flex;
+justify-content: left;
+align-items: center;
+height: auto;
+margin: 1rem 0;
+
+}
+
+
+.info-icon img{
+
+width: 2rem;
+height: 2rem;
+margin-right: 1rem;
+
+}
+
+.info-icon p{
+
+font-size: 1rem;
+letter-spacing: 1px;
+
+}
+
+.sludinajumabtn{
+
+width: 100%;
+background: var(--white);
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 3rem 0 0 0;
+
+}
+
+.sludbtn{
+
+background: var(--white);
+margin: 0;
+
+}
+
+
+.slud-btn-box{
+
+background: var(--black);
+font-size: 1.5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 1rem 1rem;
+
+}
+
+.slud-btn-box:hover{
+
+background: rgba(255, 87, 51, 30%);
+
+}
+
+.slud-btn-box:hover span{
+
+color: var(--black);
+
+}
+
+.slud-btn-box i{
+
+color: var(--second);
+
+}
+
+.slud-btn-box:hover i{
+
+animation: rot 1s ease-out forwards;
+
+}
+
+
+@keyframes rot {
+
+0% {
+
+    transform: rotate(0);
+
+}
+
+100% {
+
+    transform: rotate(720deg);
+
+}
+}
+
+.slud-btn-box span{
+
+font-size: 1rem;
+margin-left: 1rem;
+
+}

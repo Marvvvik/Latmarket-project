@@ -1,0 +1,96 @@
+.atsaukmes{
+
+padding: 5rem 15%;
+
+}
+
+
+.atsakmesForm{
+
+width: 100%;
+background: var(--black);
+height: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+.atsakmesForm h1{
+
+background: var(--second);
+padding: 2rem 2rem;
+color: var(--white);
+
+}
+
+
+.atsakmesForm form{
+
+margin-top: 4rem;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+width: 50%;
+
+}
+
+.stars{
+
+font-size: 2rem;
+
+}
+
+.stars i{
+
+cursor: pointer;    
+
+}
+
+
+.textarea-long{
+
+position: relative;
+height: 100%;
+width: 100%;
+margin-top: 3rem;
+margin-bottom: 3rem;
+
+}
+
+
+.atsakmesForm form textarea{
+
+width: 100%;
+height: 20rem;
+padding: 1rem;
+background: #353535;
+resize: none;
+color: var(--white);
+
+}
+
+.long{
+
+position: absolute;
+bottom: 5%;
+right: 3%;
+color: var(--white);
+
+} 
+
+
+.atbtn{
+
+margin-bottom: 4rem
+
+}
+
+
+.atbtn span{
+
+font-size: 1.5rem;
+
+}
