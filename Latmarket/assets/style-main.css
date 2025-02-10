@@ -507,11 +507,23 @@ height: auto;
 background: var(--black);
 top: 10%;
 right: 3%;
-border: solid .1rem green;
-color: green;
 font-size: .9rem;
 z-index: 7;
 animation: opacity .5s ease-out forwards;
+
+}
+
+.linemess.success{
+
+color: green;
+border: solid .1rem green;
+
+}
+
+.linemess.error{
+
+color: red;
+border: solid .1rem red;
 
 }
 
@@ -521,11 +533,20 @@ padding: 1.5rem 2rem 1rem 2rem;
 
 }
 
-.timeline{
+.linemess.success .timeline{
 
 width: 100%;
 height: 5px;
 background: green;
+animation: timeline 5s ease-out forwards;
+
+}
+
+.linemess.error .timeline{
+
+width: 100%;
+height: 5px;
+background: red;
 animation: timeline 5s ease-out forwards;
 
 }
@@ -569,6 +590,7 @@ right: 5px;
 }
 
 }
+
 
 /* --------------------------------Profile */
 
@@ -905,7 +927,7 @@ overflow: hidden;
 }
 
 
-.activeBtn{
+.passwordC{
 
 position: absolute;
 width: 100%;
@@ -917,11 +939,12 @@ display: flex;
 justify-content: center;
 align-items: center;
 cursor: pointer;
+z-index: 2;
 
 }
 
 
-.activeBtn p{
+.passwordC p{
 
 color: var(--white);
 font-weight: bold;
@@ -929,7 +952,7 @@ font-weight: bold;
 }
 
 
-.activeBtn.active{
+.passwordC.active{
 
 display: none;
 

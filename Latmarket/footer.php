@@ -18,15 +18,6 @@
 
         </div>
 
-        <div class="box">
-            
-            <h1>soctikli</h1>
-
-            <a>Latmarket@gmail.com</a>
-
-        </div>
-
-
     </div>
 
 </footer>

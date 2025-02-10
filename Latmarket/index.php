@@ -218,22 +218,6 @@ require "header.php";
 
         </div>
 
-        <div class="box">
-
-            <i class="fas fa-balance-scale"></i>
-
-            <p>Juridiskie pakalpojumi</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-dollar-sign"></i>
-
-            <p>Finanšu pakalpojumi</p>
-
-        </div>
-
     </div>
 
     <div class="grupbox" id="nekustbox">

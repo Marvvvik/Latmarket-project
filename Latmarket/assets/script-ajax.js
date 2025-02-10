@@ -5,15 +5,8 @@ $('#registerForm').submit(e => {
     const rpassword1 = $('#rpassword1').val();
     const rpassword2 = $('#rpassword2').val();
 
-    $('.regmes').html('');
-
-    if (!username || !rpassword1 || !rpassword2) {
-        $('.regmes').html('<div class="notif-slide-red">Visi lauki nav aizpilditi!</div>');
-        return;
-    }
-
     const postData = { username, rpassword1, rpassword2 };
-    const url = 'database/register.php';
+    const url = '/database/register.php';
 
     $.ajax({
         type: 'POST',
@@ -21,15 +14,13 @@ $('#registerForm').submit(e => {
         data: postData,
         dataType: 'json',
         success: response => {
-            console.log('Ответ от сервера:', response);
-    
             if (response.success) {
               
                 $('.linemess').remove(); 
 
                 const successMessage = `<div class="linemess">
     
-                                            <i class="fas fa-close closemodal" id="mesclose"data-target="#Log-reg-modal"></i>
+                                            <i class="fas fa-close closemodal" id="mesclose"></i>
 
                                             <p>${response.message}</p>
 
@@ -48,7 +39,7 @@ $('#registerForm').submit(e => {
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Ошибка при отправке данных:', errorThrown);
+            console.error('Kļuda pie datu nmosutišanas:', errorThrown);
             const errorMessage = `<div class="notif-slide-red">Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</div>`;
             $('.regmes').html(errorMessage);
         }
@@ -61,22 +52,25 @@ $(document).ready(function() {
     var userId = $("#lietotajaId").val();
 
     $.ajax({
-        url: "database/setting-ielasa.php", 
+        url: "/database/setting-ielasa.php", 
         type: "POST",
         data: { id: userId },
         dataType: "json",
         success: function(response) {
             if (response.success) {
+
                 setField("#vards", response.vards);
                 setField("#uzvards", response.uzvards);
                 setField("#epasts", response.epasts);
                 setField("#telefons", response.telefons);
-            } else {
-                alert("Kluda datu ielase.");
-            }
+
+  
+                $(".name-i p").text(response.vards); 
+                $(".email-i p").text(response.epasts); 
+            } 
         },
         error: function() {
-            alert("Ошибка запроса к серверу.");
+            console.log("Kļuda pieprasijumā pie servera.");
         }
     });
 
@@ -92,19 +86,20 @@ $(document).ready(function() {
 
 // ------------------------------------------------------------Datu edit Settingos 
 
-
-
 $('#editForm').submit(e => {
     e.preventDefault();
 
+    const editPassActive = $('.passwordC').hasClass('active');
     const liet_id = $('#lietotajaId').val();
     const vards = $('#vards').val();
     const uzvards = $('#uzvards').val();
     const epasts = $('#epasts').val();
     const telefons = $('#telefons').val();
+    const password1 = $('#password1-c').val();
+    const password2 = $('#password2-c').val();
 
-    const editData = { liet_id, vards, uzvards, epasts, telefons};
-    const editUrl = 'database/edit-profile.php';
+    const editData = { liet_id, vards, uzvards, epasts, telefons, password1, password2, editPassActive };
+    const editUrl = '/database/edit-profile.php';
 
     $.ajax({
         type: 'POST',
@@ -112,36 +107,40 @@ $('#editForm').submit(e => {
         data: editData,
         dataType: 'json',
         success: response => {
-            console.log('Ответ от сервера:', response);
-    
+            const messageType = response.success ? "success" : "error";
+            const messageText = response.success ? response.message : response.error;
+
+            $('.linemess').remove();
+
+            const messageBox = `<div class="linemess ${messageType}">
+                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <p>${messageText}</p>
+                                    <div class="timeline"></div>
+                                </div>`;
+            $('body').append(messageBox);
+
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
+
             if (response.success) {
-              
-                $('.linemess').remove(); 
-
-                const successMessage = `<div class="linemess">
-    
-                                            <i class="fas fa-close closemodal" id="mesclose"data-target="#Log-reg-modal"></i>
-
-                                            <p>${response.message}</p>
-
-                                            <div class="timeline"></div>
-
-                                        </div>`;
-                $('body').append(successMessage);
-    
-                setTimeout(() => {
-                    $('.linemess').fadeOut(300, () => $(this).remove());
-                }, 5000);
-    
-            } else {
-                const errorMessage = `${response.error}`;
-                $('.regmes').html(errorMessage);
+                $(".name-i p").text(vards + " " + uzvards);
+                $(".email-i p").text(epasts);
             }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Ошибка при отправке данных:', errorThrown);
-            const errorMessage = `<div class="notif-slide-red">Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</div>`;
-            $('.regmes').html(errorMessage);
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('Kļuda pie datu nmosutišanas:', errorThrown);
+            $('.linemess').remove();
+            const errorMessage = `<div class="linemess error">
+                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <p>Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
+                                    <div class="timeline"></div>
+                                  </div>`;
+            $('body').append(errorMessage);
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
         }
     });
 });
+

@@ -8,14 +8,14 @@ session_start();
 
     <div class="logo">
 
-        <a href="./"><img src="image/Latmarket-logo.png" alt=""></a>
+        <a href="/"><img src="/image/Latmarket-logo.png" alt=""></a>
 
     </div>
 
 
     <div class="navmenu">
 
-        <a href="#search" class="btna">
+        <a href="/#search" class="btna">
 
             <div class="btn-box">
 
@@ -27,7 +27,7 @@ session_start();
 
         </a>
 
-        <a href="#search" class="btna">
+        <a href="/#search" class="btna">
 
             <div class="btn-box">
 
@@ -39,7 +39,7 @@ session_start();
 
         </a>
 
-        <a href="atsaukmes.php" class="btna">
+        <a href="/atsaukmes.php" class="btna">
 
             <div class="btn-box">
 
@@ -89,7 +89,7 @@ session_start();
 
                 <button><i class="fa-solid fa-message" id="rotate-spin"></i>Saraksti</button>
 
-                <a href="database/logout.php" id="logout"><i class="fa fa-sign-out"></i>Iziet</a>
+                <a href="/database/logout.php" id="logout"><i class="fa fa-sign-out"></i>Iziet</a>
 
             </div>
         </div>
@@ -127,7 +127,7 @@ session_start();
 
     <div class="login-form active">
 
-        <form action="database/login.php" method="POST">
+        <form action="/database/login.php" method="POST">
 
             <div class='logmes'>
                 <?php
@@ -250,7 +250,7 @@ session_start();
 </div>
 </div>
 
-<search class="profelimenu" id="profiest">
+<div class="profelimenu" id="profiest">
 
     <div class="base">
         
@@ -268,10 +268,9 @@ session_start();
 
                 <div class="prof-name">
 
-                    <div class="name-i"><p><?php echo $_SESSION['vardsHOMIK']; ?></p></div>
+                    <div class="name-i"><p></p></div>
 
-                    <div class="email-i"><p><?php echo $_SESSION['epastsHOMIK']; ?></p></div>
-
+                    <div class="email-i"><p></p></div>
 
                 </div>
 
@@ -289,7 +288,7 @@ session_start();
 
             <div class="logoutbtn">
 
-                <a href=""><i class="fa fa-sign-out"></i>Iziet</a>
+                <a href="/database/logout.php"><i class="fa fa-sign-out"></i>Iziet</a>
 
             </div>
 
@@ -346,16 +345,18 @@ session_start();
 
                 <div class="password-c">
 
-                    <div class="activeBtn" data-target="#activePass" id="activePass"><p>Manit paroli</p></div>
+                    <div class="passwordC" data-target="#activePass" id="activePass"><p>Manit paroli</p></div>
+
+                    <i class="fas fa-close closemodal" data-target="#activePass"></i>
 
                     <div class="input-l">
                         <label>Parole:</label>
-                        <input type="text">
+                        <input type="password" id="password1-c">
                     </div>
 
                     <div class="input-l">
                         <label>Atkartoti parole:</label>
-                        <input type="text">
+                        <input type="password" id="password2-c">
                     </div>
 
                 </div>
@@ -378,4 +379,4 @@ session_start();
 
     </div>
 
-</search>
+</div>

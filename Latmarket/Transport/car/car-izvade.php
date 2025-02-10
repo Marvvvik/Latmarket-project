@@ -4,6 +4,7 @@ require "../con_db.php";
 
 
 $marka = isset($_POST['marka']) ? $_POST['marka'] : null;
+$modelis = isset($_POST['modelis']) ? $_POST['modelis'] : null;
 $binzina_tips = isset($_POST['benzina_tips']) ? $_POST['benzina_tips'] : null;
 $atrumkarba = isset($_POST['atrumkarba']) ? $_POST['atrumkarba'] : null;
 $virsbuve = isset($_POST['virsbuve']) ? $_POST['virsbuve'] : null;
@@ -12,10 +13,27 @@ $tehniska_apskate = isset($_POST['tehniska_apskate']) ? $_POST['tehniska_apskate
 $krasa = isset($_POST['krasa']) ? $_POST['krasa'] : null;
 $min_cena = $_POST['min_cena'] ? $_POST['min_cena'] : null;
 $max_cena = $_POST['max_cena'] ? $_POST['max_cena'] : null;
+$min_gads = $_POST['min_gads'] ? $_POST['min_gads'] : null;
+$max_gads = $_POST['max_gads'] ? $_POST['max_gads'] : null;
+$min_nobrakums = $_POST['min_nobrakums'] ? $_POST['min_nobrakums'] : null;
+$max_nobraukums = $_POST['max_nobrakums'] ? $_POST['max_nobrakums'] : null;
+$min_jauda = $_POST['min_jauda'] ? $_POST['min_jauda'] : null;
+$max_jauda = $_POST['max_jauda'] ? $_POST['max_jauda'] : null;
+$dtp = $_POST['dtp'] ? $_POST['dtp'] : null;
+$jauda_m = $_POST['jauda_m'] ? $_POST['jauda_m'] : null;
+$nobrakums_m = $_POST['nobrakums_m'] ? $_POST['nobrakums_m'] : null;
+
+
 
 
 $filtrets = [];
 
+
+if ($modelis) {
+
+    $filtrets[] = "Modelis = '$modelis'";
+
+}
 
 if ($marka) {
 
@@ -67,6 +85,20 @@ if ($tehniska_apskate) {
 
 }
 
+if ($dtp) {
+
+    if ($dtp == 1) {
+
+        $filtrets[] = "dtp != 0";
+
+    }else if($dtp == 2){
+
+        $filtrets[] = "dtp = 0";
+    
+    }
+
+}
+
 
 if ($min_cena) {
 
@@ -79,6 +111,43 @@ if ($max_cena) {
     $filtrets[] = "Cena <= '$max_cena'";
 
 }
+
+if ($min_gads) {
+
+    $filtrets[] = "Izladuma_gads >= '$min_gads'";
+
+}
+
+if ($max_gads) {
+
+    $filtrets[] = "Izladuma_gads <= '$max_gads'";
+
+}
+
+if ($min_nobrakums) {
+
+    $filtrets[] = "Nobrakums >= '$min_nobrakums'";
+
+}
+
+if ($max_nobraukums) {
+
+    $filtrets[] = "Nobrakums <= '$max_nobraukums'";
+
+}
+
+if ($min_jauda) {
+
+    $filtrets[] = "Jauda >= '$min_jauda'";
+
+}
+
+if ($max_jauda) {
+
+    $filtrets[] = "Jauda <= '$max_jauda'";
+
+}
+
 
 
 if (count($filtrets) > 0) {
@@ -107,9 +176,29 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
             $jauda_izvade = "-";
     
         } else {
+            if($jauda_m == 2){
+
+                $jauda_aprekin = round($Cars['Jauda'] * 1.34102);
+
+                $jauda_izvade = $jauda_aprekin." HP";
+
+            }else{
     
-            $jauda_izvade = $Cars['Jauda']." KW";
-    
+                $jauda_izvade = $Cars['Jauda']." KW";
+
+            }
+        }
+
+        if($nobrakums_m == 2){
+
+            $nobrakums_aprekin = round($Cars['Nobrakums'] * 0.621371);
+
+            $nobraukums_izvade = $nobrakums_aprekin." MPH";
+
+        }else{
+
+            $nobraukums_izvade = $Cars['Nobrakums']." KM";
+
         }
 
         echo "
@@ -159,7 +248,7 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
                         
                             <img src='../../image/icons/Odometr-icon.png'>
 
-                            <p> Nobrakums: {$Cars['Nobrakums']} KM</p>
+                            <p> Nobrakums: {$nobraukums_izvade}</p>
 
                         </div>
 

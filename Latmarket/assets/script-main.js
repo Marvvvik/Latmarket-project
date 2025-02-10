@@ -1,3 +1,5 @@
+// --------------------------------------------------------------------------Login-Register-Modal
+
 document.addEventListener("DOMContentLoaded", function () {
     const openButton = document.getElementById("OpenLogReg");
     const logModal = document.querySelector(".logmodal");
@@ -68,6 +70,8 @@ window.addEventListener('load', function() {
     }
 });
 
+// --------------------------------------------------------------------------Paroles-kriteriju-izvade
+
 loginBtn.addEventListener('click', () => toggleActive(loginBtn));
 registerBtn.addEventListener('click', () => toggleActive(registerBtn));
 
@@ -81,6 +85,8 @@ document.getElementById('rpassword1').addEventListener('blur', function() {
         document.querySelector('.configpass').style.display = 'none';
     }
 });
+
+// --------------------------------------------------------------------------Password-Check
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -170,6 +176,8 @@ document.addEventListener("DOMContentLoaded", function () {
     password.addEventListener("input", checkLogin);
 });
 
+// --------------------------------------------------------------------------Modal-Open
+
 
 let modalbtn = document.querySelectorAll('[data-target]')
 let closeModal = document.querySelectorAll('.closemodal')
@@ -196,4 +204,16 @@ closeModal.forEach(function(btn){
 
 })
 
+// --------------------------------------------------------------------------Mes-Modal-close
 
+
+document.addEventListener('click', function(event) {
+    let closeMessage = document.getElementById('mesclose'); 
+    
+    if (closeMessage && event.target === closeMessage) {
+        let messageBlock = document.querySelector('linemess');
+        if (messageBlock) {
+            messageBlock.style.display = "none";
+        }
+    }
+});

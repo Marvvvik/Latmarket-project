@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="assets/style-car.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="assets/filter-ajax.js" defer></script>
+    <script src="assets/car-script.js" defer></script>
     <script src="../../assets/script-main.js" defer></script>
+    <script src="../../assets/script-ajax.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
@@ -24,15 +26,13 @@ require "../../header.php";
 
 <section class="search-line">
 
-<div class="grupboxs active" id="carbox">
+<div class="grupboxs" id="carbox">
 
-    <div class="box">
+    <div class="box active">
 
         <i class="fas fa-car-side"></i>
 
         <p>Vieglie auto</p>
-        
-        <a href="Transport/car/car.php" class="link"></a>
 
     </div>
 
@@ -43,6 +43,8 @@ require "../../header.php";
 
         <p>Kravas auto</p>
 
+        <a href="Transport/car/car.php" class="link"></a>
+
     </div>
 
     <div class="box">
@@ -50,6 +52,8 @@ require "../../header.php";
         <i class="fas fa-motorcycle"></i>
 
         <p>Moto transports</p>
+
+        <a href="Transport/car/car.php" class="link"></a>
 
     </div>
 
@@ -111,35 +115,11 @@ require "../../header.php";
             
             <div class="box">
 
-                <div class="list-choice">
+                <div class="list-choice deactive" id="model-select">
 
                     <div class="list-choice-title">Modelis</div>
 
-                    <div class="list-choice-objects">
-                    
-                        <label>
-
-                            <input type="radio" name="model" onclick="resetSelection()"><span> </span>
-
-                        </label>
-
-                        <label>
-
-                            <input type="radio" name="model" onclick="updateTitle(this)"><span>AUDI</span>
-
-                        </label>
-
-                        <label>
-
-                            <input type="radio" name="model" onclick="updateTitle(this)"><span>BMW</span>
-
-                        </label>
-
-                        <label>
-                            
-                            <input type="radio" name="model" onclick="updateTitle(this)"><span>MERCEDES</span>
-
-                        </label>
+                    <div class="list-choice-objects" id="model-list-choice">
 
                     </div>
                 </div>
@@ -415,6 +395,150 @@ require "../../header.php";
 
         </div>
 
+        <div class="min-max-filter">
+
+            <div class="filter-box" data-filter="price" data-gap="500">
+                <h1>Cena</h1>
+                <div class="price-input">
+                    <input type="number" class="input-min" value="<?php echo $car_zem_cen;?>">
+                    <input type="number" class="input-max" value="<?php echo $car_aug_cen;?>">
+                </div>
+                <div class="range-slider">
+                    <div class="progress"></div>
+                </div>
+                <div class="range-input">
+                    <input type="range" class="range-min" min="<?php echo $car_zem_cen;?>" max="<?php echo $car_aug_cen;?>" value="<?php echo $car_zem_cen;?>" step="500" id="car_min_cena_select">
+                    <input type="range" class="range-max" min="<?php echo $car_zem_cen;?>" max="<?php echo $car_aug_cen;?>" value="<?php echo $car_aug_cen;?>" step="500" id="car_max_cena_select">
+                </div>
+            </div>
+
+            <div class="filter-box" data-filter="year" data-gap="1">
+                <h1>Gads</h1>
+                <div class="price-input">
+                    <input type="number" class="input-min" value="<?php echo $car_zem_gads;?>">
+                    <input type="number" class="input-max" value="<?php echo $car_aug_gads;?>">
+                </div>
+                <div class="range-slider">
+                    <div class="progress"></div>
+                </div>
+                <div class="range-input">
+                    <input type="range" class="range-min" min="<?php echo $car_zem_gads;?>" max="<?php echo $car_aug_gads;?>" value="<?php echo $car_zem_gads;?>" step="1" id="car_min_gads_select">
+                    <input type="range" class="range-max" min="<?php echo $car_zem_gads;?>" max="<?php echo $car_aug_gads;?>" value="<?php echo $car_aug_gads;?>" step="1" id="car_max_gads_select">
+                </div>
+            </div>
+
+            <div class="filter-box" data-filter="mileage" data-gap="1000">
+                <h1>Nobrakums</h1>
+                <div class="price-input">
+                    <input type="number" class="input-min" value="<?php echo $car_zem_mileage;?>">
+                    <input type="number" class="input-max" value="<?php echo $car_aug_mileage;?>">
+                </div>
+                <div class="range-slider">
+                    <div class="progress"></div>
+                </div>
+                <div class="range-input">
+                    <input type="range" class="range-min" min="<?php echo $car_zem_mileage;?>" max="<?php echo $car_aug_mileage;?>" value="<?php echo $car_zem_mileage;?>" step="1000" id="car_min_nobrakums_select">
+                    <input type="range" class="range-max" min="<?php echo $car_zem_mileage;?>" max="<?php echo $car_aug_mileage;?>" value="<?php echo $car_aug_mileage;?>" step="1000" id="car_max_nobrakums_select">
+                </div>
+            </div>
+
+            <div class="filter-box" data-filter="power" data-gap="10">
+                <h1>Jauda</h1>
+                <div class="price-input">
+                    <input type="number" class="input-min" value="<?php echo $car_zem_power;?>">
+                    <input type="number" class="input-max" value="<?php echo $car_aug_power;?>">
+                </div>
+                <div class="range-slider">
+                    <div class="progress"></div>
+                </div>
+                <div class="range-input">
+                    <input type="range" class="range-min" min="<?php echo $car_zem_power;?>" max="<?php echo $car_aug_power;?>" value="<?php echo $car_zem_power;?>" step="10" id="car_min_jauda_select">
+                    <input type="range" class="range-max" min="<?php echo $car_zem_power;?>" max="<?php echo $car_aug_power;?>" value="<?php echo $car_aug_power;?>" step="10"id="car_max_jauda_select">
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="radio-filter">
+
+            <div class="box">
+
+                <h1>Pec DTP</h1>
+
+                <div class="wrapper">
+
+                    <input type="radio" name="dtp" id="dtp-option-1" value="1">
+                    <input type="radio" name="dtp" id="dtp-option-2" value="2">
+                    <input type="radio" name="dtp" id="dtp-option-3" value="3" checked>
+
+                    <label for="dtp-option-1" class="option dtp-option-1">
+                        <div class="dot"></div>
+                        <span>Jā</span>
+                    </label>
+
+                    <label for="dtp-option-2" class="option dtp-option-2">
+                        <div class="dot"></div>
+                        <span>Nē</span>
+                    </label>
+
+                    <label for="dtp-option-3" class="option dtp-option-3">
+                        <div class="dot"></div>
+                        <span>Visi</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="box">
+
+                <h1>Jaudas mērvienība</h1>
+
+                <div class="wrapper">
+
+                    <input type="radio" name="jauda-m" id="jauda-option-1" value="1" checked>
+                    <input type="radio" name="jauda-m" id="jauda-option-2" value="2">
+
+                    <label for="jauda-option-1" class="option jauda-option-1">
+                        <div class="dot"></div>
+                        <span>KW</span>
+                    </label>
+
+                    <label for="jauda-option-2" class="option jauda-option-2">
+                        <div class="dot"></div>
+                        <span>HP</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="box">
+
+                <h1>Nobraukuma mērvienība</h1>
+
+                <div class="wrapper">
+
+                    <input type="radio" name="nobrakums-m" id="nobraukums-option-1" value="1" checked>
+                    <input type="radio" name="nobrakums-m" id="nobraukums-option-2" value="2">
+
+                    <label for="nobraukums-option-1" class="option nobraukums-option-1">
+                        <div class="dot"></div>
+                        <span>KM</span>
+                    </label>
+
+                    <label for="nobraukums-option-2" class="option nobraukums-option-2">
+                        <div class="dot"></div>
+                        <span>Miles</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
 </section>
@@ -423,7 +547,7 @@ require "../../header.php";
 
 <section class="sludinajumabtn">
 
-<a href="#search" class="btna sludbtn">
+<a href="" class="btna sludbtn">
 
 <div class="slud-btn-box">
 
