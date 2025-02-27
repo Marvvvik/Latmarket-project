@@ -8,7 +8,7 @@ session_start();
 
     <div class="logo">
 
-        <a href="/"><img src="/image/Latmarket-logo.png" alt=""></a>
+        <a href="/">Latmarket</a>
 
     </div>
 
@@ -168,7 +168,7 @@ session_start();
 
                     <div class="btn-line"></div>
 
-                    <span class="btnlogspan">Login</span>
+                    <span class="btnlogspan">Autorizeties</span>
 
                 </div>
 
@@ -236,7 +236,7 @@ session_start();
 
                     <div class="btn-line"></div>
 
-                    <span class="btnlogspan">Register</span>
+                    <span class="btnlogspan">Reģistreties</span>
 
                 </div>
 

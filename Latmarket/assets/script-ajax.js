@@ -109,14 +109,25 @@ $('#editForm').submit(e => {
         success: response => {
             const messageType = response.success ? "success" : "error";
             const messageText = response.success ? response.message : response.error;
+            const iconClass = response.success ? "fa-check" : "fa-close";
+            const titleText = response.success ? "Veiksmīgi!" : "Ne veiksmīgi!";
 
             $('.linemess').remove();
 
             const messageBox = `<div class="linemess ${messageType}">
                                     <i class="fas fa-close closemodal" id="mesclose"></i>
-                                    <p>${messageText}</p>
+
+                                    <div class="mesinfobox">
+                                        <i class="fas ${iconClass}"></i>
+
+                                        <div class="mesinfo">
+                                            <h2>${titleText}</h2>
+                                            <p>${messageText}</p>
+                                        </div>
+                                    </div>
                                     <div class="timeline"></div>
                                 </div>`;
+
             $('body').append(messageBox);
 
             setTimeout(() => {
@@ -129,13 +140,21 @@ $('#editForm').submit(e => {
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.error('Kļuda pie datu nmosutišanas:', errorThrown);
+            console.error('Kļuda pie datu nosūtīšanas:', errorThrown);
             $('.linemess').remove();
             const errorMessage = `<div class="linemess error">
                                     <i class="fas fa-close closemodal" id="mesclose"></i>
-                                    <p>Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
+
+                                    <div class="mesinfobox">
+                                        <i class="fas fa-close"></i>
+
+                                        <div class="mesinfo">
+                                            <h2>Ne veiksmīgi!</h2>
+                                            <p>Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
+                                        </div>
+                                    </div>
                                     <div class="timeline"></div>
-                                  </div>`;
+                                </div>`;
             $('body').append(errorMessage);
             setTimeout(() => {
                 $('.linemess').fadeOut(300, function () { $(this).remove(); });

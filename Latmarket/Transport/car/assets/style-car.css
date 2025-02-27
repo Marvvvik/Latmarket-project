@@ -1,6 +1,6 @@
 .search-line{
 
-background: var(--white);
+background: var(--maincolor);
 padding: 10rem 10% 4rem 10%;
 
 }
@@ -20,40 +20,46 @@ flex-wrap: wrap;
 
 width:  auto;
 height: 5rem;
-box-shadow: 0 0 20px #000;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
 margin: .7rem .7rem;
 cursor: pointer;
 display: flex;
 justify-content: center;
 align-items: center;
-background: var(--black);
+background: var(--maincolor);
 padding: 0 1.5rem;
 position: relative;
 
 }
 
+.grupboxs .box:hover{
+
+background: var(--hover);
+
+}
+
 .grupboxs .box.active{
 
-background: var(--second);
+background: var(--secondcolor);
 cursor: default;
 
 }
 
 .grupboxs .box.active i{
 
-color: var(--white);
+color: var(--textcolor);
 
 }
 
 .grupboxs .box.active:hover {
  
-background: var(--second); 
+background: var(--secondcolor); 
 
 }
 
 .grupboxs .box.active:hover i, .grupboxs .box.active:hover p{
  
-color: var(--white); 
+color: var(--textcolor); 
 
 }
 
@@ -65,29 +71,16 @@ position: absolute;
 
 }
 
-.grupboxs .box:hover{
-
-background: rgba(255, 87, 51, 30%);
-
-}
-
-.grupboxs .box:hover p{
-
-color: var(--black);
-
-}
-
-
 .grupboxs .box i{
 
-color: var(--second);
+color: var(--secondcolor);
 font-size: 1.3rem;
 
 }
 
 .grupboxs .box p{
 
-color: var(--white);
+color: var(--textcolor);
 margin: 0 .5rem;
 font-size: .9rem;
 
@@ -95,7 +88,7 @@ font-size: .9rem;
 
 .filter{
 
-background: var(--white);
+background: var(--textcolor);
 padding: 2rem 5%;
 display: flex;
 justify-content: center;
@@ -105,10 +98,10 @@ align-items: center;
 
 .filter-menu{
 
-width: 80%;
+width: 90%;
 height: auto;
-box-shadow: var(--shadow);
-background: var(--black);
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
+background: var(--maincolor);
 display: flex;
 justify-content: center;
 align-items: center;
@@ -149,7 +142,7 @@ cursor: not-allowed;
 
 .list-choice.deactive .list-choice-title{
 
-background: rgba(255, 87, 51, 50%);
+background: var(--hover);
 
 }
 
@@ -164,7 +157,7 @@ left:-9999px;
 
 width: 100%;
 display: block;
-background: var(--second);
+background: var(--secondcolor);
 text-align: center;
 padding: 1em 1em;
 box-sizing: border-box;
@@ -177,7 +170,7 @@ color: #FFF;
 .list-choice input[type="radio"] + span {
 
 color: #FFF;
-background: var(--second);
+background: var(--secondcolor);
 padding: 1em 1em;
 display: block;
 text-align: center;
@@ -212,7 +205,7 @@ transition: all 250ms ease-in-out;
 
 .list-choice:hover input[type="radio"] + span:hover {
 
-background: var(--main);
+background: var(--maincolor);
 
 }
 
@@ -243,14 +236,14 @@ width: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
-margin: 2rem 0;
+margin: 3rem 0;
 
 }
 
 .filter-box{
 
 width: 20%;
-margin: 0 .5rem;
+margin: 0 2rem;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -261,7 +254,7 @@ flex-direction: column;
 
 .filter-box h1{
 
-color: var(--second);
+color: var(--textcolor);
 font-size: 1.5rem;
 margin-bottom: 2rem;
 
@@ -344,7 +337,7 @@ width: 15px;
 border-radius: 50%;
 -webkit-appearance: none;
 pointer-events: auto;
-background: var(--second);
+background: var(--secondcolor);
 
 }
 
@@ -354,14 +347,14 @@ width: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
-margin: 2rem 0;
+margin: 4rem 0 4rem 0;
 
 }
 
 .radio-filter .box {
 
-color: var(--white);
-margin: 0 2rem;
+color: var(--textcolor);
+margin: 0 4rem;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -372,8 +365,8 @@ width: 25%;
 
 .radio-filter .box h1 {
 
-font-size: 1.2rem;
-margin-bottom: 1rem;
+font-size: 1.5rem;
+margin-bottom: 2rem;
 
 }
 
@@ -385,7 +378,7 @@ width: 100%;
 align-items: center;
 justify-content: space-evenly;
 padding: 15px 10px;
-box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
 
 }
 
@@ -422,7 +415,7 @@ top: 4px;
 left: 4px;
 width: 7px;
 height: 7px;
-background: var(--second);
+background: var(--secondcolor);
 border-radius: 50%;
 opacity: 0;
 transform: scale(1.5);
@@ -445,8 +438,8 @@ input[id="jauda-option-2"]:checked ~ .jauda-option-2,
 input[id="nobraukums-option-1"]:checked ~ .nobraukums-option-1,
 input[id="nobraukums-option-2"]:checked ~ .nobraukums-option-2 {
 
-border-color: var(--second);
-background: var(--second);
+border-color: var(--secondcolor);
+background: var(--secondcolor);
 
 }
 
@@ -498,7 +491,7 @@ color: #fff;
 
 .offers{
 
-background: var(--white);
+background: var(--textcolor);
 padding: 3rem 10%;
 
 }
@@ -517,7 +510,7 @@ flex-wrap: wrap;
 
 width: 75%;
 height: 25rem;
-box-shadow: var(--shadow);
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
 margin: 2rem 0;
 display: flex;
 cursor: pointer;
@@ -581,7 +574,7 @@ font-size: 1.5rem;
 
 font-size: 1.5rem;
 margin-right: 1.5rem;
-background: var(--second);
+background: var(--secondcolor);
 padding: .5rem;
 
 }
@@ -600,7 +593,7 @@ margin-top: 1rem;
 
 width: 90%;
 height: auto;
-border: .2rem solid var(--second);
+border: .2rem solid var(--secondcolor);
 margin: 2rem 1rem 0 1rem;
 display: flex;
 justify-content: space-between;
@@ -645,7 +638,7 @@ letter-spacing: 1px;
 .sludinajumabtn{
 
 width: 100%;
-background: var(--white);
+background: var(--textcolor);
 display: flex;
 justify-content: center;
 align-items: center;
@@ -655,7 +648,7 @@ padding: 3rem 0 0 0;
 
 .sludbtn{
 
-background: var(--white);
+background: var(--textcolor);
 margin: 0;
 
 }
@@ -663,7 +656,7 @@ margin: 0;
 
 .slud-btn-box{
 
-background: var(--black);
+background: var(--maincolor);
 font-size: 1.5rem;
 display: flex;
 justify-content: center;
@@ -680,13 +673,13 @@ background: rgba(255, 87, 51, 30%);
 
 .slud-btn-box:hover span{
 
-color: var(--black);
+color: var(--maincolor);
 
 }
 
 .slud-btn-box i{
 
-color: var(--second);
+color: var(--secondcolor);
 
 }
 

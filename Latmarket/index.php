@@ -24,115 +24,119 @@ require "header.php";
 
 <section class="search" id="search">
 
-    <div class="searchbox">
+    <div class="searchmenu">
 
-        <div class="box active">
+        <div class="searchbox">
 
-            <div class="neo-line"></div>
+            <div class="box active">
 
-            <h2>Transports</h2>
+                <div class="neo-line"></div>
 
-            <div class="marker"></div>
+                <h2>Transports</h2>
+
+                <div class="marker"></div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="neo-line"></div>
+
+                <h2>Darbs un bizness</h2>
+
+                <div class="marker"></div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="neo-line"></div>
+
+                <h2>Nekustamie īpašumi</h2>
+
+                <div class="marker"></div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="neo-line"></div>
+
+                <h2>Celtniecība</h2>
+
+                <div class="marker"></div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="neo-line"></div>
+
+                <h2>Elektrotehnika</h2>
+
+                <div class="marker"></div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="neo-line"></div>
+
+                <h2>Drēbes</h2>
+
+                <div class="marker"></div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="neo-line"></div>
+
+                <h2>Mājai</h2>
+
+                <div class="marker"></div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="neo-line"></div>
+
+                <h2>Ražošana</h2>
+
+                <div class="marker"></div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="neo-line"></div>
+
+                <h2>Bērniem</h2>
+
+                <div class="marker"></div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="neo-line"></div>
+
+                <h2>Dzīvnieki</h2>
+
+                <div class="marker"></div>
+
+            </div>
 
         </div>
 
-        <div class="box">
+        <div class="dynamic-line">
 
-            <div class="neo-line"></div>
+            <div class="dline"></div>
 
-            <h2>Darbs un bizness</h2>
-
-            <div class="marker"></div>
+            <i class="fas fa-caret-up triangle"></i>
 
         </div>
-
-        <div class="box">
-
-            <div class="neo-line"></div>
-
-            <h2>Nekustamie īpašumi</h2>
-
-            <div class="marker"></div>
-
-        </div>
-
-        <div class="box">
-
-            <div class="neo-line"></div>
-
-            <h2>Celtniecība</h2>
-
-            <div class="marker"></div>
-
-        </div>
-
-        <div class="box">
-
-            <div class="neo-line"></div>
-
-            <h2>Elektrotehnika</h2>
-
-            <div class="marker"></div>
-
-        </div>
-
-        <div class="box">
-
-            <div class="neo-line"></div>
-
-            <h2>Drēbes</h2>
-
-            <div class="marker"></div>
-
-        </div>
-
-        <div class="box">
-
-            <div class="neo-line"></div>
-
-            <h2>Mājai</h2>
-
-            <div class="marker"></div>
-
-        </div>
-
-        <div class="box">
-
-            <div class="neo-line"></div>
-
-            <h2>Ražošana</h2>
-
-            <div class="marker"></div>
-
-        </div>
-
-        <div class="box">
-
-            <div class="neo-line"></div>
-
-            <h2>Bērniem</h2>
-
-            <div class="marker"></div>
-
-        </div>
-
-        <div class="box">
-
-            <div class="neo-line"></div>
-
-            <h2>Dzīvnieki</h2>
-
-            <div class="marker"></div>
-
-        </div>
-
-    </div>
-
-    <div class="dynamic-line">
-
-        <div class="dline"></div>
-
-        <i class="fas fa-caret-up triangle"></i>
 
     </div>
 
@@ -431,8 +435,6 @@ require "header.php";
 
 
 <section class="stats">
-
-    <div class="neon"></div>
 
     <div class="statboxs">
 

@@ -1,14 +1,11 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playwrite+DE+Grund:wght@100..400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
 
 *{
 
 padding: 0%;
 margin: 0%;
 box-sizing: border-box;
-/* font-family: "Anton SC", sans-serif; */
-font-family: "Fira Sans Condensed", sans-serif;
+font-family: "Kumbh Sans", serif;
 text-decoration: none;
 border: none;
 outline: none;
@@ -17,23 +14,23 @@ letter-spacing: .2rem;
 
 }
 
-body{
-
-background: var(--white);
-
-}
-
 
 :root{
 
---main: #121212;
---black: #292929;
---white: #e0e0e0;
---second: #FF5733;
+--maincolor: #f4f2e9;
+--texstcolor: #000;
+--dobcolor: #000;
+--secondcolor: #ebb400;
 --shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 30%);
+--hover: rgba(235, 180, 51, 30%);
 
 }
 
+body{
+
+background: var(--maincolor);
+
+}
 
 header{
 
@@ -41,19 +38,19 @@ padding: 2rem 12%;
 display: flex;
 justify-content: space-between;
 align-items: center;
-background: var(--black);
+background: var(--maincolor);
 width: 100%;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 50%);
 
 }
 
 .logo a{
 
-font-size: 1.4rem;
-color: var(--white);
+font-size: 1.6rem;
+color: var(--texstcolor);
 font-weight: bold;
 
 }
-
 
 .logo a img{
 
@@ -61,7 +58,6 @@ width: auto;
 height: 2rem;
 
 }
-
 
 .navmenu{
 
@@ -71,19 +67,17 @@ align-items: center;
 
 }
 
-
 .profset{
 
 position: relative;
 
 }
 
-
 .proimage{
 
 width: 3rem;
 height: 3rem;
-border: var(--second) solid .2rem;
+border: var(--secondcolor) solid .2rem;
 border-radius: 50%;
 cursor: pointer;
 display: flex;
@@ -107,7 +101,7 @@ top: 10rem;
 left: 50%;
 width: auto;
 height: auto;
-background: var(--black);
+background: var(--maincolor);
 transform: translate(-50%, -50%);
 box-shadow: 0 0 10px #000;
 z-index: 3;
@@ -124,42 +118,41 @@ display: flex;
 
 }
 
-
 .profmenu a, .profmenu button{
 
 width: 100%;
-color: var(--white);
+color: var(--texstcolor);
 text-align: center;
 padding: .8rem 1rem;
 display: flex;
 justify-content: center;
 align-items: center;
-background: var(--black);
+background: var(--maincolor);
 cursor: pointer;
+font-size: 1rem;
 
 }
 
 .profmenu a i, .profmenu button i{
 
-color: var(--second);
+color: var(--dobcolor);
 margin-right: .3rem
 
 }
 
 .profmenu a:hover, .profmenu button:hover{
 
-background: rgba(255, 87, 51, 30%);
+background: rgba(255, 180, 0, 30%);
 
 }
 
-
-.profmenu a:hover #spin, .profmenu button:hover #spin{
+.profmenu button:hover #spin{
 
 animation: spin 1s ease-out forwards;
 
 }
 
-.profmenu a:hover #rotate-spin{
+.profmenu button:hover #rotate-spin{
 
 animation: rotate-spin 1s ease-out forwards;
 
@@ -173,19 +166,19 @@ background: rgba(255, 0, 0, 30%);
 
 .btna{
 
-margin: 0 1rem;
+margin: 0 .5rem;
 background: none;
 cursor: pointer;
 
 }
 
-
 .btn-box{
 
 padding: .5rem .8rem;
-background: var(--second);
+background: var(--secondcolor);
 position: relative;
 overflow: hidden;
+border-radius: 5rem;
 
 }
 
@@ -196,7 +189,7 @@ width: 10rem;
 height: 2rem;
 top: 0rem;
 left: -8rem;
-background: var(--white);
+background: var(--texstcolor);
 opacity: 50%;
 transform: rotate(-45deg);
 transition: left .5s linear;
@@ -209,22 +202,20 @@ left: 10rem;
 
 }
 
-
 .btna span{
 
-color: var(--white);
-font-size: .8rem;
+color: var(--texstcolor);
+font-size: 1rem;
 
 }
-
 
 footer{
 
 display: flex;
 justify-content: center;
 align-items: center;
-background: var(--black);
-color: var(--white);
+background: var(--maincolor);
+color: var(--texstcolor);
 padding: 3rem 15%;
 
 }
@@ -270,7 +261,7 @@ display: block;
 
 width: 35rem;
 height: auto;
-background: var(--black);
+background: var(--maincolor);
 position: fixed;
 top: 50%;
 left: 50%;
@@ -285,7 +276,7 @@ position: relative;
 
 .closemodal, .close-ml{
 
-color: var(--white);
+color: var(--texstcolor);
 position: absolute;
 font-size: 1.5rem;
 top: 1rem;
@@ -297,8 +288,8 @@ color: red;
 
 .log-reg h2{
 
-background: var(--second);
-color: var(--white);
+background: var(--secondcolor);
+color: var(--texstcolor);
 padding: 1rem;
 font-size: 2rem;
 
@@ -321,14 +312,14 @@ cursor: pointer;
 font-size: 1.5rem;
 z-index: 1;
 margin: 0 .5rem;   
-color: var(--white);
+color: var(--texstcolor);
 
 }
 
 .reg-log-btn p{
 
 z-index: 1;
-color: var(--white);
+color: var(--texstcolor);
 
 }
 
@@ -336,7 +327,7 @@ color: var(--white);
 .reg-log-btn .cube{
 
 height: 100%;
-background: var(--second);
+background: var(--secondcolor);
 position: absolute;
 z-index: 0;
 
@@ -388,12 +379,12 @@ width: 60%;
 
 background-color: transparent;
 border: 0;
-border-bottom: 2px var(--main) solid;
+border-bottom: 2px var(--dobcolor) solid;
 display: block;
 width: 100%;
 padding: 15px 0;
 font-size: 18px;
-color: #fff;
+color: var(--texstcolor);
 
 }
 
@@ -401,7 +392,7 @@ color: #fff;
 .form-control input:valid {
 
 outline: 0;
-border-bottom-color: var(--second);
+border-bottom-color: var(--secondcolor);
 
 }
 
@@ -419,7 +410,7 @@ pointer-events: none;
 display: inline-block;
 font-size: 15px;
 min-width: 5px;
-color: #fff;
+color: var(--texstcolor);
 transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 }
@@ -427,7 +418,7 @@ transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 .form-control input:focus+label span,
 .form-control input:valid+label span {
 
-color: var(--second);
+color: var(--secondcolor);
 transform: translateY(-30px);
 
 }
@@ -441,7 +432,7 @@ margin-top: 10px;
 
 .configpass p{
 
-color: var(--white);
+color: var(--texstcolor);
 font-size: .8rem;
 margin: .3rem 0;
 
@@ -502,34 +493,89 @@ height: 2rem;
 .linemess{
 
 position: fixed;
-width: auto;
-height: auto;
-background: var(--black);
 top: 10%;
 right: 3%;
-font-size: .9rem;
+font-size: 1rem;
 z-index: 7;
 animation: opacity .5s ease-out forwards;
+background: #f8d7da;
+padding: .5rem 4rem 0 .5rem;
+border-radius: 2rem; 
+overflow: hidden;
 
 }
+
+.mesinfobox{
+
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: .5rem;
+
+}
+
+.mesinfobox i{
+
+font-size: 1.5rem;
+margin-left: .5rem;
+width: 2.5rem;
+height: 2.5rem;
+line-height: 2.5rem;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.mesinfo{
+
+margin-left: 1rem;
+
+}
+
+.mesinfo h2{
+
+font-size: 1.3rem;
+font-weight: bold;
+margin-bottom: .3rem;
+
+}
+
+
+.mesinfo p{
+
+font-size: 1rem;
+font-weight: normal;
+
+}
+
 
 .linemess.success{
 
 color: green;
-border: solid .1rem green;
+border: solid .2rem rgba(0, 200, 0, 50%);
+background: #abf7b2;
+
+}
+
+.linemess.success .mesinfobox i{
+
+background: rgba(0, 200, 0, 60%);
 
 }
 
 .linemess.error{
 
 color: red;
-border: solid .1rem red;
+border: solid .2rem rgba(255, 0, 0, 50%);
+background: #f7abb2;
 
 }
 
-.linemess p{
+.linemess.error .mesinfobox i{
 
-padding: 1.5rem 2rem 1rem 2rem;
+background: rgba(255, 0, 0, 20%);
 
 }
 
@@ -537,7 +583,7 @@ padding: 1.5rem 2rem 1rem 2rem;
 
 width: 100%;
 height: 5px;
-background: green;
+background: rgba(0, 200, 0, 50%);
 animation: timeline 5s ease-out forwards;
 
 }
@@ -546,16 +592,29 @@ animation: timeline 5s ease-out forwards;
 
 width: 100%;
 height: 5px;
-background: red;
+background: rgba(255, 0, 0, 50%);
 animation: timeline 5s ease-out forwards;
 
 }
 
 #mesclose{
 
-top: 5px;
-font-size: 1rem;
-right: 5px;
+top: 50%;
+font-size: 2rem;
+right: 15px;
+transform: translate(0, -50%);
+
+}
+
+.linemess.success #mesclose{
+
+color: rgba(0, 150, 0, 70%);
+
+}
+
+.linemess.error #mesclose{
+
+color: rgba(255, 0, 0, 70%);
 
 }
   
@@ -619,7 +678,7 @@ display: block;
 
 width: 70%;
 height: 80%;
-background: var(--black);
+background: var(--maincolor);
 display: flex;
 position: fixed;
 top: 50%;
@@ -641,11 +700,11 @@ box-shadow: 0 0 10px #000;
 
 width: 100%;
 height: 20%;
-border-bottom: var(--second) solid .1rem;
+border-bottom: var(--secondcolor) solid .2rem;
 display: flex;
 justify-content: center;
 align-items: center;
-color: var(--white);
+color: var(--texstcolor);
 
 }
 
@@ -654,7 +713,7 @@ color: var(--white);
 
 width: 5rem;
 height: 5rem;
-border: var(--second) solid .2rem;
+border: var(--secondcolor) solid .2rem;
 border-radius: 50%;
 display: flex;
 justify-content: center;
@@ -697,26 +756,46 @@ flex-direction: column;
 
 }
 
-.profbtns a{
+.profbtns a, .logoutbtn a{
 
 padding: 1.5rem 0;
-color: var(--white);
+color: var(--texstcolor);
 font-size: 1;
 width: 100%;
 text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
 
 }
 
 .profbtns a:hover{
 
-background: rgba(255, 87, 51, 30%);
+background: rgba(255, 180, 0, 30%);
 
 }
 
-.profbtns a i{
+.profbtns a i, .logoutbtn a i{
 
 margin-right: 1rem;  
-font-size: 1.2; 
+font-size: 1.5rem; 
+color: var(--secondcolor);
+
+}
+
+.logoutbtn a i{
+
+color: red;
+
+}
+
+.logoutbtn{
+
+width: 100%;
+height: auto;
+display: flex;
+justify-content: center;
+align-items: end;
 
 }
 
@@ -731,6 +810,13 @@ animation: spin 1s ease-out forwards;
 animation: rotate-spin 1s ease-out forwards;
 
 }
+
+.logoutbtn a:hover{
+
+background: rgba(255, 0, 0, 30%);
+
+}
+
 
 @keyframes spin {
 
@@ -765,32 +851,6 @@ transform: rotateY(720deg);
 
 }
 
-.logoutbtn{
-
-width: 100%;
-height: auto;
-display: flex;
-justify-content: center;
-align-items: end;
-
-}
-
-
-.logoutbtn a{
-
-padding: 1.5rem 0;
-width: 100%;
-text-align: center;
-color: var(--white);
-
-}
-
-.logoutbtn a:hover{
-
-background: rgba(255, 0, 0, 30%);
-
-}
-
 
 .settings-menu{
 
@@ -817,8 +877,8 @@ flex-wrap: wrap;
 
 width: 40%;
 height: 100%;
-border: .1rem solid var(--second);
-color: var(--white);
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 10%);
+color: var(--texstcolor);
 padding: 1rem;
 margin: 1rem;
 display: flex;
@@ -844,15 +904,15 @@ width: 5rem;
 height: 5rem;
 margin-right: 2rem;
 border-radius: 50%;
-border: .1rem solid var(--second);
+border: .2rem solid var(--secondcolor);
 
 }
 
 .avatar button{
 
 padding: .5rem .8rem;
-background: var(--second);
-color: var(--white);
+background: var(--secondcolor);
+color: var(--texstcolor);
 cursor: pointer;
 
 }
@@ -865,7 +925,6 @@ font-weight: bold;
 
 .info-box, .password-c{
 
-border: .1rem solid var(--second);
 padding: 1rem;
 width: calc(80% + 32px);
 height: auto;
@@ -875,6 +934,7 @@ align-items: center;
 flex-wrap: wrap;
 margin-top: 2rem;
 border-radius: 2rem;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 10%);
 
 }
 
@@ -884,8 +944,10 @@ width: 100%;
 padding: .7rem 1rem;
 font-size: 1rem;
 background: #353535;
-color: var(--white);
+color: var(--texstcolor);
 border-radius: 2rem;
+background: var(--maincolor);
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 20%);
 
 }
 
@@ -913,9 +975,10 @@ margin: 1rem;
 
 .input-l label{
 
-color: var(--white);
-font-size: .8rem;
+color: var(--texstcolor);
+font-size: 1rem;
 margin-bottom: .5rem;
+padding: 0 .5rem;
 
 }
 
@@ -934,7 +997,7 @@ width: 100%;
 height: 100%;
 top: 0;
 left: 0;
-background: var(--second);
+background: rgba(235, 180, 0, 100%);
 display: flex;
 justify-content: center;
 align-items: center;
@@ -943,10 +1006,16 @@ z-index: 2;
 
 }
 
+.passwordC:hover{
+
+background: rgba(235, 180, 0, 70%);
+
+}
+
 
 .passwordC p{
 
-color: var(--white);
+color: var(--texstcolor);
 font-weight: bold;
 
 }

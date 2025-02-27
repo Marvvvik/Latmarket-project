@@ -1,8 +1,9 @@
 .stats{
 
-background: var(--black);
+background: var(--maincolor);
 padding: 4rem 15%;
 position: relative;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
 
 }
 
@@ -13,8 +14,8 @@ top: 0;
 left: 50%;
 width: 0%;
 height: 5px;
-box-shadow: 0 0 20px var(--second), 0 0 10px var(--second);
-background: var(--second);
+box-shadow: 0 0 20px var(--secondcolor), 0 0 10px var(--secondcolor);
+background: var(--secondcolor);
 transform: translate(-50%);
 animation: expandWidth 1s ease-out forwards;
 
@@ -40,11 +41,11 @@ align-items: center;
 .statboxs .box{
 
 margin: 0 3rem 0 3rem;
-color: var(--white);
+color: var(--textcolor);
 font-weight: 100;
 text-align: center;
 border-radius: 50%;
-border: var(--second) solid .3rem;
+border: var(--secondcolor) solid .3rem;
 width: 10rem;
 height: 10rem;
 display: flex;
@@ -69,10 +70,11 @@ font-size: 1rem;
 
 .search{
 
-padding: 7rem 12% 10rem 12%;
-background: var(--main);
+padding: 7rem 10% 7rem 10%;
+background: var(--secondcolor);
     
 }
+
 
 .searchbox{
 
@@ -80,14 +82,18 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-wrap: wrap;
-margin-top: 5rem;
+margin-top: 3rem;
+background: var(--maincolor);
+border-radius: 5rem;
+padding: 1rem;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 50%);
         
 }
 
 .searchbox .box{
 
 width:  auto;
-padding: 0 1.5rem;
+padding: 0 .8rem;
 height: 3rem;
 position: relative;
 z-index: 2;
@@ -96,165 +102,31 @@ justify-content: center;
 align-items: center;
 cursor: pointer;
 flex-direction: column;
-background: var(--black);
+background: var(--maincolor);
+border-radius: 5rem;
 
 }
 
 .searchbox .box.active{
 
-background: var(--second);
-
-}
-
-.neo-line{
-
-width: 0%;
-height: 3px;
-background: var(--second);
-position: absolute;
-top: 0;
-left: 50%;
-transform: translate(-50%);
-z-index: 1;
-box-shadow: 0 0 20px var(--second);
-border-radius: 3rem;
+background: var(--secondcolor);
 
 }
 
 
-.searchbox .box:hover .neo-line{
+.searchbox .box:hover{
 
-animation: serchline 1s ease-out forwards;
-
-}
-
-@keyframes serchline {
-0%{
-height: 3px;
-width: 0%;
-left: 50%;
-top: 0;
-}
-
-10%{
-height: 3px;
-width: 20%;
-top: 0;
-}
-
-
-20%{
-height: 3px;
-width: 0%;
-left: 100%;
-top: 0;
-}
-
-21%{
-height: 3px;
-width: 0%;
-left: 100%;
-top: 0;
-}
-
-
-30%{
-height: 40%;
-width: 3px;
-left: 100%;
-}
-
-40%{
-height: 0%;
-width: 3px;
-left: 100%;
-top: 100%;
-}
-
-41%{
-height: 0%;
-width: 3px;
-left: 100%;
-top: 100%;
-}
-
-50%{
-height: 3px;
-width: 20%;
-top: 100%;
-}
-
-60%{
-height: 5px;
-width: 0;
-left: 0%;
-top: 100%;
-}
-
-61%{
-height: 3px;
-width: 0;
-left: 0%;
-top: 100%;
-}
-
-70%{
-width: 3px;
-height: 40%;
-left: 0;
-}
-
-80%{
-width: 3px;
-height: 0%;
-top: 0;
-left: 0;
-}
-
-
-81%{
-width: 3px;
-height: 0%;
-top: 0;
-left: 0;
-}
-
-90%{
-width: 20%;
-height: 3px;
-top: 0;
-}
-
-100%{
-width: 0%;
-height: 3px;
-top: 0;
-left: 50% 
-}
+background: rgba(255, 180, 0, 30%);
 
 }
-
 
 .searchbox .box h2{
 
-color: var(--white);
+color: var(--textcolor);
 width: 100%;
 text-align: center;
-font-size: .8rem;
-
-}
-
-
-.marker {
-
-position: absolute;
-width: 1px;
-height: 1px;
-top: 50%; 
-left: 50%; 
-transform: translate(-50%, -50%);
-pointer-events: none;
-visibility: hidden; 
+font-size: 1rem;
+font-weight: normal;
 
 }
 
@@ -269,9 +141,9 @@ position: relative;
 
 .dline{
 
-width: 100%;
+width: 90%;
 height: 3px;
-background: var(--black);
+background: var(--dobcolor);
 margin-top: 3rem;
 
 }
@@ -279,7 +151,7 @@ margin-top: 3rem;
 .triangle{
 
 font-size: 2rem;
-color: var(--second);
+color: var(--dobcolor);
 position: absolute;
 top: 45%;
 left: 5%;
@@ -293,7 +165,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-wrap: wrap;
-margin-top: 7rem;
+margin-top: 4rem;
 display: none;
 
 }
@@ -302,16 +174,17 @@ display: none;
 .grupbox .box{
 
 width:  auto;
-height: 5rem;
-box-shadow: 0 0 20px #000;
+height: 3.5rem;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 50%);
 margin: .7rem .7rem;
+padding: 0 .8rem;
 cursor: pointer;
 display: flex;
 justify-content: center;
 align-items: center;
-background: var(--black);
-padding: 0 1.5rem;
+background: var(--maincolor);
 position: relative;
+border-radius: 5rem;
 
 }
 
@@ -325,23 +198,23 @@ position: absolute;
 
 .grupbox .box:hover{
 
-background: rgba(255, 87, 51, 30%);
+background: rgba(255, 180, 0, 0%);
 
 }
 
 
 .grupbox .box i{
 
-color: var(--second);
+color: var(--secondcolor);
 font-size: 1.3rem;
 
 }
 
 .grupbox .box p{
 
-color: var(--white);
+color: var(--textcolor);
 margin: 0 .5rem;
-font-size: .9rem;
+font-size: 1rem;
 
 }
 
