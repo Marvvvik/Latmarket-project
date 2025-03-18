@@ -23,6 +23,7 @@ letter-spacing: .2rem;
 --secondcolor: #ebb400;
 --shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 30%);
 --hover: rgba(235, 180, 51, 30%);
+--hover2: rgba(235, 180, 51, 80%);
 
 }
 
@@ -271,6 +272,7 @@ display: flex;
 align-items: center;
 flex-direction: column;
 position: relative;
+border-radius: 2rem;
 
 }
 
@@ -292,6 +294,8 @@ background: var(--secondcolor);
 color: var(--texstcolor);
 padding: 1rem;
 font-size: 2rem;
+border-bottom-right-radius: 2rem;
+border-bottom-left-radius: 2rem;
 
 }
 
@@ -418,7 +422,7 @@ transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 .form-control input:focus+label span,
 .form-control input:valid+label span {
 
-color: var(--secondcolor);
+color: var(--texstcolor);
 transform: translateY(-30px);
 
 }
@@ -898,23 +902,152 @@ height: 15%;
 
 }
 
+
 .avatar-pre{
 
 width: 5rem;
 height: 5rem;
-margin-right: 2rem;
 border-radius: 50%;
 border: .2rem solid var(--secondcolor);
+overflow: hidden;
 
 }
 
-.avatar button{
+.close-prew{
 
-padding: .5rem .8rem;
-background: var(--secondcolor);
-color: var(--texstcolor);
+width: 5rem;
+height: 5rem;
+margin-right: 2rem;
+position: relative;
+
+}
+
+.close-prew i{
+
+color: red;
 cursor: pointer;
+display: none;
 
+}
+
+.close-prew.active i{
+
+display: block;
+
+}
+
+.avatar-del{
+
+position: absolute;
+top: 0;
+right: -10px;
+
+}
+
+.avatar-pre img{
+
+width: 100%;
+height: 100%;
+object-fit: cover;
+
+}
+
+.input-file-row {
+	display: inline-block;
+}
+
+.input-file {
+
+position: relative;
+display: inline-block;
+
+}
+
+.input-file span {
+
+position: relative;
+display: inline-block;
+cursor: pointer;
+outline: none;
+text-decoration: none;
+font-size: 14px;
+vertical-align: middle;
+color: var(--texstcolor);
+text-align: center;
+border-radius: 4px;
+background-color: var(--hover);
+line-height: 22px;
+height: 40px;
+padding: 10px 20px;
+box-sizing: border-box;
+border: none;
+margin: 0;
+transition: background-color 0.2s;
+
+}
+
+.input-file:hover span {
+
+	background-color: var(--secondcolor);
+
+}
+
+.input-file input[type=file] {
+
+position: absolute;
+z-index: -1;
+opacity: 0;
+display: block;
+width: 0;
+height: 0;
+
+}
+
+.input-file:active span {
+	background-color: #2E703A;
+}
+ 
+/* Disabled */
+.input-file input[type=file]:disabled + span {
+	background-color: #eee;
+}
+ 
+/* Список c превью */
+.input-file-list {
+	padding: 10px 0;
+}
+.input-file-list-item {
+	display: inline-block;
+	margin: 0 15px 15px;
+	width: 150px;
+	vertical-align: top;
+	position: relative;
+}
+.input-file-list-item img {
+	width: 150px;
+}
+.input-file-list-name {
+	text-align: center;
+	display: block;
+	font-size: 12px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.input-file-list-remove {
+	color: #fff;
+	text-decoration: none;
+	display: inline-block;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	top: 5px;
+	right: 5px;
+	background: #ff0202;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+	line-height: 16px;
+	border-radius: 50%;
 }
 
 .username-p span{

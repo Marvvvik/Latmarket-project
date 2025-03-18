@@ -3,8 +3,7 @@ document.querySelectorAll('.filter-box').forEach(filterBox => {
     const priceInput = filterBox.querySelectorAll('.price-input input');
     const progress = filterBox.querySelector('.range-slider .progress');
 
-    let priceGap = parseInt(filterBox.dataset.gap) || 500; // Считываем gap для текущего фильтра
-
+    let priceGap = parseInt(filterBox.dataset.gap) || 500; 
     priceInput.forEach(input => {
         input.addEventListener('input', e => {
             let minVal = parseInt(priceInput[0].value),
@@ -55,5 +54,20 @@ $(document).ready(function () {
         if ($("input[name='marka']:checked").length > 0) {
             $("#model-select").removeClass("deactive");
         }
+    });
+});
+
+
+
+$(document).ready(function() {
+    $(".photobtn button").click(function() {
+        var carId = $(this).closest('.photobtn').attr('id'); 
+
+        var photosContainer = $(".photos-container[id='" + carId + "']");
+        var currentIndex = $(this).index();
+        photosContainer.css("transform", "translateX(-" + (currentIndex * 100) + "%)");
+
+        $(".photobtn[id='" + carId + "'] button").removeClass("active");
+        $(this).addClass("active");
     });
 });

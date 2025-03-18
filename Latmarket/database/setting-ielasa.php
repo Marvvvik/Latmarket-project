@@ -2,6 +2,8 @@
 
 require "con_db_l.php"; 
 
+// функция для вывода даннызх которые сейчас в базе данных
+
 if (isset($_POST['id'])) {
     $userId = intval($_POST['id']);
 

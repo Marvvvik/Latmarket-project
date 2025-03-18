@@ -1,0 +1,170 @@
+#apskate{
+
+padding: 5rem 20%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+.car_info_a, .car_apraksts_a, .Car_foto_a{
+
+width: 100%;
+height: auto;
+border-radius: 2rem;
+padding: 2rem;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
+margin-top: 2rem;
+
+}
+
+.Car_foto_a, .car_info_a{
+
+display: flex;
+justify-content: center;
+
+}
+
+.slidersbox{
+
+width: 60%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+.slide-show{
+    
+display: flex;
+align-items: center;
+width: 100%;
+height: 25rem;
+overflow: hidden;
+border-radius: 1rem;
+
+}
+
+.slide-show img{
+
+width: 100%;
+height: auto;
+object-fit: cover;
+
+}
+
+.mini-slider{
+
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 5rem;
+margin-top: .5rem;
+
+}
+
+.mini-slider img{
+
+width: 25%;
+height: 100%;
+object-fit: cover;
+margin-right: .5rem;
+cursor: pointer;
+border-radius: .5rem;
+filter: grayscale(100%);
+
+}
+
+.ator-info{
+
+width: 40%;
+height: 100%;
+display: flex;
+justify-content: right;
+
+}
+
+
+.autrobox{
+
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 1rem;
+
+}
+
+
+.autor-avatar{
+
+width: 4rem;
+height: 4rem;
+border-radius: 50%;
+border: .2rem var(--secondcolor) solid;
+
+}
+
+.autor-name-phone{
+
+margin-right: 1rem;
+text-align: right;
+
+}
+
+.info-table{
+
+display: flex;
+justify-content: center;
+align-items: center; 
+flex-wrap: wrap;
+background: var(--secondcolor);
+padding: 1rem 0;
+border-radius: 1rem;
+
+}
+
+
+.table-block{
+
+display: flex;
+align-items: center;
+width: 30%;
+margin: .5rem;
+
+}
+
+
+.table-block img{
+
+width: 3rem;
+height: 3rem;
+margin-right: 1rem;
+
+}
+
+.apskateSpan{
+
+font-weight: bold;
+
+}
+
+.car_apraksts_a p{
+
+margin: 1rem 0;
+
+}
+
+.car_apraksts_a ul{
+
+margin: 1rem 0 1rem 2rem;
+
+}
+
+.car_apraksts_a li{
+
+margin: .5rem 0;
+
+}

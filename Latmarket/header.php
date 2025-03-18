@@ -59,7 +59,7 @@ session_start();
 
                 <div class="btn-line"></div>
 
-                <span>Login/Signin</span>
+                <span>Autorizeties</span>
 
             </div>
 
@@ -302,9 +302,24 @@ session_start();
                 
                     <div class="box avatar">
 
-                        <div class="avatar-pre"></div>
+                        <div class="close-prew">
 
-                        <button type="button">Izvelies failu</button>
+                            <div class="avatar-pre">
+
+                                <i class="fas fa-close avatar-del"></i>
+
+                                <img src="" id="avatar-preview">
+
+                            </div>
+                        
+                        </div>
+
+                        <div class="input-file-row">
+                            <label class="input-file">
+                                <input type="file" multiple accept="image/*" id="newavatar" name="newavatar">
+                                <span>Izvelies failu</span>
+                            </label>  
+                        </div>
 
                     </div>
 

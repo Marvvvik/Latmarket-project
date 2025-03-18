@@ -217,3 +217,40 @@ document.addEventListener('click', function(event) {
         }
     }
 });
+
+// --------------------------------------------------------------------------Avatar-change
+
+document.addEventListener("DOMContentLoaded", function () {
+    const fileInput = document.getElementById("newavatar");
+    const imgPreview = document.getElementById("avatar-preview");
+    const closePreview = document.querySelector(".close-prew");
+    const deleteButton = document.querySelector(".avatar-del");
+
+    fileInput.addEventListener("change", function () {
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function (e) {
+                imgPreview.src = e.target.result;
+                if (closePreview) {
+                    closePreview.classList.add("active");
+                }
+            };
+            
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    if (deleteButton) {
+        deleteButton.addEventListener("click", function () {
+            imgPreview.src = "";
+            fileInput.value = "";
+            if (closePreview) {
+                closePreview.classList.remove("active");
+            }
+        });
+    }
+});
+
+
+

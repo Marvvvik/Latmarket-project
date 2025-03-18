@@ -1,21 +1,21 @@
 <?php
+  // подключение к базе дынных 
+  $servers = "localhost";
+  $lietotajs = "root";
+  $parole = "";
+  $db_nosaukums = "Lietotaji";
 
-    $servers = "localhost";
-    $lietotajs = "root";
-    $parole = "";
-    $db_nosaukums = "Lietotaji";
-
-    $savienojums = mysqli_connect($servers, $lietotajs, $parole, $db_nosaukums);
+  $savienojums = mysqli_connect($servers, $lietotajs, $parole, $db_nosaukums);
 
 
-    if(!$savienojums){
+  if(!$savienojums){
 
-      #die("Kļuda ar datubazi!eror 404".mysqli_connect_errno());
+    #die("Kļuda ar datubazi!eror 404".mysqli_connect_errno());
 
-    }else{
+  }else{
 
-      #echo "Savienojums veiksmigs!";
+    #echo "Savienojums veiksmigs!";
 
-    }
+  }
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-require "../con_db.php";
+require "../con_db_transports.php";
 
 
 $marka = isset($_POST['marka']) ? $_POST['marka'] : null;
@@ -168,14 +168,19 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
 
     while ($Cars = mysqli_fetch_assoc($Atlasa_cars)) {
 
+// -------------------------------------- dzineja un cenas normalforma
+
         $formattedDzinejs = number_format($Cars['Dzinejs'], 1);
         $formtedCema = number_format($Cars['Cena'], 0, '', ' ').' €';
+
+// -------------------------------------- Jaudas izvade un mervieniba
 
         if ($Cars['Jauda'] == 0) {
 
             $jauda_izvade = "-";
     
         } else {
+
             if($jauda_m == 2){
 
                 $jauda_aprekin = round($Cars['Jauda'] * 1.34102);
@@ -187,7 +192,10 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
                 $jauda_izvade = $Cars['Jauda']." KW";
 
             }
+
         }
+
+// -------------------------------------- Nobraukuma mervieniba
 
         if($nobrakums_m == 2){
 
@@ -201,14 +209,55 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
 
         }
 
+// -------------------------------------- bildes izvade
+
+        $car_id_p = $Cars['Cars_ID'];
+
+        $photosSQL = "SELECT photo FROM Cars_photos WHERE car_id = ? LIMIT 5";
+        $stmt = $savienojums->prepare($photosSQL);
+        $stmt->bind_param("i", $car_id_p);
+        $stmt->execute();
+        $photosResult = $stmt->get_result();
+    
+        $photoHTML = '';  
+        $buttonsHTML = ''; 
+        $photoCount = 0;
+        
+        while ($photo = $photosResult->fetch_assoc()) {
+            $base64Image = base64_encode($photo['photo']); 
+            $photoHTML .= "<img src='data:image/jpeg;base64,{$base64Image}'/>";
+            $photoCount++;
+        }
+        
+        for ($i = 0; $i < $photoCount; $i++) {
+            $activeClass = ($i == 0) ? 'active' : ''; 
+            $buttonsHTML .= "<button class='$activeClass'></button>";
+        }
+
+// -------------------------------------- sludinajums
+
         echo "
         <div class='carsbox'>
 
-            <a href='car-parskate.php' class='cblink'></a>
-
             <div class='car-foto'>
 
-                <img src='{$Cars['Foto_URL']}'>
+                <form method='POST' action='car-parskate.php'>
+
+                    <button type='submit' name='carizvele' value='{$Cars['Cars_ID']}' class='cblink'></button>
+
+                </form>
+
+                <div class='photos-container' id='{$Cars['Cars_ID']}'>
+
+                    $photoHTML
+
+                </div>
+
+                <div class='photobtn' id='{$Cars['Cars_ID']}'>
+                
+                    $buttonsHTML
+
+                </div>
 
             </div>
 
@@ -220,7 +269,7 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
 
                         <h3>{$Cars['Marka']} {$Cars['Modelis']}</h3>
 
-                        <p>{$Cars['Izladuma_gads']}</p>
+                        <div class='gads-fav'><p>{$Cars['Izladuma_gads']} <div class='favorits'><i class='far fa-star fav'></i> <i class='fa fa-ban rep'></i></div></p></div>
 
                     </div>
 
