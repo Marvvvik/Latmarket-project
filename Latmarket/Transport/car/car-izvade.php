@@ -2,6 +2,7 @@
 
 require "../con_db_transports.php";
 
+session_start();
 
 $marka = isset($_POST['marka']) ? $_POST['marka'] : null;
 $modelis = isset($_POST['modelis']) ? $_POST['modelis'] : null;
@@ -168,6 +169,23 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
 
     while ($Cars = mysqli_fetch_assoc($Atlasa_cars)) {
 
+// -------------------------------------- star izvade
+
+    $starIcon = 'far fa-star fav'; 
+    
+    $favoritSQL = "SELECT * FROM favoriti WHERE lietotaja_id = ?";
+    $stmt = $savienojums->prepare($favoritSQL);
+    $stmt->bind_param("i", $_SESSION['IdHOMIK']);
+    $stmt->execute();
+    $favoritResult = $stmt->get_result();
+
+    while ($favorit = $favoritResult->fetch_assoc()) {
+        if ($favorit['table_name'] === "Cars" && $favorit['item_id'] == $Cars['Cars_ID']) {
+            $starIcon = 'fa fa-star fav';
+            break; 
+        }
+    }
+
 // -------------------------------------- dzineja un cenas normalforma
 
         $formattedDzinejs = number_format($Cars['Dzinejs'], 1);
@@ -234,6 +252,7 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
             $buttonsHTML .= "<button class='$activeClass'></button>";
         }
 
+
 // -------------------------------------- sludinajums
 
         echo "
@@ -269,7 +288,27 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
 
                         <h3>{$Cars['Marka']} {$Cars['Modelis']}</h3>
 
-                        <div class='gads-fav'><p>{$Cars['Izladuma_gads']} <div class='favorits'><i class='far fa-star fav'></i> <i class='fa fa-ban rep'></i></div></p></div>
+                        <div class='gads-fav'>
+                        
+                            <p>{$Cars['Izladuma_gads']} 
+                        
+                                <div class='favorits'>
+                                
+                                    <form class='favoriti'>
+
+                                        <input type='hidden' class='tb_name' value='Cars'>
+                                        <input type='hidden' class='item_id' value='{$Cars['Cars_ID']}'>
+
+                                        <button class='favBtn'><i class='{$starIcon}'></i></button> 
+
+                                    </form>
+                                    
+                                    <i class='fa fa-ban rep'></i>
+                                
+                                </div>
+                            </p>
+                            
+                        </div>
 
                     </div>
 

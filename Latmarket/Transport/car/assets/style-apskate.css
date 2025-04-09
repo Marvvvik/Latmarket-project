@@ -84,6 +84,23 @@ width: 40%;
 height: 100%;
 display: flex;
 justify-content: right;
+flex-direction: column;
+
+}
+
+.skat-info{
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.skat-info p{
+
+margin: 0 .5rem;
+margin-top: 24rem;
+opacity: 30%;
 
 }
 
@@ -104,6 +121,17 @@ width: 4rem;
 height: 4rem;
 border-radius: 50%;
 border: .2rem var(--secondcolor) solid;
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+
+}
+
+.autor-avatar img{
+
+width: 100%;
+height: auto;
 
 }
 

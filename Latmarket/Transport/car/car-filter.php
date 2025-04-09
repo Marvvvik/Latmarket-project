@@ -10,7 +10,7 @@ $Car_brendss = "";
 
     while($car_brends = mysqli_fetch_assoc($atlasa_car_select)) {
 
-        $Car_brendss .= "<label><input type='radio' name='marka' value='{$car_brends['Marka']}'><span>{$car_brends['Marka']}</span></lable>";
+        $Car_brendss .= "<option value='{$car_brends['Marka']}'>{$car_brends['Marka']}</option>";
 
     }
 

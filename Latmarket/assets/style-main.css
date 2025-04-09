@@ -98,7 +98,7 @@ height: auto;
 .profmenu{
 
 position: absolute;
-top: 10rem;
+top: 11rem;
 left: 50%;
 width: auto;
 height: auto;
@@ -141,9 +141,21 @@ margin-right: .3rem
 
 }
 
+.profmenu button i{
+
+color: var(--secondcolor);
+
+}
+
+.profmenu a i{
+
+color: red;
+
+}
+
 .profmenu a:hover, .profmenu button:hover{
 
-background: rgba(255, 180, 0, 30%);
+background: var(--hover);
 
 }
 
@@ -760,26 +772,28 @@ flex-direction: column;
 
 }
 
-.profbtns a, .logoutbtn a{
+.profbtns button, .logoutbtn a{
 
 padding: 1.5rem 0;
 color: var(--texstcolor);
-font-size: 1;
+font-size: 1rem;
 width: 100%;
 text-align: center;
 display: flex;
 justify-content: center;
 align-items: center;
+cursor: pointer;
+background: var(--maincolor);
 
 }
 
-.profbtns a:hover{
+.profbtns button:hover{
 
 background: rgba(255, 180, 0, 30%);
 
 }
 
-.profbtns a i, .logoutbtn a i{
+.profbtns button i, .logoutbtn a i{
 
 margin-right: 1rem;  
 font-size: 1.5rem; 
@@ -803,13 +817,13 @@ align-items: end;
 
 }
 
-.profbtns a:hover #spin{
+.profbtns button:hover #spin{
 
 animation: spin 1s ease-out forwards;
 
 }
 
-.profbtns a:hover #rotate-spin{
+.profbtns button:hover #rotate-spin{
 
 animation: rotate-spin 1s ease-out forwards;
 
@@ -856,15 +870,21 @@ transform: rotateY(720deg);
 }
 
 
-.settings-menu{
+.menu{
 
 width: 75%;
 height: 100%;
+display: none;
 
 }
 
+.menu.active{
 
-.settings-menu form{
+display: flex;
+
+}
+
+#settings-menu form{
 
 width: 100%;
 height: 100%;
@@ -877,7 +897,7 @@ flex-wrap: wrap;
 }
 
 
-.settings-menu .box{
+#settings-menu .box{
 
 width: 40%;
 height: 100%;
@@ -1004,50 +1024,66 @@ height: 0;
 }
 
 .input-file:active span {
-	background-color: #2E703A;
+
+background-color: #2E703A;
+
 }
  
-/* Disabled */
+
 .input-file input[type=file]:disabled + span {
-	background-color: #eee;
+
+background-color: #eee;
+
 }
  
-/* Список c превью */
 .input-file-list {
-	padding: 10px 0;
+
+padding: 10px 0;
+
 }
+
 .input-file-list-item {
-	display: inline-block;
-	margin: 0 15px 15px;
-	width: 150px;
-	vertical-align: top;
-	position: relative;
+
+display: inline-block;
+margin: 0 15px 15px;
+width: 150px;
+vertical-align: top;
+position: relative;
+
 }
+
 .input-file-list-item img {
-	width: 150px;
+
+width: 150px;
+
 }
 .input-file-list-name {
-	text-align: center;
-	display: block;
-	font-size: 12px;
-	text-overflow: ellipsis;
-	overflow: hidden;
+
+text-align: center;
+display: block;
+font-size: 12px;
+text-overflow: ellipsis;
+overflow: hidden;
+
 }
+
 .input-file-list-remove {
-	color: #fff;
-	text-decoration: none;
-	display: inline-block;
-	position: absolute;
-	padding: 0;
-	margin: 0;
-	top: 5px;
-	right: 5px;
-	background: #ff0202;
-	width: 16px;
-	height: 16px;
-	text-align: center;
-	line-height: 16px;
-	border-radius: 50%;
+
+color: #fff;
+text-decoration: none;
+display: inline-block;
+position: absolute;
+padding: 0;
+margin: 0;
+top: 5px;
+right: 5px;
+background: #ff0202;
+width: 16px;
+height: 16px;
+text-align: center;
+line-height: 16px;
+border-radius: 50%;
+
 }
 
 .username-p span{
@@ -1157,5 +1193,101 @@ font-weight: bold;
 .passwordC.active{
 
 display: none;
+
+}
+
+#favoriti-menu{
+
+padding: 2rem 2rem 0 2rem;
+justify-content: top;
+align-items: center;
+flex-direction: column;
+
+}
+
+#favoriti-menu .page-btn button{
+
+background: var(--hover);
+padding: .8rem 1rem;
+font-size: 1rem;
+font-weight: bold;
+color: var(--texstcolor);
+cursor: pointer;
+border-radius: 2rem;
+margin: 0 .3rem;
+text-align: center;
+
+}
+
+#favoriti-menu .page-btn button:hover{
+
+background: var(--secondcolor);
+
+}
+
+.fav-container{
+
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+margin-top: 1.5rem;
+
+}
+
+.fav-container h2{
+
+background: var(--secondcolor);
+border-radius: 2rem;
+padding: 1rem 1.5rem;
+
+}
+
+
+.fav-container .box{
+
+width: 17rem;
+height: 17rem;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 50%);
+border-radius: 2rem;
+overflow: hidden;
+margin: 1rem 1rem;
+text-align: center;
+display: flex;
+justify-content: top;
+align-items: center;
+flex-direction: column;
+
+}
+
+.fav-container .box img{
+
+width: 100%;
+height: 50%;
+object-fit: cover;
+
+}
+
+.fav-container .box h1{
+
+margin-top: 1rem;
+font-size: 1.2rem;
+
+}
+
+.fav-container .box .cena{
+
+width: 60%;
+height: 1.5rem;
+
+}
+
+
+.fav-container .box p{
+
+background: var(--secondcolor);
+padding: .5rem 1rem;
+margin-top: 3rem;
+font-size: 1rem;
+border-radius: 2rem;
 
 }

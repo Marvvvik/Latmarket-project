@@ -68,7 +68,7 @@ $(document).ready(function() {
                 setField("#telefons", response.telefons);
 
   
-                $(".name-i p").text(response.vards); 
+                $(".name-i p").text(response.vards + " " + response.uzvards);
                 $(".email-i p").text(response.epasts); 
             } 
         },
@@ -100,7 +100,7 @@ $('#editForm').submit(e => {
     const telefons = $('#telefons').val();
     const password1 = $('#password1-c').val();
     const password2 = $('#password2-c').val();
-    const newavatar = $('#newavatar')[0].files[0];  // Получаем файл
+    const newavatar = $('#newavatar')[0].files[0];  
 
     const formData = new FormData();
     formData.append('liet_id', liet_id);
@@ -112,7 +112,7 @@ $('#editForm').submit(e => {
     formData.append('password2', password2);
     formData.append('editPassActive', editPassActive);
     if (newavatar) {
-        formData.append('newavatar', newavatar);  // Добавляем файл в форму
+        formData.append('newavatar', newavatar);  
     }
 
     const editUrl = '/database/edit-profile.php';
@@ -122,8 +122,8 @@ $('#editForm').submit(e => {
         url: editUrl,
         data: formData,
         dataType: 'json',
-        processData: false,  // Чтобы jQuery не пытался преобразовать данные в строку
-        contentType: false,  // Чтобы jQuery не устанавливала заголовок Content-Type
+        processData: false,  
+        contentType: false,  
         success: response => {
             const messageType = response.success ? "success" : "error";
             const messageText = response.success ? response.message : response.error;
@@ -200,7 +200,7 @@ $('#atsakmes-form').submit(e => {
     const editData = { vards, uzvards, stars, at_text, lietotaja_id};
     const editUrl = '/database/atsaukmes-add.php';
 
-    console.log(editData)
+    // console.log(editData)
 
     $.ajax({
         type: 'POST',
@@ -263,4 +263,102 @@ $('#atsakmes-form').submit(e => {
         }
     });
 });
+
+// ------------------------------------------------------------Favorit add un izvade
+
+$('.favoriti').submit(function (e) {
+    e.preventDefault();
+
+    const form = $(this);
+    const tb_name = form.find('.tb_name').val();
+    const item_id = form.find('.item_id').val();
+
+    const editData = { tb_name, item_id };
+    const editUrl = '/database/favorite_add.php';
+
+    $.ajax({
+        type: 'POST',
+        url: editUrl,
+        data: editData,
+        dataType: 'json',
+        success: response => {
+            const messageType = response.success ? "success" : "error";
+            const messageText = response.success ? response.message : response.error;
+            const iconClass = response.success ? "fa-check" : "fa-close";
+            const titleText = response.success ? "Veiksmīgi!" : "Ne veiksmīgi!";
+
+            $('.linemess').remove();
+
+            const messageBox = `<div class="linemess ${messageType}">
+                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <div class="mesinfobox">
+                                        <i class="fas ${iconClass}"></i>
+                                        <div class="mesinfo">
+                                            <h2>${titleText}</h2>
+                                            <p>${messageText}</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline"></div>
+                                </div>`;
+
+            $('body').append(messageBox);
+
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
+
+            if (response.success) {
+               
+                const starIcon = response.star_icon;
+                form.find('.favBtn i').attr('class', starIcon);
+
+                favoritIzvade();  
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('Ошибка при отправке данных:', errorThrown);
+            $('.linemess').remove();
+            const errorMessage = `<div class="linemess error">
+                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <div class="mesinfobox">
+                                        <i class="fas fa-close"></i>
+                                        <div class="mesinfo">
+                                            <h2>Ne veiksmīgi!</h2>
+                                            <p>Кļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline"></div>
+                                </div>`;
+            $('body').append(errorMessage);
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
+        }
+    });
+});
+
+$(document).ready(function() {
+
+    favoritIzvade();
+
+})
+
+function favoritIzvade() {
+    $.ajax({
+        type: "POST",
+        url: "/database/favorit_izvade.php",
+        success: function(response) {
+            if ($.trim(response) === "") {
+                $("#fav-container").html("<h2>Neviens sludinajums nav pievienots favoritos!</h2>");
+            } else {
+                $("#fav-container").html(response);
+            }
+        },
+        error: function(xhr, status, error) {
+            $("#fav-container").html("<h1>Kļūda: " + xhr + "</h1>");  
+        }
+    });
+}
+
+
 

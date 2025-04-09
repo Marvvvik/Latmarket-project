@@ -93,302 +93,202 @@ require "../../header.php";
 
             <div class="box">
 
-                <div class="list-choice">
+                <div class= "filt-cont">
+                    <div class="select">
+                        <select id="Car_brends_select" name="Car_brends_select">
+                            <option value='' hidden>Marka</option>
 
-                    <div class="list-choice-title">Marka</div>
+                            <option value=''>-</option>
 
-                    <div class="list-choice-objects">
-
-                    <label>
-                            
-                        <input type="radio" name="marka" value=""><span></span>
-
-                    </label>
-
-                    <?php require "car-filter.php"; echo $Car_brendss; ?>
-
+                            <?php 
+                                require "car-filter.php"; 
+                                echo $Car_brendss; 
+                            ?>
+                        </select>
                     </div>
-                    
-                </div>
+                </div> 
 
             </div>
             
             <div class="box">
 
-                <div class="list-choice deactive" id="model-select">
-
-                    <div class="list-choice-title">Modelis</div>
-
-                    <div class="list-choice-objects" id="model-list-choice">
-
+                <div class= "filt-cont deactive">
+                    <div class="select">
+                        <select id="car_modelis_select" name="car_modelis_select">
+                            <option value='' hidden>Modelis</option>
+                        </select>
                     </div>
                 </div>
             </div>
 
             <div class="box">
 
-                <div class="list-choice">
+                <div class= "filt-cont">
+                    <div class="select">
+                        <select id="car_virsbuves_select" name="car_virsbuves_select">
+                            <option value='' hidden>Virsbūves tips</option>
 
-                    <div class="list-choice-title">Virsbūves tips</div>
+                            <option value=''>-</option>
 
-                    <div class="list-choice-objects">
+                            <option value="Sedans">Sedans</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value=""><span></span>
-                        </label>
+                            <option value="Kupē">Kupē</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Sedans"><span>Sedans</span>
-                        </label>
+                            <option value="Hečbeks">Hečbeks</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Kupē"><span>Kupē</span>
-                        </label>
+                            <option value="Liftbeks">Liftbeks</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Hečbeks"><span>Hečbeks</span>
-                        </label>
+                            <option value="Fastbeks">Fastbeks</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Liftbeks"><span>Liftbeks</span>
-                        </label>
+                            <option value="Universāls">Universāls</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Fastbeks"><span>Fastbeks</span>
-                        </label>
+                            <option value="Krosovers">Krosovers</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Universāls"><span>Universāls</span>
-                        </label>
+                            <option value="Apvidus auto">Apvidus auto</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Krosovers"><span>Krosovers</span>
-                        </label>
+                            <option value="Pikaps">Pikaps</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Apvidus auto"><span>Apvidus auto</span>
-                        </label>
+                            <option value="Vieglā kravas automašīna">Vieglā kravas automašīna</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Pikaps"><span>Pikaps</span>
-                        </label>
+                            <option value="Minivens">Minivens</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Vieglā kravas automašīna"><span>Vieglā kravas automašīna</span>
-                        </label>
+                            <option value="Kompaktvans">Kompaktvans</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Minivens"><span>Minivens</span>
-                        </label>
+                            <option value="Mikrovens">Mikrovens</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Kompaktvans"><span>Kompaktvans</span>
-                        </label>
+                            <option value="Kabriolets">Kabriolets</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Mikrovens"><span>Mikrovens</span>
-                        </label>
+                            <option value="Rodsters">Rodsters</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Kabriolets"><span>Kabriolets</span>
-                        </label>
+                            <option value="Targa">Targa</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Rodsters"><span>Rodsters</span>
-                        </label>
+                            <option value="Lando">Lando</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Targa"><span>Targa</span>
-                        </label>
+                            <option value="Limuzīns">Limuzīns</option>
 
-                        <label>
-                            <input type="radio" name="v-tips" value="Lando"><span>Lando</span>
-                        </label>
-
-                        <label>
-                            <input type="radio" name="v-tips" value="Limuzīns"><span>Limuzīns</span>
-                        </label>
-
+                        </select>
                     </div>
-
                 </div>
 
             </div>
 
             <div class="box">
 
-                <div class="list-choice">
+                <div class= "filt-cont">
+                    <div class="select">
+                        <select id="car_Dzineja_tips_select" name="car_Dzineja_tips_select">
+                            <option value='' hidden>Dzineja tips</option>
 
-                    <div class="list-choice-title">Dzineja tips</div>
+                            <option value=''>-</option>
 
-                    <div class="list-choice-objects">
+                            <option value="Benzīns">Benzīns</option>
 
-                        <label>
-                            <input type="radio" name="Dzineja" value=""><span></span>
-                        </label>
+                            <option value="Benzīns/gāze">Benzīns/gāze</option>
 
-                        <label>
-                            <input type="radio" name="Dzineja" value="Benzīns"><span>Benzīns</span>
-                        </label>
+                            <option value="Dīzelis">Dīzelis</option>
 
-                        <label>
-                            <input type="radio" name="Dzineja" value="Benzīns/gāze"><span>Benzīns/gāze</span>
-                        </label>
+                            <option value="Hybrīd">Hybrīd</option>
 
-                        <label>
-                            <input type="radio" name="Dzineja" value="Dīzelis"><span>Dīzelis</span>
-                        </label>
+                            <option value="Elektriskais">Elektriskais</option>
 
-                        <label>
-                            <input type="radio" name="Dzineja" value="Hybrīd"><span>Hybrīd</span>
-                        </label>
-
-                        <label>
-                            <input type="radio" name="Dzineja" value="Elektriskais"><span>Elektriskais</span>
-                        </label>
-
+                        </select>
                     </div>
-
                 </div>
 
             </div>
         
             <div class="box">
 
-                <div class="list-choice">
+                <div class= "filt-cont">
+                    <div class="select">
+                        <select id="car_atrumkarba_select" name="car_atrumkarba_select">
+                            <option value='' hidden>Ātrumkārba</option>
 
-                    <div class="list-choice-title">Ātrumkārba</div>
+                            <option value=''>-</option>
 
-                    <div class="list-choice-objects">
+                            <option value="Automāts">Automāts</option>
 
-                        <label>
-                            <input type="radio" name="atrumkarba" value=""><span></span>
-                        </label>
+                            <option value="Manuāla">Manuāla</option>
 
-                        <label>
-                            <input type="radio" name="atrumkarba" value="Automāts"><span>Automāts</span>
-                        </label>
-
-                        <label>
-                            <input type="radio" name="atrumkarba" value="Manuāla"><span>Manuāla</span>
-                        </label>
-
+                        </select>
                     </div>
-
                 </div>
 
             </div>
 
             <div class="box">
 
-                <div class="list-choice">
+                <div class= "filt-cont">
+                    <div class="select">
+                        <select id="car_krasa_select" name="car_krasa_select">
+                            <option value='' hidden>Krāsa</option>
 
-                    <div class="list-choice-title">Krāsa</div>
+                            <option value=''>-</option>
 
-                    <div class="list-choice-objects">
+                            <option value="Melna">Melna</option>
 
-                        <label>
-                            <input type="radio" name="Krasa" value=""><span></span>
-                        </label>
+                            <option value="Balta">Balta</option>
 
-                        <label>
-                            <input type="radio" name="Krasa" value="Melna"><span>Melna</span>
-                        </label>
+                            <option value="Brūna">Brūna</option>
 
-                        <label>
-                            <input type="radio" name="Krasa" value="Balta"><span>Balta</span>
-                        </label>
+                            <option value="Sarkana">Sarkana</option>
 
-                        <label>
-                            <input type="radio" name="Krasa" value="Brūna"><span>Brūna</span>
-                        </label>
+                            <option value="Dzeltena">Dzeltena</option>
+                            
+                            <option value="Zila">Zila</option>
 
-                        <label>
-                            <input type="radio" name="Krasa" value="Sarkana"><span>Sarkana</span>
-                        </label>
+                            <option value="Oraņža">Oraņža</option>
 
-                        <label>
-                            <input type="radio" name="Krasa"value="Dzeltena"><span>Dzeltena</span>
-                        </label>
+                            <option value="Violeta">Violeta</option>
 
-                        <label>
-                            <input type="radio" name="Krasa" value="Zila"><span>Zila</span>
-                        </label>
+                            <option value="Pelēka">Pelēka</option>
 
-                        <label>
-                            <input type="radio" name="Krasa" value="Oraņža"><span>Oraņža</span>
-                        </label>
+                            <option value="Sudraba">Sudraba</option>
 
-                        <label>
-                            <input type="radio" name="Krasa" value="Violeta"><span>Violeta</span>
-                        </label>
-
-                        <label>
-                            <input type="radio" name="Krasa" value="Pelēka"><span>Pelēka</span>
-                        </label>
-
-                        <label>
-                            <input type="radio" name="Krasa" value="Sudraba"><span>Sudraba</span>
-                        </label>
-
+                        </select>
                     </div>
-
                 </div>
 
             </div>
 
             <div class="box">
 
-                <div class="list-choice">
+                <div class= "filt-cont">
+                    <div class="select">
+                        <select id="car_piedzina_select" name="car_piedzina_select">
+                            <option value='' hidden>Piedzina</option>
 
-                    <div class="list-choice-title">Piedzina</div>
+                            <option value=''>-</option>
 
-                    <div class="list-choice-objects">
+                            <option value="Priekšējā piedziņa">Priekšējā piedziņa</option>
 
-                    <label>
-                        <input type="radio" name="Piedzina" value=""><span></span>
-                    </label>
+                            <option value="Aizmugurējā piedziņa">Aizmugurējā piedziņa</option>
 
-                    <label>
-                        <input type="radio" name="Piedzina" value="Priekšējā piedziņa"><span>Priekšējā piedziņa</span>
-                    </label>
+                            <option value="Pilnpiedziņa">Pilnpiedziņa</option>
 
-                    <label>
-                        <input type="radio" name="Piedzina" value="Aizmugurējā piedziņa"><span>Aizmugurējā piedziņa</span>
-                    </label>
-
-                    <label>
-                        <input type="radio" name="Piedzina" value="Pilnpiedziņa"><span>Pilnpiedziņa</span>
-                    </label>
-
+                        </select>
                     </div>
-
                 </div>
 
             </div>
 
             <div class="box">
 
-                <div class="list-choice">
+                <div class= "filt-cont">
+                    <div class="select">
+                        <select id="car_tehniska_apskate_select" name="car_tehniska_apskate_select">
+                            <option value='' hidden>Tehniska apskate</option>
 
-                    <div class="list-choice-title">Tehniska apskate</div>
+                            <option value=''>-</option>
 
-                    <div class="list-choice-objects">
+                            <option value="1">Ir</option>
 
-                    <label>
-                        <input type="radio" name="Tehniska" value=""><span></span>
-                    </label>
+                            <option value="2">Nav</option>
 
-                    <label>
-                        <input type="radio" name="Tehniska" value="1"><span>Ir</span>
-                    </label>
+                            <option value="Neizgai atkartoti">Neizgai atkartoti</option>
 
-                    <label>
-                        <input type="radio" name="Tehniska" value="2"><span>Nav</span>
-                    </label>
-
+                        </select>
                     </div>
-
                 </div>
 
             </div>

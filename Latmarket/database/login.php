@@ -6,12 +6,10 @@ if (isset($_POST["ielogoties"])) {
 
     session_start();
 
-    // получаем данные с формы
-
     $lietotajvards = htmlspecialchars($_POST['lietotajvards']);
     $parole = $_POST['parole']; 
 
-    // получаем данных пользователя с базы данных
+    
     $vaicajums = $savienojums->prepare("SELECT * FROM lietotaji WHERE username = ?");
     $vaicajums->bind_param("s", $lietotajvards);
     $vaicajums->execute();
@@ -19,9 +17,9 @@ if (isset($_POST["ielogoties"])) {
     $resultats = $vaicajums->get_result();
     $lietotajs = $resultats->fetch_assoc();
 
-    if(!empty($lietotajvards) && !empty($parole)){  // проверяюб не пустые ли поля 
+    if(!empty($lietotajvards) && !empty($parole)){  
 
-        if ($lietotajs && password_verify($parole, $lietotajs['parole'])) {  // проверяюб совпадение данных
+        if ($lietotajs && password_verify($parole, $lietotajs['parole'])) { 
 
             $_SESSION['IdHOMIK'] = $lietotajs['lietotaji_id'];
 

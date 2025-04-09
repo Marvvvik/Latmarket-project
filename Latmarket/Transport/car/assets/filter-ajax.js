@@ -1,45 +1,43 @@
-$(document).on('change', "input[name='marka']", function() {
-    var car_marka = $('input[name="marka"]:checked').val();
+$(document).on('change', "select", function() {
+    var car_marka = $('#Car_brends_select').val(); 
 
-    $("input[name='modelis']").prop('checked', false);
     $.ajax({
         url: 'marka-izvade.php',
         type: 'POST',
         data: { marka: car_marka },
         dataType: 'json', 
         success: function (response) {
-            let template = "";
+            let template = `<option value='' hidden>Modelis</option>
+                            <option value=''>-</option>`;
+
             response.forEach(modelis => {
-                template += `<label>
-                    <input type='radio' name='modelis' value='${modelis.modelis}'>
-                    <span>${modelis.modelis}</span>
-                </label>`;
+                template += `<option value='${modelis.modelis}'>${modelis.modelis}</option>`;
             });
-            $('#model-list-choice').html(template);
+
+            $('#car_modelis_select').html(template);
         },
         error: function () {
             alert("Neizdevās ielasīt datus");
         }
     });
 
-    
     updateCarList();
 });
 
-$(document).on('change', "input[name='modelis'], input[name='marka'], input[type='radio'], input[type='range'], input[type='number']", function() {
-   
+
+$(document).on('change', "select, input[type='radio'], input[type='range'], input[type='number']", function() {
     updateCarList();
 });
 
 function updateCarList() {
-    var car_marka = $('input[name="marka"]:checked').val(); 
-    var car_modelis = $('input[name="modelis"]:checked').val(); 
-    var car_benzin_tips = $('input[name="Dzineja"]:checked').val(); 
-    var car_atrumkarba = $('input[name="atrumkarba"]:checked').val(); 
-    var car_virsbuve = $('input[name="v-tips"]:checked').val(); 
-    var car_piedzina = $('input[name="Piedzina"]:checked').val(); 
-    var car_tehniska_apskate = $('input[name="Tehniska"]:checked').val(); 
-    var car_krasa = $('input[name="Krasa"]:checked').val(); 
+    var car_marka = $('#Car_brends_select').val(); 
+    var car_modelis = $('#car_modelis_select').val(); 
+    var car_virsbuve = $('#car_virsbuves_select').val(); 
+    var car_benzin_tips = $('#car_Dzineja_tips_select').val(); 
+    var car_atrumkarba = $('#car_atrumkarba_select').val(); 
+    var car_krasa = $('#car_krasa_select').val(); 
+    var car_piedzina = $('#car_piedzina_select').val(); 
+    var car_tehniska_apskate = $('#car_tehniska_apskate_select').val(); 
     var car_min_cena = $('#car_min_cena_select').val(); 
     var car_max_cena = $('#car_max_cena_select').val(); 
     var car_min_gads = $('#car_min_gads_select').val(); 
@@ -55,11 +53,11 @@ function updateCarList() {
     var requestData = { 
         marka: car_marka,
         modelis: car_modelis,
+        virsbuve: car_virsbuve,
         benzina_tips: car_benzin_tips,
         atrumkarba: car_atrumkarba,
-        virsbuve: car_virsbuve,
-        piedzina: car_piedzina,
         krasa: car_krasa,
+        piedzina: car_piedzina,
         tehniska_apskate: car_tehniska_apskate,
         min_cena: car_min_cena,
         max_cena: car_max_cena,
@@ -84,7 +82,7 @@ function updateCarList() {
             $("#cars-container").html(response);
         },
         error: function(xhr, status, error) {
-            $("#cars-container").html("Kļuda: " + xhr.responseText);
+            $("#cars-container").html("Kļuda: " + xhr);
         }
     });
 }

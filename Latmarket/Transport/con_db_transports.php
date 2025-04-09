@@ -3,7 +3,7 @@
     $servers = "localhost";
     $lietotajs = "root";
     $parole = "";
-    $db_nosaukums = "Transports";
+    $db_nosaukums = "Latmarket";
 
     $savienojums = mysqli_connect($servers, $lietotajs, $parole, $db_nosaukums);
 

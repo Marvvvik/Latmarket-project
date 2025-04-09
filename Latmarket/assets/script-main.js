@@ -204,6 +204,50 @@ closeModal.forEach(function(btn){
 
 })
 
+// --------------------------------------------------------------------------Prof-menu-open
+
+document.addEventListener("DOMContentLoaded", function () {
+    const buttons = {
+        iestbtn: "settings-menu",
+        favbtn: "favoriti-menu",
+        sludbtn: "slud-menu",
+        sarbtn: "sar-menu"
+    };
+
+    const profelimenu = document.querySelector(".profelimenu");
+
+    if (!profelimenu) {
+        console.error("Ошибка: Элемент #profelimenu не найден!");
+        return;
+    }
+
+    Object.keys(buttons).forEach(btnId => {
+        const button = document.getElementById(btnId);
+        const menu = document.getElementById(buttons[btnId]);
+
+        if (!button || !menu) {
+            console.error(`Ошибка: Элемент ${btnId} или ${buttons[btnId]} не найден!`);
+            return;
+        }
+
+        button.addEventListener("click", function () {
+            
+            profelimenu.classList.remove("active");
+            Object.values(buttons).forEach(menuId => {
+                const menuElement = document.getElementById(menuId);
+                if (menuElement) {
+                    menuElement.classList.remove("active");
+                }
+            });
+
+            
+            profelimenu.classList.add("active");
+            menu.classList.add("active");
+        });
+    });
+});
+
+
 // --------------------------------------------------------------------------Mes-Modal-close
 
 
@@ -251,6 +295,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+
 
 
 

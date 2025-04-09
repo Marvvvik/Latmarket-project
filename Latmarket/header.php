@@ -83,11 +83,13 @@ session_start();
 
             <div class="profmenu" id="profmenu">
 
-                <button data-target="#profiest"><i class="fas fa-cog" id="spin"></i>Iestatijumi</button>
+                <button id="iestbtn"><i class="fas fa-cog" id="spin"></i>Iestatijumi</button>
 
-                <button><i class="fas fa-star" id="spin"></i>Favoriti</button>
+                <button id="favbtn"><i class="fas fa-star" id="spin"></i>Favoriti</button>
 
-                <button><i class="fa-solid fa-message" id="rotate-spin"></i>Saraksti</button>
+                <button id="sludbtn"><i class="fas fa-money-bill-wave" id="rotate-spin"></i>Sludinajumi</button>
+
+                <button id="sarbtn"><i class="fa-solid fa-message" id="rotate-spin"></i>Saraksti</button>
 
                 <a href="/database/logout.php" id="logout"><i class="fa fa-sign-out"></i>Iziet</a>
 
@@ -278,11 +280,13 @@ session_start();
 
             <div class="profbtns">
 
-                <a href=""><i class="fas fa-cog" id="spin"></i>Iestatijumi</a>
+                <button><i class="fas fa-cog" id="spin"></i>Iestatijumi</button>
 
-                <a href=""><i class="fas fa-star" id="spin"></i>Favoriti</a>
+                <button><i class="fas fa-star" id="spin"></i>Favoriti</button>
 
-                <a href=""><i class="fa-solid fa-message" id="rotate-spin"></i>Saraksti</a>
+                <button><i class="fas fa-money-bill-wave" id="rotate-spin"></i>Sludinajumi</button>
+
+                <button><i class="fa-solid fa-message" id="rotate-spin"></i>Saraksti</button>
 
             </div>
 
@@ -294,7 +298,7 @@ session_start();
 
         </div>
 
-        <div class="settings-menu">
+        <div class="menu" id="settings-menu">
 
             <form id="editForm">
 
@@ -389,6 +393,31 @@ session_start();
                 </button>
 
             </form>
+
+        </div>
+
+        <div class="menu" id="favoriti-menu">
+
+            <div class="page-btn">
+
+
+            </div>
+
+            <div class="fav-container" id="fav-container">
+
+            </div>
+
+        </div>
+
+        <div class="menu" id="slud-menu">
+
+            <h1>hello slud</h1>
+
+        </div>
+
+        <div class="menu" id="sar-menu">
+
+            <h1>hello sar</h1>
 
         </div>
 
