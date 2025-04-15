@@ -24,65 +24,6 @@ require "../../header.php";
 
 ?>
 
-<section class="search-line">
-
-<div class="grupboxs" id="carbox">
-
-    <div class="box active">
-
-        <i class="fas fa-car-side"></i>
-
-        <p>Vieglie auto</p>
-
-    </div>
-
-
-    <div class="box">
-
-        <i class="fas fa-truck"></i>
-
-        <p>Kravas auto</p>
-
-        <a href="Transport/car/car.php" class="link"></a>
-
-    </div>
-
-    <div class="box">
-
-        <i class="fas fa-motorcycle"></i>
-
-        <p>Moto transports</p>
-
-        <a href="Transport/car/car.php" class="link"></a>
-
-    </div>
-
-    <div class="box">
-
-        <i class="fas fa-bicycle"></i>
-
-        <p>Velosipēdi</p>
-
-    </div>
-
-    <div class="box">
-
-        <i class="fas fa-shuttle-van"></i>
-
-        <p>Pasažieru auto</p>
-
-    </div>
-
-    <div class="box">
-
-        <i class="fas fa-tools"></i>
-
-        <p>Rezerves daļas</p>
-
-    </div>
-
-</div>
-
 </section>
 
 <section class="filter">

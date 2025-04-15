@@ -1,62 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{
 
 padding: 0%;
 margin: 0%;
 box-sizing: border-box;
-font-family: "Kumbh Sans", serif;
+font-family: "Raleway", sans-serif;
 text-decoration: none;
 border: none;
 outline: none;
 transition: .2s linear;
-letter-spacing: .2rem;
+letter-spacing: .1rem;
 
 }
 
 
 :root{
 
---maincolor: #f4f2e9;
---texstcolor: #000;
---dobcolor: #000;
---secondcolor: #ebb400;
+--maincolor: #f9f9f9;
+--maincolor-2: #e4e4e4;
+--textcolor: #000;
+--textcolor-2: #f9f9f9;
+--secondcolor: #0068d6;
+--hover:  #0152a7;
+--hover-2:  #649bd5;
+--gray: #999;
 --shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 30%);
---hover: rgba(235, 180, 51, 30%);
---hover2: rgba(235, 180, 51, 80%);
 
 }
 
 body{
 
-background: var(--maincolor);
+background: var(--maincolor-2);
 
 }
 
 header{
 
-padding: 2rem 12%;
+padding: 1.5rem 12%;
 display: flex;
 justify-content: space-between;
 align-items: center;
 background: var(--maincolor);
 width: 100%;
-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 50%);
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 20%);
+margin-bottom: 2rem;
 
 }
 
 .logo a{
 
 font-size: 1.6rem;
-color: var(--texstcolor);
+color: var(--textcolor);
 font-weight: bold;
+display: flex;
+justify-content: center;
+align-items: center;
 
 }
 
-.logo a img{
+.logo a i{
 
-width: auto;
-height: 2rem;
+font-size: 2rem;
+color: var(--secondcolor);
+margin-right: .5rem;
 
 }
 
@@ -65,6 +72,54 @@ height: 2rem;
 display: flex;
 justify-content: center;
 align-items: center;
+
+}
+
+.navmenu a{
+
+color: var(--gray);
+margin: 0 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.navmenu a i{
+
+font-size: 1.2rem;
+margin-right: .5rem;
+
+}
+
+
+.navmenu a:hover{
+
+color: var(--secondcolor);
+
+}
+
+#OpenLogReg{
+
+background: var(--secondcolor);
+font-size: 1rem;
+padding: .8rem;
+border-radius: .5rem;
+cursor: pointer;
+color: var(--textcolor-2);
+margin: 0 1rem;
+
+}
+
+#OpenLogReg i{
+
+margin-right: .5rem;
+
+}
+
+#OpenLogReg:hover{
+
+background: var(--hover);
 
 }
 
@@ -78,7 +133,7 @@ position: relative;
 
 width: 3rem;
 height: 3rem;
-border: var(--secondcolor) solid .2rem;
+border: var(--secondcolor) solid .15rem;
 border-radius: 50%;
 cursor: pointer;
 display: flex;
@@ -110,6 +165,7 @@ display: none;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+z-index: 3;
 
 }
 
@@ -122,7 +178,6 @@ display: flex;
 .profmenu a, .profmenu button{
 
 width: 100%;
-color: var(--texstcolor);
 text-align: center;
 padding: .8rem 1rem;
 display: flex;
@@ -134,16 +189,24 @@ font-size: 1rem;
 
 }
 
-.profmenu a i, .profmenu button i{
+.profmenu button{
 
-color: var(--dobcolor);
-margin-right: .3rem
+color: var(--textcolor);
 
 }
 
 .profmenu button i{
 
 color: var(--secondcolor);
+margin-right: .3rem
+
+}
+
+.profmenu a{
+
+color: red;
+font-weight: normal;
+margin: 0;
 
 }
 
@@ -153,9 +216,10 @@ color: red;
 
 }
 
-.profmenu a:hover, .profmenu button:hover{
+.profmenu button:hover{
 
-background: var(--hover);
+background: var(--hover-2);
+color: var(--textcolor-2);
 
 }
 
@@ -174,51 +238,7 @@ animation: rotate-spin 1s ease-out forwards;
 #logout:hover{
 
 background: rgba(255, 0, 0, 30%);
-
-}
-
-.btna{
-
-margin: 0 .5rem;
-background: none;
-cursor: pointer;
-
-}
-
-.btn-box{
-
-padding: .5rem .8rem;
-background: var(--secondcolor);
-position: relative;
-overflow: hidden;
-border-radius: 5rem;
-
-}
-
-.btn-line{
-
-position: absolute;
-width: 10rem;
-height: 2rem;
-top: 0rem;
-left: -8rem;
-background: var(--texstcolor);
-opacity: 50%;
-transform: rotate(-45deg);
-transition: left .5s linear;
-
-}
-
-.btna:hover .btn-line{
-
-left: 10rem;
-
-}
-
-.btna span{
-
-color: var(--texstcolor);
-font-size: 1rem;
+color: red;
 
 }
 
@@ -228,7 +248,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 background: var(--maincolor);
-color: var(--texstcolor);
+color: var(--textcolor);
 padding: 3rem 15%;
 
 }
@@ -252,7 +272,8 @@ margin: 4rem;
 
 .logmodal{
 
-background: rgba(0, 0, 0, 80%);
+background: rgba(0, 0, 0, 60%);
+backdrop-filter: blur(5px);
 width: 100%;
 height: 100%;
 z-index: 7;
@@ -272,7 +293,7 @@ display: block;
 
 .log-reg{
 
-width: 35rem;
+width: 30rem;
 height: auto;
 background: var(--maincolor);
 position: fixed;
@@ -284,13 +305,14 @@ display: flex;
 align-items: center;
 flex-direction: column;
 position: relative;
-border-radius: 2rem;
+border-radius: 1rem;
+padding: 0 5rem;
 
 }
 
 .closemodal, .close-ml{
 
-color: var(--texstcolor);
+color: var(--textcolor);
 position: absolute;
 font-size: 1.5rem;
 top: 1rem;
@@ -300,60 +322,43 @@ color: red;
 
 }
 
-.log-reg h2{
-
-background: var(--secondcolor);
-color: var(--texstcolor);
-padding: 1rem;
-font-size: 2rem;
-border-bottom-right-radius: 2rem;
-border-bottom-left-radius: 2rem;
-
-}
-
 
 .reg-log-btn{
 
 display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+height: auto;
+background: var(--maincolor-2);
 margin-top: 4rem;
-font-size: 2rem;
-position: relative;
+padding: .3rem;
+border-radius: .5rem;
 
 }
 
 .reg-log-btn button{
 
+padding: .8rem 1.2rem;
 background: rgba(0, 0, 0, 0%);
 cursor: pointer;
-font-size: 1.5rem;
-z-index: 1;
-margin: 0 .5rem;   
-color: var(--texstcolor);
+font-size: 1rem;
+color: var(--textcolor);
+border-radius: .5rem;
+font-weight: bold;
 
 }
 
-.reg-log-btn p{
+.reg-log-btn button.active{
 
-z-index: 1;
-color: var(--texstcolor);
-
-}
-
-
-.reg-log-btn .cube{
-
-height: 100%;
-background: var(--secondcolor);
-position: absolute;
-z-index: 0;
+background: var(--maincolor);
+color: var(--secondcolor);
 
 }
-
 
 
 .login-form, .reg-form{
 
-margin-top: 1rem;
 width: 100%;
 height: auto;
 display: none;
@@ -381,26 +386,82 @@ flex-direction: column;
 
 }
 
+.login-form form button, .reg-form form button{
 
+font-size: 1.5rem;
+margin: 3rem 0 3rem 0;
+cursor: pointer;
+background: var(--secondcolor);
+color: var(--textcolor-2);
+padding: .5rem .8rem;
+border-radius: .5rem;
+
+}
+
+.login-form form button:hover, .reg-form form button:hover{
+
+background: var(--hover);
+
+}
+
+.fomrtext{
+
+width: 100%;
+height: auto;
+text-align: left;
+margin: 1rem 0 1rem 0;
+
+}
+
+.fomrtext h1{
+    
+font-size: 1.5rem;
+    
+}
 
 .form-control {
 
 position: relative;
-margin: 20px 0 40px 0;
-width: 60%;
+margin: 20px 0 20px 0;
+width: 100%;
+position: relative;
 
 }
+
+.lookpassL, .lookpassR{
+
+position: absolute;
+top: 17%;
+right: .5rem;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;  
+width: 1.5rem;
+height: 1.5rem;
+
+
+}
+
+
+.lookpassL img, .lookpassR img{
+
+width: 100%;
+height: 100%;
+
+}
+
 
 .form-control input {
 
 background-color: transparent;
 border: 0;
-border-bottom: 2px var(--dobcolor) solid;
+border-bottom: 2px var(--secondcolor) solid;
 display: block;
 width: 100%;
 padding: 15px 0;
 font-size: 18px;
-color: var(--texstcolor);
+color: var(--textcolor);
 
 }
 
@@ -426,7 +487,7 @@ pointer-events: none;
 display: inline-block;
 font-size: 15px;
 min-width: 5px;
-color: var(--texstcolor);
+color: var(--textcolor);
 transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
 }
@@ -434,8 +495,30 @@ transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 .form-control input:focus+label span,
 .form-control input:valid+label span {
 
-color: var(--texstcolor);
+color: var(--textcolor);
 transform: translateY(-30px);
+
+}
+
+.resPass{
+
+width: 100%;
+height: auto;
+text-align: right;
+margin-top: .5rem;
+
+}
+
+.resPass a{
+
+color: var(--secondcolor);
+font-size: .9rem;
+
+}
+
+.resPass a:hover{
+
+color: var(--hover);
 
 }
 
@@ -448,7 +531,7 @@ margin-top: 10px;
 
 .configpass p{
 
-color: var(--texstcolor);
+color: var(--textcolor);
 font-size: .8rem;
 margin: .3rem 0;
 
@@ -469,37 +552,24 @@ margin: .3rem 0;
     color: red;
 }
 
-.btnlog, .btnreg{
-
-margin-top: 2rem;
-margin-bottom: 3rem;
-
-}
-
-.btnlog span, .btnreg span{
-
-font-size: 1.5rem;
-
-}
-
 .btnreg[disabled], .btnlog[disabled]{
 
 opacity: 50%;
+cursor: no-drop;
+
+}
+
+.btnreg[disabled]:hover, .btnlog[disabled]:hover{
+
+background: var(--secondcolor);
 
 }
 
 
-.btnreg[disabled]:hover .btn-line, .btnlog[disabled]:hover .btn-line{
-
-left: -20rem;
-
-}
-
-
-.logmes, .regmes{
+.logmes{
 
 color: red;
-margin: 1rem 0 1rem 0;
+margin-top: 1rem;
 font-size: 1.2rem;
 height: 2rem;
 
@@ -720,7 +790,7 @@ border-bottom: var(--secondcolor) solid .2rem;
 display: flex;
 justify-content: center;
 align-items: center;
-color: var(--texstcolor);
+color: var(--textcolor);
 
 }
 
@@ -775,7 +845,7 @@ flex-direction: column;
 .profbtns button, .logoutbtn a{
 
 padding: 1.5rem 0;
-color: var(--texstcolor);
+color: var(--textcolor);
 font-size: 1rem;
 width: 100%;
 text-align: center;
@@ -902,7 +972,7 @@ flex-wrap: wrap;
 width: 40%;
 height: 100%;
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 10%);
-color: var(--texstcolor);
+color: var(--textcolor);
 padding: 1rem;
 margin: 1rem;
 display: flex;
@@ -992,7 +1062,7 @@ outline: none;
 text-decoration: none;
 font-size: 14px;
 vertical-align: middle;
-color: var(--texstcolor);
+color: var(--textcolor);
 text-align: center;
 border-radius: 4px;
 background-color: var(--hover);
@@ -1113,7 +1183,7 @@ width: 100%;
 padding: .7rem 1rem;
 font-size: 1rem;
 background: #353535;
-color: var(--texstcolor);
+color: var(--textcolor);
 border-radius: 2rem;
 background: var(--maincolor);
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 20%);
@@ -1144,7 +1214,7 @@ margin: 1rem;
 
 .input-l label{
 
-color: var(--texstcolor);
+color: var(--textcolor);
 font-size: 1rem;
 margin-bottom: .5rem;
 padding: 0 .5rem;
@@ -1184,7 +1254,7 @@ background: rgba(235, 180, 0, 70%);
 
 .passwordC p{
 
-color: var(--texstcolor);
+color: var(--textcolor);
 font-weight: bold;
 
 }
@@ -1211,7 +1281,7 @@ background: var(--hover);
 padding: .8rem 1rem;
 font-size: 1rem;
 font-weight: bold;
-color: var(--texstcolor);
+color: var(--textcolor);
 cursor: pointer;
 border-radius: 2rem;
 margin: 0 .3rem;

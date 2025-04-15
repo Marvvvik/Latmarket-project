@@ -19,14 +19,17 @@
 <?php 
 
 require "header.php";
+session_start();
+
+if(isset($_SESSION['lietotajvardsHOMIK'])){
 
 ?>
 
 <section class="atsaukmes">
 
-    <div class="atsakmesForm">
+    <h1><i class="far fa-comment"></i>Atsakmes</h1>
 
-        <h1>Atsakmes</h1>
+    <div class="atsakmesForm">
 
         <form id="atsakmes-form">
 
@@ -56,17 +59,7 @@ require "header.php";
 
             </div>
             
-            <button class="btna atbtn" id="atbtn">
-
-                <div class="btn-box">
-
-                    <div class="btn-line"></div>
-
-                    <span>Iesniegt</span>
-
-                </div>
-
-            </button>
+            <button class="atbtn" id="atbtn"><i class="fas fa-paper-plane"></i>Iesniegt</button>
 
         </form>
 
@@ -74,6 +67,12 @@ require "header.php";
 
 
 </section>
+
+<?php
+
+};
+
+?>
     
 </body>
 </html>

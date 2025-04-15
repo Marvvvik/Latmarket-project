@@ -24,410 +24,99 @@ require "header.php";
 
 <section class="search" id="search">
 
-    <div class="searchmenu">
+    <div class="box">
+        
+        <a href="Transport/car/car.php"></a>
 
-        <div class="searchbox">
+        <img src="image/transport.jpg" class="boximg">
 
-            <div class="box active">
+        <div class="text">
 
-                <div class="neo-line"></div>
+            <div class="h2text"><div class="icon"><img src="image/icons/w-car.png"></div><h2>Automašīnas</h2></div>
 
-                <h2>Transports</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-            <div class="box">
-
-                <div class="neo-line"></div>
-
-                <h2>Darbs un bizness</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-            <div class="box">
-
-                <div class="neo-line"></div>
-
-                <h2>Nekustamie īpašumi</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-            <div class="box">
-
-                <div class="neo-line"></div>
-
-                <h2>Celtniecība</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-            <div class="box">
-
-                <div class="neo-line"></div>
-
-                <h2>Elektrotehnika</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-            <div class="box">
-
-                <div class="neo-line"></div>
-
-                <h2>Drēbes</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-            <div class="box">
-
-                <div class="neo-line"></div>
-
-                <h2>Mājai</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-            <div class="box">
-
-                <div class="neo-line"></div>
-
-                <h2>Ražošana</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-            <div class="box">
-
-                <div class="neo-line"></div>
-
-                <h2>Bērniem</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-            <div class="box">
-
-                <div class="neo-line"></div>
-
-                <h2>Dzīvnieki</h2>
-
-                <div class="marker"></div>
-
-            </div>
-
-        </div>
-
-        <div class="dynamic-line">
-
-            <div class="dline"></div>
-
-            <i class="fas fa-caret-up triangle"></i>
+            <p>Pirkt un pārdot jaunas un lietotas automašīnas</p>
 
         </div>
 
     </div>
 
-    <div class="grupbox active" id="carbox">
+    <div class="box">
+        
+        <a href="Transport/car/car.php"></a>
 
-        <div class="box">
+        <img src="image/elektronika.jpg" class="boximg">
 
-            <i class="fas fa-car-side"></i>
+        <div class="text">
 
-            <p>Vieglie auto</p>
-            
-            <a href="Transport/car/car.php" class="link"></a>
+            <div class="h2text"><div class="icon"><img src="image/icons/w-phone.png"></div><h2>Elektronika</h2></div>
 
-        </div>
-
-
-        <div class="box">
-
-            <i class="fas fa-truck"></i>
-
-            <p>Kravas auto</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-motorcycle"></i>
-
-            <p>Moto transports</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-bicycle"></i>
-
-            <p>Velosipēdi</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-shuttle-van"></i>
-
-            <p>Pasažieru auto</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-tools"></i>
-
-            <p>Rezerves daļas</p>
+            <p>Mobilie telefoni, datori un cita tehnika</p>
 
         </div>
 
     </div>
 
-    <div class="grupbox" id="darbbox">
+    <div class="box">
+        
+        <a href="Transport/car/car.php"></a>
 
-        <div class="box">
+        <img src="image/Majas.jpg" class="boximg">
 
-            <i class="fas fa-briefcase"></i>
+        <div class="text">
 
-            <p>Vakances</p>
+            <div class="h2text"><div class="icon"><img src="image/icons/w-home.png"></div><h2>Nekustamais īpašums</h2></div>
 
-        </div>
-
-
-        <div class="box">
-
-            <i class="fas fa-search"></i>
-
-            <p>Meklē darbu</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-chalkboard-teacher"></i>
-
-            <p>Kursi</p>
+            <p>Dzīvokļi, mājas un komerciālais nekustamais īpašums</p>
 
         </div>
 
     </div>
 
-    <div class="grupbox" id="nekustbox">
+    <div class="box">
+        
+        <a href="Transport/car/car.php"></a>
 
-        <div class="box">
+        <img src="image/mebeles.jpg" class="boximg">
 
-            <i class="fas fa-building"></i>
+        <div class="text">
 
-            <p>Dzīvokļi, Mājas</p>
+            <div class="h2text"><div class="icon"><img src="image/icons/w-bed.png"></div><h2>Mēbeles</h2></div>
 
-        </div>
-
-
-        <div class="box">
-
-            <i class="fas fa-globe"></i>
-
-            <p>Zeme</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-door-open"></i>
-
-            <p>Telpas</p>
+            <p>Mēbeles mājai un birojam</p>
 
         </div>
 
     </div>
 
+    <div class="box">
+        
+        <a href="Transport/car/car.php"></a>
 
-    <div class="grupbox" id="celtbox">
+        <img src="image/drebes.jpg" class="boximg">
 
-        <div class="box">
+        <div class="text">
 
-            <i class="fas fa-hard-hat"></i>
+            <div class="h2text"><div class="icon"><img src="image/icons/w-tshirt.png"></div><h2>Apģērbi</h2></div>
 
-            <p>Būvmateriāli</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-wrench"></i>
-
-            <p>Instrumenti</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-bath"></i>
-
-            <p>Santehnika</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-leaf"></i>
-
-            <p>Dārza tehnika</p>
+            <p>Apģērbi, apavi un aksesuāri</p>
 
         </div>
 
     </div>
 
-    <div class="grupbox" id="elektrobox">
+    <div class="box">
+        
+        <a href="Transport/car/car.php"></a>
 
-        <div class="box">
+        <img src="image/drebes.jpg" class="boximg">
 
-            <i class="fas fa-mobile-alt"></i>
+        <div class="text">
 
-            <p>Telefoni</p>
+            <div class="h2text"><div class="icon"><img src="image/icons/w-car.png"></div><h2>Apģērbi</h2></div>
 
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-cogs"></i>
-
-            <p>Sadzīves tehnika</p>
+            <p>Apģērbi, apavi un aksesuāri</p>
 
         </div>
-
-        <div class="box">
-
-            <i class="fas fa-laptop"></i>
-
-            <p>Datori</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-headphones-alt"></i>
-
-            <p>Audio tehnika</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-camera"></i>
-
-            <p>Foto tehnika</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-plug"></i>
-
-            <p>Elektronika</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-tv"></i>
-
-            <p>TV, Ekrani</p>
-
-        </div>
-
-    </div>
-
-    <div class="grupbox" id="drebbox">
-
-        <div class="box">
-
-            <i class="fas fa-female"></i>
-
-            <p>Sieviešu apģērbi</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-male"></i>
-
-            <p>Vīriešu apģērbi</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-child"></i>
-
-            <p>Bērnu apģērbi</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-user-tie"></i>
-
-            <p>Specapģērbi</p>
-
-        </div>
-
-    </div>
-
-    <div class="grupbox" id="majbox">
-
-        <div class="box">
-
-            <i class="fas fa-couch"></i>
-
-            <p>Mēbeles</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-gift"></i>
-
-            <p>Suvenīri</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fa-regular fa-hand"></i>
-
-            <p>Roku izstrādājumi</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-coffee"></i>
-
-            <p>Trauki</p>
-
-        </div>
-
-        <div class="box">
-
-            <i class="fas fa-seedling"></i>
-
-            <p>Mājas augi</p>
-
-        </div>
-
 
     </div>
 

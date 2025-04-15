@@ -100,7 +100,7 @@ $('#editForm').submit(e => {
     const telefons = $('#telefons').val();
     const password1 = $('#password1-c').val();
     const password2 = $('#password2-c').val();
-    const newavatar = $('#newavatar')[0].files[0];  
+    const newavatar = $('#newavatar')[0].files[0];  // Получаем файл
 
     const formData = new FormData();
     formData.append('liet_id', liet_id);
@@ -112,7 +112,7 @@ $('#editForm').submit(e => {
     formData.append('password2', password2);
     formData.append('editPassActive', editPassActive);
     if (newavatar) {
-        formData.append('newavatar', newavatar);  
+        formData.append('newavatar', newavatar);  // Добавляем файл в форму
     }
 
     const editUrl = '/database/edit-profile.php';
@@ -122,8 +122,8 @@ $('#editForm').submit(e => {
         url: editUrl,
         data: formData,
         dataType: 'json',
-        processData: false,  
-        contentType: false,  
+        processData: false,  // Чтобы jQuery не пытался преобразовать данные в строку
+        contentType: false,  // Чтобы jQuery не устанавливала заголовок Content-Type
         success: response => {
             const messageType = response.success ? "success" : "error";
             const messageText = response.success ? response.message : response.error;
@@ -355,7 +355,7 @@ function favoritIzvade() {
             }
         },
         error: function(xhr, status, error) {
-            $("#fav-container").html("<h1>Kļūda: " + xhr + "</h1>");  
+            $("#fav-container").html("<h1>Kļūda: " + xhr.responseText + "</h1>");  
         }
     });
 }

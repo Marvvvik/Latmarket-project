@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const loginBtn = document.getElementById('logBtn');
 const registerBtn = document.getElementById('regBtn');
-const box = document.querySelector('.cube');
-const title = document.querySelector('.modname');
 const logForm = document.querySelector('.login-form');
 const regForm = document.querySelector('.reg-form');
 
@@ -37,16 +35,14 @@ function toggleActive(button) {
     if (button.id === 'logBtn') {
         logForm.classList.add('active');
         regForm.classList.remove('active');
-        box.style.left = '0rem';
-        box.style.width = '10.5rem';
-        title.textContent = 'Autorizeties';
+        logBtn.classList.add('active');
+        registerBtn.classList.remove('active');
         localStorage.setItem('active', 'login');
     } else if (button.id === 'regBtn') {
         regForm.classList.add('active');
         logForm.classList.remove('active');
-        box.style.left = '12rem';
-        box.style.width = '10.5rem';
-        title.textContent = 'Reģistreties';
+        registerBtn.classList.add('active');
+        logBtn.classList.remove('active');
         localStorage.setItem('active', 'register');
     }
 }
@@ -58,16 +54,42 @@ window.addEventListener('load', function() {
     if (activeState === 'login') {
         logForm.classList.add('active');
         regForm.classList.remove('active');
-        box.style.left = '0rem';
-        box.style.width = '10.5rem';
-        title.textContent = 'Autorizeties';
+        logBtn.classList.add('active');
+        registerBtn.classList.remove('active');
     } else if (activeState === 'register') {
         regForm.classList.add('active');
         logForm.classList.remove('active');
-        box.style.left = '12rem';
-        box.style.width = '10.5rem';
-        title.textContent = 'Reģistreties';
+        registerBtn.classList.add('active');
+        logBtn.classList.remove('active');
     }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const passwordInput = document.getElementById('lpassword');
+    const toggleBtn = document.querySelector('.lookpassL img');
+
+    toggleBtn.addEventListener('click', function () {
+        const isPassword = passwordInput.type === 'password';
+
+        passwordInput.type = isPassword ? 'text' : 'password';
+        toggleBtn.src = isPassword ? 'image/icons/hide.png' : 'image/icons/view.png';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const passwordInput1 = document.getElementById('rpassword1');
+    const passwordInput2 = document.getElementById('rpassword2');
+    const toggleBtnR = document.querySelector('.lookpassR img');
+
+    toggleBtnR.addEventListener('click', function () {
+        const isPassword1 = passwordInput1.type === 'password';
+        const isPassword2 = passwordInput2.type === 'password';
+
+
+        passwordInput1.type = isPassword1 ? 'text' : 'password';
+        passwordInput2.type = isPassword2 ? 'text' : 'password';
+        toggleBtnR.src = isPassword1 ? 'image/icons/hide.png' : 'image/icons/view.png';
+    });
 });
 
 // --------------------------------------------------------------------------Paroles-kriteriju-izvade

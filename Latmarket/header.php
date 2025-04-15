@@ -8,62 +8,22 @@ session_start();
 
     <div class="logo">
 
-        <a href="/">Latmarket</a>
+        <a href="/"><i class="fas fa-tag"></i>Latmarket</a>
 
     </div>
 
 
     <div class="navmenu">
 
-        <a href="/#search" class="btna">
+        <a href="/#search" class="btna"><i class="fas fa-search"></i>Meklēt</a>
 
-            <div class="btn-box">
+        <a href="/#search" class="btna"><i class="fas fa-newspaper"></i>Jaunumi</a>
 
-                <div class="btn-line"></div>
-
-                <span>Meklet</span>
-
-            </div>
-
-        </a>
-
-        <a href="/#search" class="btna">
-
-            <div class="btn-box">
-
-                <div class="btn-line"></div>
-
-                <span>Jaunumi</span>
-
-            </div>
-
-        </a>
-
-        <a href="/atsaukmes.php" class="btna">
-
-            <div class="btn-box">
-
-                <div class="btn-line"></div>
-
-                <span>Atsaukmes</span>
-
-            </div>
-
-        </a>
+        <a href="/atsaukmes.php" class="btna"><i class="far fa-comment"></i>Atsaukmes</a>
 
         <?php if(!isset($_SESSION['lietotajvardsHOMIK'])){ ?>
 
-        <button class="btna" id="OpenLogReg">
-
-            <div class="btn-box">
-
-                <div class="btn-line"></div>
-
-                <span>Autorizeties</span>
-
-            </div>
-
-        </button>
+        <button id="OpenLogReg"><i class="fas fa-user"></i>Autorizeties</button>
 
         <?php 
         
@@ -113,143 +73,144 @@ session_start();
 
         <i class="fas fa-close close-ml"></i>
 
-        <h2 class="modname">Autorizeties</h2>
+        <div class="reg-log-btn">
 
-    <div class="reg-log-btn">
+            <button class="active" id="logBtn">Autorizeties</button>
 
-        <button id="logBtn">Autorizeties</button>
+            <button id="regBtn">Reģistreties</button>
 
-        <p>/</p>
+        </div>
 
-        <button id="regBtn">Reģistreties</button>
+        <div class="login-form active">
 
-        <div class="cube"></div>
+            <form action="/database/login.php" method="POST">
 
-    </div>
+                <div class='logmes'>
+                    <?php
+                        if(isset($_SESSION['log_paz'])){
+                            echo $_SESSION['log_paz'];
+                            unset($_SESSION['log_paz']);
+                        }   
+                    ?>
+                </div>
 
-    <div class="login-form active">
-
-        <form action="/database/login.php" method="POST">
-
-            <div class='logmes'>
-                <?php
-                    if(isset($_SESSION['log_paz'])){
-                        echo $_SESSION['log_paz'];
-                        unset($_SESSION['log_paz']);
-                    }   
-                ?>
-            </div>
-
-            <div class="form-control">
-
-                <input type="text" name="lietotajvards" id="lusername"required>
-
-                <label>
-
-                    <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
-                
-                </label>
-
-            </div>
-
-            <div class="form-control">
-
-                <input type="password" name="parole" id="lpassword"required>
-
-                <label>
-
-                    <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
-                
-                </label>
-
-            </div>
-
-            <button class="btna btnlog" type="submit" name="ielogoties" id="loginbtn" disabled>
-
-                <div class="btn-box btnlogbox">
-
-                    <div class="btn-line"></div>
-
-                    <span class="btnlogspan">Autorizeties</span>
+                <div class="fomrtext">
+                    
+                    <h1>Laipni lūgti atpakaļ!</h1>
 
                 </div>
 
-            </button>
+                <div class="form-control">
 
-        </form>
+                    <input type="text" name="lietotajvards" id="lusername"required>
 
-    </div>
+                    <label>
 
-    <div class="reg-form">
-
-        <form id="registerForm">
-
-            <div class='regmes'></div>
-
-            <div class="form-control">
-
-                <input type="text" id="username" required>
-
-                <label>
-
-                    <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
-                
-                </label>
-
-            </div>
-
-            <div class="form-control" id="form-control—pass1">
-
-                <input type="password" id="rpassword1" required maxlength="20">
-
-                <label id="pas1lab">
-
-                    <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
-                
-                </label>
-
-                <div class="configpass">
-
-                    <p id="lBurts">Lielais burts*</p>
-                    <p id="mBurts">Mazais burts*</p>
-                    <p id='sSimbols'>Specialai slimbols</p>
-                    <p id="cipars">Vismaz viens cipars*</p>
-                    <p id="Garums">Parole garums 8-20 simboli*</p>
+                        <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
+                    
+                    </label>
 
                 </div>
 
-            </div>
+                <div class="form-control">
 
-            <div class="form-control" id="form-control—pass2">
+                    <input type="password" name="parole" id="lpassword"required>
 
-                <input type="password" id="rpassword2" required maxlength="20">
+                    <label>
 
-                <label id="pas2lab">
+                        <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+                    
+                    </label>
 
-                    <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
-                
-                </label>
+                    <div class="resPass">
 
-            </div>
+                        <a href="">Aizmirsi paroli?</a>
 
-            <button class="btna btnreg" type="submit" id="registerBtn" disabled>
+                    </div>
 
-                <div class="btn-box btnlogbox">
+                    <div class="lookpassL">
 
-                    <div class="btn-line"></div>
+                        <img src="image/icons/view.png">
 
-                    <span class="btnlogspan">Reģistreties</span>
+                    </div>
 
                 </div>
 
-            </button>
+                <button class="btnlog" type="submit" name="ielogoties" id="loginbtn" disabled>Autorizeties</button>
 
+            </form>
 
-        </form>
+        </div>
+
+        <div class="reg-form">
+
+            <form id="registerForm">
+
+                <div class="fomrtext">
+                    
+                    <h1>Izveidot Profilu!</h1>
+                    
+                </div>
+
+                <div class="form-control">
+
+                    <input type="text" id="username" required>
+
+                    <label>
+
+                        <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
+                    
+                    </label>
+
+                </div>
+
+                <div class="form-control" id="form-control—pass1">
+
+                    <input type="password" id="rpassword1" required maxlength="20">
+
+                    <label id="pas1lab">
+
+                        <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+                    
+                    </label>
+
+                    <div class="configpass">
+
+                        <p id="lBurts">Lielais burts*</p>
+                        <p id="mBurts">Mazais burts*</p>
+                        <p id='sSimbols'>Specialai slimbols</p>
+                        <p id="cipars">Vismaz viens cipars*</p>
+                        <p id="Garums">Parole garums 8-20 simboli*</p>
+
+                    </div>
+
+                </div>
+
+                <div class="form-control" id="form-control—pass2">
+
+                    <input type="password" id="rpassword2" required maxlength="20">
+
+                    <label id="pas2lab">
+
+                        <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+                    
+                    </label>
+
+                    <div class="lookpassR">
+
+                        <img src="image/icons/view.png">
+
+                    </div>
+
+                </div>
+
+                <button class="btnreg" type="submit" id="registerBtn" disabled>Reģistreties</button>
+
+            </form>
+
+        </div>
 
     </div>
-
-</div>
 </div>
 
 <div class="profelimenu" id="profiest">

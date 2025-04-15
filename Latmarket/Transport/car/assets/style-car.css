@@ -3,7 +3,6 @@
 background: var(--maincolor);
 padding: 6rem 10% 4rem 10%;
 margin-top: 2rem;
-
 }
 
 
@@ -90,7 +89,7 @@ font-size: .9rem;
 
 .filter{
 
-background: var(--maincolor);
+background: var(--textcolor);
 padding: 2rem 5%;
 display: flex;
 justify-content: center;
@@ -443,7 +442,7 @@ color: #fff;
 
 .offers{
 
-background: var(--maincolor);
+background: var(--textcolor);
 padding: 3rem 10%;
 
 }

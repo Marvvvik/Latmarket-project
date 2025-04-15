@@ -82,7 +82,7 @@ function updateCarList() {
             $("#cars-container").html(response);
         },
         error: function(xhr, status, error) {
-            $("#cars-container").html("Kļuda: " + xhr);
+            $("#cars-container").html("Kļuda: " + xhr.responseText);
         }
     });
 }

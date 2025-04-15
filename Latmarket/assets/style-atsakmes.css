@@ -1,6 +1,23 @@
 .atsaukmes{
 
-padding: 5rem 15%;
+padding: 1rem 15%;
+
+}
+
+.atsaukmes h1{
+
+font-size: 1.5rem;
+display: flex;
+align-items: center;
+margin-bottom: 3rem;
+
+}
+
+.atsaukmes h1 i{
+
+font-size: 2rem;
+color: var(--secondcolor);
+margin-right: .5rem;
 
 }
 
@@ -14,8 +31,8 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
-border-radius: 2rem;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 20%);
+border-radius: 1rem;
 
 }
 
@@ -37,7 +54,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-width: 50%;
+width: 90%;
 
 }
 
@@ -55,7 +72,7 @@ cursor: pointer;
 
 .stars i.active{
 
-color: #ebb400;
+color: var(--secondcolor);
 
 }
 
@@ -74,13 +91,14 @@ margin-bottom: 2rem;
 .atsakmesForm form textarea{
 
 width: 100%;
-height: 20rem;
+height: 15rem;
 padding: 1rem;
-background: var(--maincolor);
+background: var(--maincolor-2);
 resize: none;
 color: var(--white);
 border-radius: 1rem;
-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
+box-shadow: 0 0 1rem rgba(0, 0, 0, 10%);
+font-size: 1rem;
 
 }
 
@@ -93,16 +111,27 @@ color: var(--white);
 
 } 
 
-
 .atbtn{
 
-margin-bottom: 4rem
+background: var(--secondcolor);
+font-size: 1.2rem ;
+padding: .8rem;
+border-radius: .5rem;
+color: var(--textcolor-2);
+margin-bottom: 3rem;
+cursor: pointer;
 
 }
 
 
-.atbtn span{
+.atbtn:hover{
 
-font-size: 1.5rem;
+background: var(--hover);
+
+}
+
+.atbtn i{
+
+margin-right: .5rem;
 
 }
