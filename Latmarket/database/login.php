@@ -48,9 +48,15 @@ if (isset($_POST["ielogoties"])) {
         echo $_SESSION['log_paz'] = "Visi lauki nav aizpilditi!";
 
     }
+
+    if (isset($_POST['redirect']) && !empty($_POST['redirect'])) {
+        $redirect_url = $_POST['redirect'];
+    } else {
+        $redirect_url = '../';
+    }
     
 
-    header('Location: ../');
+    header('Location: ' . $redirect_url);
     $vaicajums->close();
     $savienojums->close();
 }

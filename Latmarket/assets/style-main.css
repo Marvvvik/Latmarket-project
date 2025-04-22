@@ -24,6 +24,7 @@ letter-spacing: .1rem;
 --secondcolor: #0068d6;
 --hover:  #0152a7;
 --hover-2:  #649bd5;
+--hover-3:  #acbfd3;
 --gray: #999;
 --shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 30%);
 
@@ -165,7 +166,9 @@ display: none;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-z-index: 3;
+z-index: 2;
+border-radius: 1rem;
+overflow: hidden;
 
 }
 
@@ -218,7 +221,7 @@ color: red;
 
 .profmenu button:hover{
 
-background: var(--hover-2);
+background: var(--hover-3);
 color: var(--textcolor-2);
 
 }
@@ -276,7 +279,7 @@ background: rgba(0, 0, 0, 60%);
 backdrop-filter: blur(5px);
 width: 100%;
 height: 100%;
-z-index: 7;
+z-index: 3;
 position: fixed;
 top: 0;
 right: 0;
@@ -307,6 +310,7 @@ flex-direction: column;
 position: relative;
 border-radius: 1rem;
 padding: 0 5rem;
+z-index: 4;
 
 }
 
@@ -744,11 +748,12 @@ color: rgba(255, 0, 0, 70%);
 
 width: 100%;
 height: 100vh;
-background: rgba(0, 0, 0, 80%);
+background: rgba(0, 0, 0, 60%);
+backdrop-filter: blur(5px);
 position: fixed;
 top: 0;
 left: 0;
-z-index: 6;
+z-index: 3;
 display: none;
 
 }
@@ -770,6 +775,9 @@ position: fixed;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
+border-radius: 1rem;
+overflow: hidden;
+z-index: 4;
 
 }
 
@@ -859,7 +867,8 @@ background: var(--maincolor);
 
 .profbtns button:hover{
 
-background: rgba(255, 180, 0, 30%);
+background: var(--hover-3);
+color: var(--textcolor-2);
 
 }
 
@@ -966,12 +975,13 @@ flex-wrap: wrap;
 
 }
 
+/* -------------settings */
 
 #settings-menu .box{
 
 width: 40%;
 height: 100%;
-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 10%);
+box-shadow: var(--shadow);
 color: var(--textcolor);
 padding: 1rem;
 margin: 1rem;
@@ -1062,10 +1072,10 @@ outline: none;
 text-decoration: none;
 font-size: 14px;
 vertical-align: middle;
-color: var(--textcolor);
+color: var(--textcolor-2);
 text-align: center;
 border-radius: 4px;
-background-color: var(--hover);
+background-color: var(--secondcolor);
 line-height: 22px;
 height: 40px;
 padding: 10px 20px;
@@ -1078,7 +1088,7 @@ transition: background-color 0.2s;
 
 .input-file:hover span {
 
-	background-color: var(--secondcolor);
+background-color: var(--hover);
 
 }
 
@@ -1092,13 +1102,6 @@ width: 0;
 height: 0;
 
 }
-
-.input-file:active span {
-
-background-color: #2E703A;
-
-}
- 
 
 .input-file input[type=file]:disabled + span {
 
@@ -1236,7 +1239,7 @@ width: 100%;
 height: 100%;
 top: 0;
 left: 0;
-background: rgba(235, 180, 0, 100%);
+background: var(--secondcolor);
 display: flex;
 justify-content: center;
 align-items: center;
@@ -1247,7 +1250,8 @@ z-index: 2;
 
 .passwordC:hover{
 
-background: rgba(235, 180, 0, 70%);
+background: var(--secondcolor);
+opacity: 50%;
 
 }
 
@@ -1266,12 +1270,109 @@ display: none;
 
 }
 
+
+.setBtn{
+
+background: var(--secondcolor);
+font-size: 1.5rem;
+color: var(--textcolor-2);
+border-radius: .5rem;
+padding: .7rem 1rem;
+cursor: pointer;
+
+}
+
+.setBtn i{
+
+margin-right: .5rem;
+
+}
+
+.setBtn:hover{
+
+background: var(--hover);
+
+}
+
+
+/* --------------favorite */
+
 #favoriti-menu{
 
 padding: 2rem 2rem 0 2rem;
 justify-content: top;
 align-items: center;
 flex-direction: column;
+
+}
+
+.fav-filter{
+
+width: 90%;
+height: auto;
+background: var(--maincolor);
+border-radius: .5rem;
+padding: 1rem .5rem;
+box-shadow: var(--shadow);
+margin-top: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+
+.filt-cont select {
+    
+appearance: none;
+outline: 10px red;
+box-shadow: none;
+flex: 1;
+padding: 0 1em;
+color: var(--textcolor);
+background-color: var(--maincolor-2);
+background-image: none;
+cursor: pointer;
+font-weight: bold;
+font-size: 1rem;
+border-radius: .5rem;
+margin: 0 2rem;
+
+}
+
+.filt-cont select option{
+
+font-size: 1rem;
+
+}
+
+.select {
+
+position: relative;
+display: flex;
+width: 20em;
+height: 3em;
+border-radius: .25em;
+overflow: hidden;
+
+}
+
+
+.select::after {
+content: '\25BC';
+position: absolute;
+top: 0;
+right: 0;
+padding: 1em;
+background-color: var(--secondcolor);
+transition: .25s all ease;
+pointer-events: none;
+}
+
+
+.select:hover::after {
+
+color: var(--maincolor);
 
 }
 
@@ -1307,8 +1408,10 @@ margin-top: 1.5rem;
 .fav-container h2{
 
 background: var(--secondcolor);
-border-radius: 2rem;
+color: var(--textcolor-2);
+border-radius: .5rem;
 padding: 1rem 1.5rem;
+font-size: 1rem;
 
 }
 
@@ -1316,9 +1419,9 @@ padding: 1rem 1.5rem;
 .fav-container .box{
 
 width: 17rem;
-height: 17rem;
+height: 20rem;
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 50%);
-border-radius: 2rem;
+border-radius: 1rem;
 overflow: hidden;
 margin: 1rem 1rem;
 text-align: center;

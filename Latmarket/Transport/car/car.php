@@ -239,62 +239,49 @@ require "../../header.php";
         <div class="min-max-filter">
 
             <div class="filter-box" data-filter="price" data-gap="500">
-                <h1>Cena</h1>
+                <div class="fil-box-nos">
+                    <h1>Cena:</h1>
+                </div>
                 <div class="price-input">
-                    <input type="number" class="input-min" value="<?php echo $car_zem_cen;?>">
-                    <input type="number" class="input-max" value="<?php echo $car_aug_cen;?>">
-                </div>
-                <div class="range-slider">
-                    <div class="progress"></div>
-                </div>
-                <div class="range-input">
-                    <input type="range" class="range-min" min="<?php echo $car_zem_cen;?>" max="<?php echo $car_aug_cen;?>" value="<?php echo $car_zem_cen;?>" step="500" id="car_min_cena_select">
-                    <input type="range" class="range-max" min="<?php echo $car_zem_cen;?>" max="<?php echo $car_aug_cen;?>" value="<?php echo $car_aug_cen;?>" step="500" id="car_max_cena_select">
+                    <input type="number" class="input-min" placeholder="<?php echo $car_zem_cen;?>">
+                    <p> - </p>
+                    <input type="number" class="input-max" placeholder="<?php echo $car_aug_cen;?>">
+                    <p> €</p>
                 </div>
             </div>
 
             <div class="filter-box" data-filter="year" data-gap="1">
-                <h1>Gads</h1>
+                <div class="fil-box-nos">
+                    <h1>Gads:</h1>
+                </div>
                 <div class="price-input">
-                    <input type="number" class="input-min" value="<?php echo $car_zem_gads;?>">
-                    <input type="number" class="input-max" value="<?php echo $car_aug_gads;?>">
-                </div>
-                <div class="range-slider">
-                    <div class="progress"></div>
-                </div>
-                <div class="range-input">
-                    <input type="range" class="range-min" min="<?php echo $car_zem_gads;?>" max="<?php echo $car_aug_gads;?>" value="<?php echo $car_zem_gads;?>" step="1" id="car_min_gads_select">
-                    <input type="range" class="range-max" min="<?php echo $car_zem_gads;?>" max="<?php echo $car_aug_gads;?>" value="<?php echo $car_aug_gads;?>" step="1" id="car_max_gads_select">
+                    <input type="number" class="input-min" placeholder="<?php echo $car_zem_gads;?>">
+                    <p> - </p>
+                    <input type="number" class="input-max" placeholder="<?php echo $car_aug_gads;?>">
                 </div>
             </div>
 
             <div class="filter-box" data-filter="mileage" data-gap="1000">
-                <h1>Nobrakums</h1>
+                <div class="fil-box-nos">
+                    <h1>Nobrakums:</h1>
+                </div>
                 <div class="price-input">
-                    <input type="number" class="input-min" value="<?php echo $car_zem_mileage;?>">
-                    <input type="number" class="input-max" value="<?php echo $car_aug_mileage;?>">
-                </div>
-                <div class="range-slider">
-                    <div class="progress"></div>
-                </div>
-                <div class="range-input">
-                    <input type="range" class="range-min" min="<?php echo $car_zem_mileage;?>" max="<?php echo $car_aug_mileage;?>" value="<?php echo $car_zem_mileage;?>" step="1000" id="car_min_nobrakums_select">
-                    <input type="range" class="range-max" min="<?php echo $car_zem_mileage;?>" max="<?php echo $car_aug_mileage;?>" value="<?php echo $car_aug_mileage;?>" step="1000" id="car_max_nobrakums_select">
+                    <input type="number" class="input-min" placeholder="<?php echo $car_zem_mileage;?>">
+                    <p> - </p>
+                    <input type="number" class="input-max" placeholder="<?php echo $car_aug_mileage;?>">
+                    <p> KM</p>
                 </div>
             </div>
 
             <div class="filter-box" data-filter="power" data-gap="10">
-                <h1>Jauda</h1>
+                <div class="fil-box-nos">
+                    <h1>Jauda:</h1>
+                </div>
                 <div class="price-input">
-                    <input type="number" class="input-min" value="<?php echo $car_zem_power;?>">
-                    <input type="number" class="input-max" value="<?php echo $car_aug_power;?>">
-                </div>
-                <div class="range-slider">
-                    <div class="progress"></div>
-                </div>
-                <div class="range-input">
-                    <input type="range" class="range-min" min="<?php echo $car_zem_power;?>" max="<?php echo $car_aug_power;?>" value="<?php echo $car_zem_power;?>" step="10" id="car_min_jauda_select">
-                    <input type="range" class="range-max" min="<?php echo $car_zem_power;?>" max="<?php echo $car_aug_power;?>" value="<?php echo $car_aug_power;?>" step="10"id="car_max_jauda_select">
+                    <input type="number" class="input-min" placeholder="<?php echo $car_zem_power;?>">
+                    <p> - </p>
+                    <input type="number" class="input-max" placeholder="<?php echo $car_aug_power;?>">
+                    <p> KW</p>
                 </div>
             </div>
 
@@ -302,10 +289,12 @@ require "../../header.php";
 
 
         <div class="radio-filter">
-
             <div class="box">
+                <div class="rad-fil-nos">
 
-                <h1>Pec DTP</h1>
+                    <h1>Pec DTP: </h1>
+
+                </div>
 
                 <div class="wrapper">
 
@@ -333,8 +322,11 @@ require "../../header.php";
             </div>
 
             <div class="box">
+                <div class="rad-fil-nos">
 
-                <h1>Jaudas mērvienība</h1>
+                    <h1>Jaudas mērvienība: </h1>
+
+                </div>
 
                 <div class="wrapper">
 
@@ -356,8 +348,11 @@ require "../../header.php";
             </div>
 
             <div class="box">
+                <div class="rad-fil-nos">
 
-                <h1>Nobraukuma mērvienība</h1>
+                    <h1>Nobraukuma mērvienība: </h1>
+
+                </div>
 
                 <div class="wrapper">
 

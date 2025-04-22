@@ -20,7 +20,7 @@ if (!empty($vards) && !empty($uzvards) && $vards !== "Unknown" && $uzvards !== "
             $current_date = date('Y-m-d H:i:s');
             
             // Проверяем, есть ли уже комментарий для этого пользователя за последнюю неделю
-            $check_query = $savienojums->prepare("SELECT COUNT(*) FROM atsaukmes WHERE lietotaja_id = ? AND datums >= NOW() - INTERVAL 1 WEEK");
+            $check_query = $savienojums->prepare("SELECT COUNT(*) FROM Atsauksmes WHERE lietotaja_id = ? AND datums >= NOW() - INTERVAL 1 WEEK");
             $check_query->bind_param("i", $liet_id);
             $check_query->execute();
             $check_query->bind_result($comment_count);
@@ -32,12 +32,12 @@ if (!empty($vards) && !empty($uzvards) && $vards !== "Unknown" && $uzvards !== "
                 $response['error'] = "Jūs varat atstāt tikai vienu atsauksmi nedēļā!";
             } else {
                 // Если комментариев нет, можно добавить новый
-                $vaicajums = $savienojums->prepare("INSERT INTO atsaukmes (vards, uzvards, stars, at_text, lietotaja_id, datums) VALUES (?, ?, ?, ?, ?, ?)");
+                $vaicajums = $savienojums->prepare("INSERT INTO Atsauksmes (vards, uzvards, stars, at_text, lietotaja_id, datums) VALUES (?, ?, ?, ?, ?, ?)");
                 $vaicajums->bind_param("ssisis", $vards, $uzvards, $stars, $text, $liet_id, $current_date);
 
                 if ($vaicajums->execute()) {
                     $response['success'] = true;
-                    $response['message'] = "Atsaukmes veiksmīgi izvietota!";
+                    $response['message'] = "Atsauksme veiksmīgi izvietota!";
                 } else {
                     $response['success'] = false;
                     $response['error'] = "Sistēmas kļūda.";

@@ -1,5 +1,10 @@
 // ------------------------------------------------------------Registracija
 
+$(document).on('click', '.closemodal', function() {
+    $(this).closest('.linemess').fadeOut(100, function() {
+    $(this).remove();
+    });
+});
 
 $('#registerForm').submit(e => {
     e.preventDefault();
@@ -17,34 +22,55 @@ $('#registerForm').submit(e => {
         data: postData,
         dataType: 'json',
         success: response => {
-            if (response.success) {
-              
-                $('.linemess').remove(); 
+            $('.linemess').remove();
 
-                const successMessage = `<div class="linemess">
-    
-                                            <i class="fas fa-close closemodal" id="mesclose"></i>
+            const messageType = response.success ? "success" : "error";
+            const messageText = response.success ? response.message : response.error;
+            const iconClass = response.success ? "fa-check" : "fa-close";
+            const titleText = response.success ? "Veiksmīgi!" : "Ne veiksmīgi!";
 
-                                            <p>${response.message}</p>
+            const messageBox = `<div class="linemess ${messageType}">
+                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <div class="mesinfobox">
+                                        <i class="fas ${iconClass}"></i>
+                                        <div class="mesinfo">
+                                            <h2>${titleText}</h2>
+                                            <p>${messageText}</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline"></div>
+                                </div>`;
+            $('body').append(messageBox);
 
-                                            <div class="timeline"></div>
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
 
-                                        </div>`;
-                $('body').append(successMessage);
-    
-                setTimeout(() => {
-                    $('.linemess').fadeOut(300, () => $(this).remove());
-                }, 5000);
-    
+            if (!response.success) {
+                $('.regmes').html(response.error);
             } else {
-                const errorMessage = `${response.error}`;
-                $('.regmes').html(errorMessage);
+                $('.regmes').empty(); 
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Kļuda pie datu nmosutišanas:', errorThrown);
-            const errorMessage = `<div class="notif-slide-red">Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</div>`;
-            $('.regmes').html(errorMessage);
+            console.error('Kļūda pie datu nmosutišanas:', errorThrown);
+            $('.linemess').remove();
+            const errorMessage = `<div class="linemess error">
+                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <div class="mesinfobox">
+                                        <i class="fas fa-close"></i>
+                                        <div class="mesinfo">
+                                            <h2>Ne veiksmīgi!</h2>
+                                            <p>Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline"></div>
+                                </div>`;
+            $('body').append(errorMessage);
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
+            $('.regmes').html(`<div class="notif-slide-red">Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</div>`); // Keep the original error message in .regmes as well
         }
     });
 });
@@ -100,7 +126,7 @@ $('#editForm').submit(e => {
     const telefons = $('#telefons').val();
     const password1 = $('#password1-c').val();
     const password2 = $('#password2-c').val();
-    const newavatar = $('#newavatar')[0].files[0];  // Получаем файл
+    const newavatar = $('#newavatar')[0].files[0];  
 
     const formData = new FormData();
     formData.append('liet_id', liet_id);
@@ -112,7 +138,7 @@ $('#editForm').submit(e => {
     formData.append('password2', password2);
     formData.append('editPassActive', editPassActive);
     if (newavatar) {
-        formData.append('newavatar', newavatar);  // Добавляем файл в форму
+        formData.append('newavatar', newavatar); 
     }
 
     const editUrl = '/database/edit-profile.php';
@@ -122,8 +148,8 @@ $('#editForm').submit(e => {
         url: editUrl,
         data: formData,
         dataType: 'json',
-        processData: false,  // Чтобы jQuery не пытался преобразовать данные в строку
-        contentType: false,  // Чтобы jQuery не устанавливала заголовок Content-Type
+        processData: false,  
+        contentType: false, 
         success: response => {
             const messageType = response.success ? "success" : "error";
             const messageText = response.success ? response.message : response.error;
@@ -183,7 +209,7 @@ $('#editForm').submit(e => {
 
 
 
-// ------------------------------------------------------------Atsaukmes add
+// ------------------------------------------------------------Atsaukmes add un izvade
 
 
 
@@ -238,6 +264,7 @@ $('#atsakmes-form').submit(e => {
             if (response.success) {
                 $(".name-i p").text(vards + " " + uzvards);
                 $(".email-i p").text(epasts);
+                atsaukmesIzvade();
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -263,6 +290,29 @@ $('#atsakmes-form').submit(e => {
         }
     });
 });
+
+$(document).ready(function() {
+
+    atsaukmesIzvade();
+
+})
+
+function atsaukmesIzvade() {
+    $.ajax({
+        type: "POST",
+        url: "/database/atsaukmes-izvade.php",
+        success: function(response) {
+            if ($.trim(response) === "") {
+                $("#atsaukmes-container").html("<h2>Neviens sludinajums nav pievienots favoritos!</h2>");
+            } else {
+                $("#atsaukmes-container").html(response);
+            }
+        },
+        error: function(xhr, status, error) {
+            $("#atsaukmes-container").html("<h1>Kļūda: " + xhr + "</h1>");  
+        }
+    });
+}
 
 // ------------------------------------------------------------Favorit add un izvade
 
@@ -355,7 +405,7 @@ function favoritIzvade() {
             }
         },
         error: function(xhr, status, error) {
-            $("#fav-container").html("<h1>Kļūda: " + xhr.responseText + "</h1>");  
+            $("#fav-container").html("<h1>Kļūda: " + xhr + "</h1>");  
         }
     });
 }

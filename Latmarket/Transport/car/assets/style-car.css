@@ -1,96 +1,6 @@
-.search-line{
-
-background: var(--maincolor);
-padding: 6rem 10% 4rem 10%;
-margin-top: 2rem;
-}
-
-
-.grupboxs{
-
-display: flex;
-justify-content: center;
-align-items: center;
-flex-wrap: wrap;
-
-}
-
-
-.grupboxs .box{
-
-width:  auto;
-height: 5rem;
-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
-margin: .7rem .7rem;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-background: var(--maincolor);
-padding: 0 1.5rem;
-position: relative;
-border-radius: 2rem;
-
-}
-
-.grupboxs .box:hover{
-
-background: var(--hover);
-
-}
-
-.grupboxs .box.active{
-
-background: var(--secondcolor);
-cursor: default;
-
-}
-
-.grupboxs .box.active i{
-
-color: var(--textcolor);
-
-}
-
-.grupboxs .box.active:hover {
- 
-background: var(--secondcolor); 
-
-}
-
-.grupboxs .box.active:hover i, .grupboxs .box.active:hover p{
- 
-color: var(--textcolor); 
-
-}
-
-.link{
-
-width: 100%;
-height: 100%;
-position: absolute;
-
-}
-
-.grupboxs .box i{
-
-color: var(--secondcolor);
-font-size: 1.3rem;
-
-}
-
-.grupboxs .box p{
-
-color: var(--textcolor);
-margin: 0 .5rem;
-font-size: .9rem;
-
-}
-
 .filter{
 
-background: var(--textcolor);
-padding: 2rem 5%;
+background: var(--maincolor-2);
 display: flex;
 justify-content: center;
 align-items: center;
@@ -99,7 +9,8 @@ align-items: center;
 
 .filter-menu{
 
-width: 90%;
+width: 100%;
+padding: 2rem 10%;
 height: auto;
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
 background: var(--maincolor);
@@ -107,6 +18,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
+margin-top: 6rem;
 
 }
 
@@ -130,16 +42,17 @@ padding: 0%;
     
 appearance: none;
 outline: 10px red;
-border: 0;
 box-shadow: none;
 flex: 1;
 padding: 0 1em;
 color: var(--textcolor);
-background-color: var(--hover);
+background-color: var(--maincolor-2);
+/* border: .1rem solid var(--textcolor); */
 background-image: none;
 cursor: pointer;
 font-weight: bold;
 font-size: 1rem;
+border-radius: .5rem;
 
 }
 
@@ -185,7 +98,7 @@ width: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
-margin: 3rem 0;
+margin: 3rem 0 1rem 0;
 
 }
 
@@ -200,12 +113,19 @@ flex-direction: column;
 
 }
 
+.fil-box-nos{
 
-.filter-box h1{
+width: 100%;
+height: auto;
+text-align: left;
+
+}
+
+.fil-box-nos h1{
 
 color: var(--textcolor);
-font-size: 1.5rem;
-margin-bottom: 2rem;
+font-size: 1.3rem;
+margin-bottom: 1rem;
 
 }
 
@@ -220,12 +140,22 @@ align-items: center;
     
 .price-input input{
 
-padding: .5rem .8rem;
-font-size: 1rem;
+padding: .7rem 1rem;
+font-size: 1.2rem;
 width: 40%;
 margin: 0 .5rem;
-text-align: center;
+text-align: left;
 -moz-appearance: none;
+border-radius: .5rem;
+background: var(--maincolor-2);
+
+
+}
+
+.price-input p{
+
+font-size: 1.3rem;
+font-weight: bold;
 
 }
     
@@ -236,59 +166,6 @@ input[type="number"]::-webkit-inner-spin-button{
 
 }
 
-.range-slider{
-
-background: #ddd;
-height: 10px;
-width: 100%;
-margin-top: 2rem;
-border-radius: 2rem;
-position: relative;
-
-}
-
-.progress{
-
-background: var(--hover);
-height: 10px;
-border-radius: 2rem;
-position: absolute;
-left: 0;
-right: 0;
-transition: none !important;
-
-}
-    
-.range-input{
-
-position: relative;
-width: 100%;
-
-}
-
-.range-input input{
-
-position: absolute;
-top: -10px;
-left: 0;
-height: 10px;
-width: 100%;
-pointer-events: none;
--webkit-appearance: none;
-background: none;
-
-}
-
-input[type="range"]::-webkit-slider-thumb{
-
-height: 15px;
-width: 15px;
-border-radius: 50%;
--webkit-appearance: none;
-pointer-events: auto;
-background: var(--secondcolor);
-
-}
 
 .radio-filter {
 
@@ -312,10 +189,19 @@ width: 25%;
 
 }
 
-.radio-filter .box h1 {
 
-font-size: 1.5rem;
-margin-bottom: 2rem;
+.rad-fil-nos{
+
+width: 100%;
+height: auto;
+text-align: left;
+
+}
+
+.rad-fil-nos h1{
+
+font-size: 1.3rem;
+margin-bottom: 1rem;
 
 }
 
@@ -326,9 +212,9 @@ height: 4rem;
 width: 100%;
 align-items: center;
 justify-content: space-evenly;
-padding: 15px 10px;
-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
-border-radius: 2rem;
+padding: 10px 5px;
+border-radius: .5rem;
+background: var(--maincolor-2);
 
 }
 
@@ -340,11 +226,10 @@ width: 100%;
 display: flex;
 align-items: center;
 justify-content: space-evenly;
-margin: 0 10px;
+margin: 0 5px;
 cursor: pointer;
 padding: 0 10px;
-transition: all 0.3s ease;
-border-radius: 2rem;
+border-radius: .5rem;
 
 }
 
@@ -442,7 +327,7 @@ color: #fff;
 
 .offers{
 
-background: var(--textcolor);
+background: var(--maincolor-2);
 padding: 3rem 10%;
 
 }
@@ -465,6 +350,8 @@ box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
 margin: 2rem 0;
 display: flex;
 position: relative;
+border-radius: 1rem;
+overflow: hidden;
 
 }
 
@@ -558,7 +445,7 @@ opacity: 80%;
 
 .photobtn button:hover{
 
-background: var(--hover2);
+background: var(--hover-2);
 
 }
 
@@ -609,15 +496,10 @@ align-items: center;
 
 font-size: 1.5rem;  
 cursor: pointer;  
-background: var(--maincolor);
+background: var(--maincolor-2);
 
 }
 
-.rep{
-
-color: red;
-
-}
 
 .fav{
 
@@ -625,12 +507,15 @@ color: #ebb400;
 
 }
 
+
 .carCena p{
 
 font-size: 1.5rem;
 margin-right: 1.5rem;
 background: var(--secondcolor);
 padding: .5rem;
+border-radius: .5rem;
+color: var(--textcolor-2);
 
 }
 
@@ -644,6 +529,7 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 padding: 0 1rem;
+border-radius: 1rem;
 
 }
 

@@ -1,0 +1,119 @@
+.changePass{
+
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 70vh;
+flex-direction: column;
+
+}
+
+.btnback{
+
+width: 30%;
+margin-bottom: 2rem;
+
+}
+
+.btnback a{
+
+color: #7b7b7b;
+font-weight: bold;
+cursor: pointer;
+
+}
+
+.btnback a:hover{
+
+color: #3e3e3e;
+
+}
+
+.btnback a i{
+
+margin-right: .5rem;
+    
+}
+
+.selectUser{
+
+background: var(--maincolor);
+width: 30%;
+height: auto;
+border-radius: 1rem;
+padding: 2rem;
+
+}
+
+.selectUser p{
+
+margin-top: 1rem;
+opacity: 80%;
+
+}
+
+.selectUser form{
+
+margin-top: 3rem;
+width: 100%;
+height: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+.selectUser form .user-email{
+
+width: 100%;
+height: auto;
+
+}
+
+.selectUser form .user-email label{
+
+font-weight: bold;
+font-size: 1.2rem;
+
+}
+
+.selectUser form .user-email input{
+
+width: 100%;
+padding: .7rem 1rem;
+border-radius: .5rem;
+border: .01rem solid #000;
+background: var(--maincolor);
+margin-top: .5rem;
+font-size: 1.2rem;
+
+}
+
+.selectUser form button{ 
+
+background: var(--secondcolor);
+border-radius: .5rem;
+padding: .7rem 1rem;
+font-size: 1.2rem;
+cursor: pointer;
+color: var(--textcolor-2);
+font-weight: bold;
+margin-top: 2rem;
+width: 100%;
+
+}
+
+.selectUser form button i{ 
+
+margin-right: .5rem;
+
+}
+
+
+.selectUser form button:hover{ 
+
+background: var(--hover);
+
+}

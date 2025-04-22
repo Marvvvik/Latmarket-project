@@ -25,7 +25,7 @@ margin-right: .5rem;
 .atsakmesForm{
 
 width: 100%;
-background: var(--black);
+background: var(--maincolor);
 height: auto;
 display: flex;
 justify-content: center;
@@ -97,7 +97,6 @@ background: var(--maincolor-2);
 resize: none;
 color: var(--white);
 border-radius: 1rem;
-box-shadow: 0 0 1rem rgba(0, 0, 0, 10%);
 font-size: 1rem;
 
 }
@@ -133,5 +132,83 @@ background: var(--hover);
 .atbtn i{
 
 margin-right: .5rem;
+
+}
+
+.atsakmes-izvade{
+
+padding: 5rem 15% 2rem 15%;
+
+}
+
+.atsakmes-izvade .box{
+
+width: 100%;
+height: auto;
+border-radius: 1rem;
+background: var(--maincolor);
+padding: 2rem;
+margin: 2rem 0;
+
+}
+
+.avatar{
+
+width: 5rem;
+height: 5rem;
+border-radius: 50%;
+border: .15rem solid var(--secondcolor);
+
+}
+
+.at-info{
+
+display: flex;
+justify-content: space-between;
+
+}
+
+.av-name-st{
+
+display: flex;
+align-items: center;
+
+}
+
+.av-name-st h1{
+
+font-size: 1.5rem;
+
+}
+
+.name-star{
+
+margin-left: .5rem;
+
+}
+
+.stars-at{
+
+font-size: 1.5rem;
+
+}
+
+.stars-at i.active{
+
+color: var(--secondcolor);
+
+}
+
+.time p{
+
+font-size: 1.3rem;
+opacity: 50%;
+
+}
+
+
+.at-text{
+
+margin-top: 2rem;
 
 }

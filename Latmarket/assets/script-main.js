@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const isPassword = passwordInput.type === 'password';
 
         passwordInput.type = isPassword ? 'text' : 'password';
-        toggleBtn.src = isPassword ? 'image/icons/hide.png' : 'image/icons/view.png';
+        toggleBtn.src = isPassword ? '/image/icons/hide.png' : '/image/icons/view.png';
     });
 });
 
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         passwordInput1.type = isPassword1 ? 'text' : 'password';
         passwordInput2.type = isPassword2 ? 'text' : 'password';
-        toggleBtnR.src = isPassword1 ? 'image/icons/hide.png' : 'image/icons/view.png';
+        toggleBtnR.src = isPassword1 ? '/image/icons/hide.png' : '/image/icons/view.png';
     });
 });
 
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-        if (hasLowerCase && hasUpperCase && hasNumber && lengthValid && password1.value === password2.value && password1.value !== "" && password2.value !== "") {
+        if (hasLowerCase && hasSpecialChar && hasUpperCase && hasNumber && lengthValid && password1.value === password2.value && password1.value !== "" && password2.value !== "") {
             registerBtn.disabled = false; 
         } else {
             registerBtn.disabled = true; 
@@ -239,35 +239,69 @@ document.addEventListener("DOMContentLoaded", function () {
     const profelimenu = document.querySelector(".profelimenu");
 
     if (!profelimenu) {
-        console.error("Ошибка: Элемент #profelimenu не найден!");
-        return;
+        return; 
     }
 
     Object.keys(buttons).forEach(btnId => {
         const button = document.getElementById(btnId);
         const menu = document.getElementById(buttons[btnId]);
 
-        if (!button || !menu) {
-            console.error(`Ошибка: Элемент ${btnId} или ${buttons[btnId]} не найден!`);
-            return;
-        }
 
-        button.addEventListener("click", function () {
-            
-            profelimenu.classList.remove("active");
-            Object.values(buttons).forEach(menuId => {
-                const menuElement = document.getElementById(menuId);
-                if (menuElement) {
-                    menuElement.classList.remove("active");
-                }
+        if (button && menu) {
+            button.addEventListener("click", function () {
+                profelimenu.classList.remove("active");
+                Object.values(buttons).forEach(menuId => {
+                    const menuElement = document.getElementById(menuId);
+                    if (menuElement) {
+                        menuElement.classList.remove("active");
+                    }
+                });
+
+                profelimenu.classList.add("active");
+                menu.classList.add("active");
             });
-
-            
-            profelimenu.classList.add("active");
-            menu.classList.add("active");
-        });
+        }
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const settingsBtn = document.getElementById('Iestatijumi');
+    const favoritiBtn = document.getElementById('Favoriti');
+    const sludinajumiBtn = document.getElementById('Sludinajumi');
+    const sarakstiBtn = document.getElementById('Saraksti');
+  
+    const settingsMenu = document.getElementById('settings-menu');
+    const favoritiMenu = document.getElementById('favoriti-menu');
+    const sludMenu = document.getElementById('slud-menu');
+    const sarMenu = document.getElementById('sar-menu');
+  
+    function setActiveMenu(activeButton, activeMenu) {
+      settingsMenu.classList.remove('active');
+      favoritiMenu.classList.remove('active');
+      sludMenu.classList.remove('active');
+      sarMenu.classList.remove('active');
+  
+
+      activeMenu.classList.add('active');
+    }
+  
+    settingsBtn.addEventListener('click', function() {
+      setActiveMenu(this, settingsMenu);
+    });
+  
+    favoritiBtn.addEventListener('click', function() {
+      setActiveMenu(this, favoritiMenu);
+    });
+  
+    sludinajumiBtn.addEventListener('click', function() {
+      setActiveMenu(this, sludMenu);
+    });
+  
+    sarakstiBtn.addEventListener('click', function() {
+      setActiveMenu(this, sarMenu);
+    });
+  });
 
 
 // --------------------------------------------------------------------------Mes-Modal-close

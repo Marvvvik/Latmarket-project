@@ -31,142 +31,89 @@ $filtrets = [];
 
 
 if ($modelis) {
-
     $filtrets[] = "Modelis = '$modelis'";
-
 }
 
 if ($marka) {
-
     $filtrets[] = "Marka = '$marka'";
-
 }
 
 if ($binzina_tips) {
-
     $filtrets[] = "Bezina_tips = '$binzina_tips'";
-
 }
 
 if ($atrumkarba) {
-
     $filtrets[] = "Atrumkarba_tips = '$atrumkarba'";
-
 }
 
 if ($virsbuve) {
-
     $filtrets[] = "Virsbuves_tips = '$virsbuve'";
-
 }
 
 if ($piezina) {
-
     $filtrets[] = "Piedzina = '$piezina'";
-
 }
 
 if ($krasa) {
-
     $filtrets[] = "Krasa = '$krasa'";
-
 }
 
 if ($tehniska_apskate) {
-
     if ($tehniska_apskate == 1) {
-
         $filtrets[] = "Tehniska_apskate != 0";
-
     }else if($tehniska_apskate == 2){
-
         $filtrets[] = "Tehniska_apskate = 0";
-        
     }
-
 }
 
 if ($dtp) {
-
     if ($dtp == 1) {
-
         $filtrets[] = "dtp != 0";
-
     }else if($dtp == 2){
-
         $filtrets[] = "dtp = 0";
-    
     }
-
 }
 
-
 if ($min_cena) {
-
     $filtrets[] = "Cena >= '$min_cena'";
-
 }
 
 if ($max_cena) {
-
     $filtrets[] = "Cena <= '$max_cena'";
-
 }
 
 if ($min_gads) {
-
     $filtrets[] = "Izladuma_gads >= '$min_gads'";
-
 }
 
 if ($max_gads) {
-
     $filtrets[] = "Izladuma_gads <= '$max_gads'";
-
 }
 
 if ($min_nobrakums) {
-
     $filtrets[] = "Nobrakums >= '$min_nobrakums'";
-
 }
 
 if ($max_nobraukums) {
-
     $filtrets[] = "Nobrakums <= '$max_nobraukums'";
-
 }
 
 if ($min_jauda) {
-
     $filtrets[] = "Jauda >= '$min_jauda'";
-
 }
 
 if ($max_jauda) {
-
     $filtrets[] = "Jauda <= '$max_jauda'";
-
 }
 
-
-
 if (count($filtrets) > 0) {
-
     $filterizvele = "WHERE " . implode(' AND ', $filtrets);
-
 } else {
-
     $filterizvele = "";
-
 }
 
 $CarsSQl = "SELECT * FROM Cars $filterizvele";
-
-$jauda_izvade = "";
-
 $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
-
     while ($Cars = mysqli_fetch_assoc($Atlasa_cars)) {
 
 // -------------------------------------- star izvade
@@ -192,6 +139,8 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
         $formtedCema = number_format($Cars['Cena'], 0, '', ' ').' €';
 
 // -------------------------------------- Jaudas izvade un mervieniba
+
+        $jauda_izvade = "";
 
         if ($Cars['Jauda'] == 0) {
 
@@ -302,8 +251,6 @@ $Atlasa_cars = mysqli_query($savienojums, $CarsSQl);
                                         <button class='favBtn'><i class='{$starIcon}'></i></button> 
 
                                     </form>
-                                    
-                                    <i class='fa fa-ban rep'></i>
                                 
                                 </div>
                             </p>

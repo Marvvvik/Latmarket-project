@@ -27,7 +27,7 @@ if(isset($_SESSION['lietotajvardsHOMIK'])){
 
 <section class="atsaukmes">
 
-    <h1><i class="far fa-comment"></i>Atsakmes</h1>
+    <h1><i class="far fa-comment"></i>Atsakmes:</h1>
 
     <div class="atsakmesForm">
 
@@ -53,7 +53,7 @@ if(isset($_SESSION['lietotajvardsHOMIK'])){
 
             <div class="textarea-long">
 
-                <textarea maxlength="800" id="atsaukmes-text" value=""></textarea>
+                <textarea maxlength="800" id="atsaukmes-text" placeholder="Uzraksti komentāru..."></textarea>
 
                 <div class="long"></div>
 
@@ -73,6 +73,15 @@ if(isset($_SESSION['lietotajvardsHOMIK'])){
 };
 
 ?>
+
+<section class="atsakmes-izvade">
+
+    <div class="atsaukmes-container" id="atsaukmes-container">
+
+
+    </div>
+
+</section>
     
 </body>
 </html>

@@ -102,6 +102,7 @@ session_start();
 
                 <div class="form-control">
 
+                    <input type="hidden" name="redirect" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                     <input type="text" name="lietotajvards" id="lusername"required>
 
                     <label>
@@ -124,13 +125,13 @@ session_start();
 
                     <div class="resPass">
 
-                        <a href="">Aizmirsi paroli?</a>
+                        <a href="/Change-password.php">Aizmirsi paroli?</a>
 
                     </div>
 
                     <div class="lookpassL">
 
-                        <img src="image/icons/view.png">
+                        <img src="/image/icons/view.png">
 
                     </div>
 
@@ -178,7 +179,7 @@ session_start();
 
                         <p id="lBurts">Lielais burts*</p>
                         <p id="mBurts">Mazais burts*</p>
-                        <p id='sSimbols'>Specialai slimbols</p>
+                        <p id='sSimbols'>Specialai slimbols*</p>
                         <p id="cipars">Vismaz viens cipars*</p>
                         <p id="Garums">Parole garums 8-20 simboli*</p>
 
@@ -198,7 +199,7 @@ session_start();
 
                     <div class="lookpassR">
 
-                        <img src="image/icons/view.png">
+                        <img src="/image/icons/view.png">
 
                     </div>
 
@@ -241,13 +242,13 @@ session_start();
 
             <div class="profbtns">
 
-                <button><i class="fas fa-cog" id="spin"></i>Iestatijumi</button>
+                <button id="Iestatijumi"><i class="fas fa-cog" id="spin"></i>Iestatijumi</button>
 
-                <button><i class="fas fa-star" id="spin"></i>Favoriti</button>
+                <button id="Favoriti"><i class="fas fa-star" id="spin"></i>Favoriti</button>
 
-                <button><i class="fas fa-money-bill-wave" id="rotate-spin"></i>Sludinajumi</button>
+                <button id="Sludinajumi"><i class="fas fa-money-bill-wave" id="rotate-spin"></i>Sludinajumi</button>
 
-                <button><i class="fa-solid fa-message" id="rotate-spin"></i>Saraksti</button>
+                <button id="Saraksti"><i class="fa-solid fa-message" id="rotate-spin"></i>Saraksti</button>
 
             </div>
 
@@ -341,23 +342,51 @@ session_start();
 
                 </div>
 
-                <button class="btna" id="probtn">
-
-                    <div class="btn-box">
-
-                        <div class="btn-line"></div>
-
-                        <span>Saglabat</span>
-
-                    </div>
-
-                </button>
+                <button class="setBtn" id="probtn"><i class="fas fa-check"></i>Saglabat</button>
 
             </form>
 
         </div>
 
         <div class="menu" id="favoriti-menu">
+
+            <div class="fav-filter">
+
+                <div class= "filt-cont">
+                    <div class="select">
+                        <select id="Kategorijas_select" name="Kategorijas_select">
+                            <option value='' hidden>Kategorija</option>
+
+                            <option value=''>-</option>
+
+                            <option value="Priekšējā piedziņa">Priekšējā piedziņa</option>
+
+                            <option value="Aizmugurējā piedziņa">Aizmugurējā piedziņa</option>
+
+                            <option value="Pilnpiedziņa">Pilnpiedziņa</option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class= "filt-cont">
+                    <div class="select">
+                        <select id="Papildus_select" name="Papildus_select">
+                            <option value='' hidden>Piedzina</option>
+
+                            <option value=''>-</option>
+
+                            <option value="Priekšējā piedziņa">Priekšējā piedziņa</option>
+
+                            <option value="Aizmugurējā piedziņa">Aizmugurējā piedziņa</option>
+
+                            <option value="Pilnpiedziņa">Pilnpiedziņa</option>
+
+                        </select>
+                    </div>
+                </div>
+
+            </div>
 
             <div class="page-btn">
 

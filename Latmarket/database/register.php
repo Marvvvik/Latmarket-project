@@ -18,6 +18,7 @@ function validatePassword($password) {
     return preg_match('/[a-z]/', $password) &&
            preg_match('/[A-Z]/', $password) &&
            preg_match('/\d/', $password) &&
+           preg_match('/[^a-zA-Z0-9\s]/', $password) &&
            strlen($password) >= 8 && strlen($password) <= 20;
 }
 
