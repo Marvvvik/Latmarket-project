@@ -1,5 +1,5 @@
-$(document).on('change', "select", function() {
-    var car_marka = $('#Car_brends_select').val(); 
+$(document).on('change', "#Car_brends_select", function() {
+    var car_marka = $(this).val(); 
 
     $.ajax({
         url: 'marka-izvade.php',
@@ -7,8 +7,8 @@ $(document).on('change', "select", function() {
         data: { marka: car_marka },
         dataType: 'json', 
         success: function (response) {
-            let template = `<option value='' hidden>Modelis</option>
-                            <option value=''>-</option>`;
+            let template = `<option value='' id='name' hidden>Modelis</option>
+                            <option value='' id='clear'>-</option>`;
 
             response.forEach(modelis => {
                 template += `<option value='${modelis.modelis}'>${modelis.modelis}</option>`;

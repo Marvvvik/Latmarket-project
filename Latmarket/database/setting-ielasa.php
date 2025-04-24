@@ -7,13 +7,15 @@ require "con_db_l.php";
 if (isset($_POST['id'])) {
     $userId = intval($_POST['id']);
 
-    $vaicajums = $savienojums->prepare("SELECT vards, uzvards, epasts, telefons FROM lietotaji WHERE lietotaji_id = ?");
+    $vaicajums = $savienojums->prepare("SELECT vards, uzvards, epasts, telefons, avatar FROM lietotaji WHERE lietotaji_id = ?");
     $vaicajums->bind_param("i", $userId);
     $vaicajums->execute();
 
     $rezultats = $vaicajums->get_result();
 
     if ($lietotajs = $rezultats->fetch_assoc()) {
+
+        $avatarBase64 = 'data:image/jpeg;base64,' . base64_encode($lietotajs['avatar']);
 
         echo json_encode([
             "success" => true,
@@ -22,6 +24,7 @@ if (isset($_POST['id'])) {
             "epasts" => htmlspecialchars($lietotajs['epasts']),
             "telefons" => htmlspecialchars($lietotajs['telefons']),
             "full_name" => htmlspecialchars($lietotajs['vards']) . " " . htmlspecialchars($lietotajs['uzvards']),
+            "avatar" => $avatarBase64,
         ]);
     } else {
         echo json_encode(["success" => false, "error" => "Lietotājs netika atrasts."]);

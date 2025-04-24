@@ -200,7 +200,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // --------------------------------------------------------------------------Modal-Open
 
-
 let modalbtn = document.querySelectorAll('[data-target]')
 let closeModal = document.querySelectorAll('.closemodal')
 
@@ -323,6 +322,7 @@ document.addEventListener('click', function(event) {
 document.addEventListener("DOMContentLoaded", function () {
     const fileInput = document.getElementById("newavatar");
     const imgPreview = document.getElementById("avatar-preview");
+    const title = document.getElementById("av-title");
     const closePreview = document.querySelector(".close-prew");
     const deleteButton = document.querySelector(".avatar-del");
 
@@ -334,6 +334,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 imgPreview.src = e.target.result;
                 if (closePreview) {
                     closePreview.classList.add("active");
+                    title.classList.remove("active");
                 }
             };
             
@@ -347,6 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
             fileInput.value = "";
             if (closePreview) {
                 closePreview.classList.remove("active");
+                title.classList.add("active");
             }
         });
     }

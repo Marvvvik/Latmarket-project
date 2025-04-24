@@ -11,6 +11,9 @@ $uzvards = htmlspecialchars($_POST['uzvards']);
 $stars = htmlspecialchars($_POST['stars']);
 $text = htmlspecialchars($_POST['at_text']);
 $liet_id = htmlspecialchars($_POST['lietotaja_id']);
+$avatarBase64 = $_POST['atsukmes_avatar'];
+$avatarData = base64_decode(str_replace('data:image/jpeg;base64,', '', $avatarBase64));
+$null = null;
 
 if (!empty($vards) && !empty($uzvards) && $vards !== "Unknown" && $uzvards !== "Unknown") { // проверяю что бы у пользователя было написано име в настройказх 
     if (!empty($text)) { // проверяю что бы коментарии был написан 
@@ -32,8 +35,9 @@ if (!empty($vards) && !empty($uzvards) && $vards !== "Unknown" && $uzvards !== "
                 $response['error'] = "Jūs varat atstāt tikai vienu atsauksmi nedēļā!";
             } else {
                 // Если комментариев нет, можно добавить новый
-                $vaicajums = $savienojums->prepare("INSERT INTO Atsauksmes (vards, uzvards, stars, at_text, lietotaja_id, datums) VALUES (?, ?, ?, ?, ?, ?)");
-                $vaicajums->bind_param("ssisis", $vards, $uzvards, $stars, $text, $liet_id, $current_date);
+                $vaicajums = $savienojums->prepare("INSERT INTO Atsauksmes (vards, uzvards, stars, at_text, lietotaja_id, datums, avatar) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $vaicajums->bind_param("ssisisb", $vards, $uzvards, $stars, $text, $liet_id, $current_date, $null);
+                $vaicajums->send_long_data(6, $avatarData);
 
                 if ($vaicajums->execute()) {
                     $response['success'] = true;

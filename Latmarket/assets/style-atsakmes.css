@@ -152,12 +152,21 @@ margin: 2rem 0;
 
 }
 
-.avatar{
+.avatarAt{
 
 width: 5rem;
 height: 5rem;
 border-radius: 50%;
 border: .15rem solid var(--secondcolor);
+overflow: hidden;
+
+}
+
+.avatarAt img{
+
+width: 100%;
+height: 100%;
+object-fit: cover;
 
 }
 
@@ -187,6 +196,29 @@ margin-left: .5rem;
 
 }
 
+.name-form{
+
+display: flex;
+align-items: center;
+
+}
+
+
+.name-form i{
+
+font-size: 1.5rem;
+cursor: pointer;
+color: #ff6464;
+margin-left: .5rem;
+
+}
+
+.name-form i:hover{
+
+color: #ff0000;
+
+}
+
 .stars-at{
 
 font-size: 1.5rem;
@@ -210,5 +242,98 @@ opacity: 50%;
 .at-text{
 
 margin-top: 2rem;
+
+}
+
+.deletmodal{
+
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+background: rgba(0, 0, 0, 60%);
+backdrop-filter: blur(5px);
+z-index: 3;
+display: none;
+
+}
+
+.deletmodal.active{
+
+display: block;
+
+}
+
+
+.deletmodal .delforma{
+
+width: 30%;
+height: auto;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: var(--maincolor);
+border-radius: 1rem;
+padding: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 4;
+
+}
+
+.deletmodal .delforma form{
+
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+
+.deletmodal .delforma form p{
+
+font-size: 1.2rem;
+
+}
+
+.del-buttons{
+
+width: 30%;
+height: auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 2rem;
+
+}
+
+
+.del-buttons button{
+
+background: var(--secondcolor);
+color: var(--textcolor-2);
+border-radius: .5rem;
+padding: .7rem 1rem;
+font-size: 1rem;
+cursor: pointer;
+
+}
+
+.del-buttons #yes:hover{
+
+background: #009212;
+
+}
+
+
+.del-buttons #no:hover{
+
+background: #920700;
 
 }

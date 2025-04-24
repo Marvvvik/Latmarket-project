@@ -37,7 +37,7 @@ session_start();
 
             <div class="proimage" data-target="#profmenu">
 
-                <img src="<?php echo $_SESSION['avatarHOMIK']; ?>" alt="">
+                <img src="" class="avatarImg">
 
             </div>
 
@@ -226,7 +226,7 @@ session_start();
 
                 <div class="profile-image">
 
-                    <img src="<?php echo $_SESSION['avatarHOMIK']; ?>" alt="">
+                    <img src="" class="avatarImg">
 
                 </div>
 
@@ -268,13 +268,15 @@ session_start();
                 
                     <div class="box avatar">
 
+                        <h1 class="active" id="av-title">Profila bilde:</h1>
+
                         <div class="close-prew">
 
-                            <div class="avatar-pre">
+                            <div class="avatarPre">
 
                                 <i class="fas fa-close avatar-del"></i>
 
-                                <img src="" id="avatar-preview">
+                                <img id="avatar-preview">
 
                             </div>
                         
@@ -354,16 +356,10 @@ session_start();
 
                 <div class= "filt-cont">
                     <div class="select">
-                        <select id="Kategorijas_select" name="Kategorijas_select">
+                        <select id="Kategorijas_select" name="Kategorijas_select" disabled>
                             <option value='' hidden>Kategorija</option>
 
                             <option value=''>-</option>
-
-                            <option value="Priekšējā piedziņa">Priekšējā piedziņa</option>
-
-                            <option value="Aizmugurējā piedziņa">Aizmugurējā piedziņa</option>
-
-                            <option value="Pilnpiedziņa">Pilnpiedziņa</option>
 
                         </select>
                     </div>
@@ -371,16 +367,17 @@ session_start();
 
                 <div class= "filt-cont">
                     <div class="select">
-                        <select id="Papildus_select" name="Papildus_select">
-                            <option value='' hidden>Piedzina</option>
+                        <select id="Papildus_select" name="Papildus_select" disabled>
 
-                            <option value=''>-</option>
+                            <option value=''>Pec kategorijās</option>
 
-                            <option value="Priekšējā piedziņa">Priekšējā piedziņa</option>
+                            <option value=''>Cenas, sākot no augstākās</option>
 
-                            <option value="Aizmugurējā piedziņa">Aizmugurējā piedziņa</option>
+                            <option value=''>Cenas, sākot no zemākās</option>
 
-                            <option value="Pilnpiedziņa">Pilnpiedziņa</option>
+                            <option value=''>Pedejas pievienotais</option>
+
+                            <option value=''>Pirmais pievienotais</option>
 
                         </select>
                     </div>

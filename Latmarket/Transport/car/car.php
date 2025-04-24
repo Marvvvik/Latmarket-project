@@ -37,9 +37,9 @@ require "../../header.php";
                 <div class= "filt-cont">
                     <div class="select">
                         <select id="Car_brends_select" name="Car_brends_select">
-                            <option value='' hidden>Marka</option>
+                            <option value='' id="name" hidden>Marka</option>
 
-                            <option value=''>-</option>
+                            <option value='' id="clear">-</option>
 
                             <?php 
                                 require "car-filter.php"; 
@@ -53,10 +53,11 @@ require "../../header.php";
             
             <div class="box">
 
-                <div class= "filt-cont deactive">
-                    <div class="select">
-                        <select id="car_modelis_select" name="car_modelis_select">
-                            <option value='' hidden>Modelis</option>
+                <div class= "filt-cont">
+                    <div class="select" >
+                        <select id="car_modelis_select" name="car_modelis_select" disabled>
+                            <option value='' id="name" hidden>Modelis</option>
+                            <option value='' id="clear">-</option>
                         </select>
                     </div>
                 </div>
@@ -67,9 +68,9 @@ require "../../header.php";
                 <div class= "filt-cont">
                     <div class="select">
                         <select id="car_virsbuves_select" name="car_virsbuves_select">
-                            <option value='' hidden>Virsbūves tips</option>
+                            <option value='' id="name" hidden>Virsbūves tips</option>
 
-                            <option value=''>-</option>
+                            <option value='' id="clear">-</option>
 
                             <option value="Sedans">Sedans</option>
 
@@ -118,9 +119,9 @@ require "../../header.php";
                 <div class= "filt-cont">
                     <div class="select">
                         <select id="car_Dzineja_tips_select" name="car_Dzineja_tips_select">
-                            <option value='' hidden>Dzineja tips</option>
+                            <option value='' id="name" hidden>Dzineja tips</option>
 
-                            <option value=''>-</option>
+                            <option value='' id="clear">-</option>
 
                             <option value="Benzīns">Benzīns</option>
 
@@ -143,9 +144,9 @@ require "../../header.php";
                 <div class= "filt-cont">
                     <div class="select">
                         <select id="car_atrumkarba_select" name="car_atrumkarba_select">
-                            <option value='' hidden>Ātrumkārba</option>
+                            <option value='' id="name" hidden>Ātrumkārba</option>
 
-                            <option value=''>-</option>
+                            <option value='' id="clear">-</option>
 
                             <option value="Automāts">Automāts</option>
 
@@ -162,9 +163,9 @@ require "../../header.php";
                 <div class= "filt-cont">
                     <div class="select">
                         <select id="car_krasa_select" name="car_krasa_select">
-                            <option value='' hidden>Krāsa</option>
+                            <option value='' id="name" hidden>Krāsa</option>
 
-                            <option value=''>-</option>
+                            <option value='' id="clear">-</option>
 
                             <option value="Melna">Melna</option>
 
@@ -197,9 +198,9 @@ require "../../header.php";
                 <div class= "filt-cont">
                     <div class="select">
                         <select id="car_piedzina_select" name="car_piedzina_select">
-                            <option value='' hidden>Piedzina</option>
+                            <option value='' id="name" hidden>Piedzina</option>
 
-                            <option value=''>-</option>
+                            <option value='' id="clear">-</option>
 
                             <option value="Priekšējā piedziņa">Priekšējā piedziņa</option>
 
@@ -218,9 +219,9 @@ require "../../header.php";
                 <div class= "filt-cont">
                     <div class="select">
                         <select id="car_tehniska_apskate_select" name="car_tehniska_apskate_select">
-                            <option value='' hidden>Tehniska apskate</option>
+                            <option value='' id="name" hidden>Tehniska apskate</option>
 
-                            <option value=''>-</option>
+                            <option value='' id="clear">-</option>
 
                             <option value="1">Ir</option>
 
@@ -379,7 +380,7 @@ require "../../header.php";
 
 </section>
 
-<?php if(isset($_SESSION['lietotajvardsHOMIK'])){ ?>
+<!-- <?php if(isset($_SESSION['lietotajvardsHOMIK'])){ ?>
 
 <section class="sludinajumabtn">
 
@@ -397,7 +398,7 @@ require "../../header.php";
 
 </section>
 
-<?php } ?>
+<?php } ?> -->
 
 
 <section class="offers">

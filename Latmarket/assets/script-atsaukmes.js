@@ -29,3 +29,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+window.addEventListener('load', function () {
+    const openBtn = document.querySelector("[data-target='#deletmodal']");
+    const modal = document.querySelector("#deletmodal");
+    const closeBtn = document.querySelector("#no");
+
+    if (openBtn && modal) {
+        openBtn.addEventListener('click', function () {
+            modal.classList.add('active');
+        });
+    }
+
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', function () {
+            modal.classList.remove('active');
+        });
+    }
+});

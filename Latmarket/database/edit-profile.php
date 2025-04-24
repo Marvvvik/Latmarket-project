@@ -16,11 +16,14 @@ $editPassActive = filter_var($_POST['editPassActive'], FILTER_VALIDATE_BOOLEAN);
 
 $avatarData = null;
 $null = NULL;
+$base64Avatar = null;
 
-// Проверка, если файл был загружен
 if (isset($_FILES['newavatar']) && $_FILES['newavatar']['error'] == UPLOAD_ERR_OK) {
-    // Читаем файл
-    $avatarData = file_get_contents($_FILES['newavatar']['tmp_name']);
+$avatarData = file_get_contents($_FILES['newavatar']['tmp_name']);
+}
+
+if (!empty($avatarData)) {
+    $base64Avatar = 'data:image/jpeg;base64,' . base64_encode($avatarData); 
 }
 
 // Получаем данные из базы данных
@@ -43,7 +46,7 @@ if ($editPassActive) {
                 $avatarData = !empty($avatarData) ? $avatarData : $lietotajs['avatar'];
 
                 $vaicajums = $savienojums->prepare("UPDATE lietotaji SET vards = ?, uzvards = ?, epasts = ?, telefons = ?, parole = ?, avatar = ? WHERE lietotaji_id = ?");
-                $vaicajums->bind_param("sssssib", $vards, $uzvards, $epasts, $telefons, $hashedPassword, $null, $liet_id);
+                $vaicajums->bind_param("sssssbi", $vards, $uzvards, $epasts, $telefons, $hashedPassword, $null, $liet_id);
                 $vaicajums->send_long_data(5, $avatarData);
 
                 if ($vaicajums->execute()) {
@@ -51,6 +54,7 @@ if ($editPassActive) {
                     $_SESSION['UzvardsHOMIK'] = $uzvards;
                     $_SESSION['epastsHOMIK'] = $epasts;
                     $_SESSION['telefonsHOMIK'] = $telefons;
+                    $_SESSION['avatarHOMIK'] = $base64Avatar;
 
                     $response['success'] = true;
                     $response['message'] = "Dati veiksmīgi atjaunoti!";
@@ -69,7 +73,7 @@ if ($editPassActive) {
         }
     } else {
         $response['success'] = false;
-        $response['error'] = "Parole netika ievadīta.";
+        $response['error'] = "Parole nav ievadīta.";
     }
 } else {
     // Если пароль не меняется, просто обновляем данные
@@ -80,7 +84,7 @@ if ($editPassActive) {
     $avatarData = !empty($avatarData) ? $avatarData : $lietotajs['avatar'];
 
     $vaicajums = $savienojums->prepare("UPDATE lietotaji SET vards = ?, uzvards = ?, epasts = ?, telefons = ?, avatar = ? WHERE lietotaji_id = ?");
-    $vaicajums->bind_param("ssssib", $vards, $uzvards, $epasts, $telefons, $null, $liet_id);
+    $vaicajums->bind_param("ssssbi", $vards, $uzvards, $epasts, $telefons, $null, $liet_id);
     $vaicajums->send_long_data(4, $avatarData);
 
     if ($vaicajums->execute()) {
@@ -88,7 +92,8 @@ if ($editPassActive) {
         $_SESSION['UzvardsHOMIK'] = $uzvards;
         $_SESSION['epastsHOMIK'] = $epasts;
         $_SESSION['telefonsHOMIK'] = $telefons;
-
+        $_SESSION['avatarHOMIK'] = $base64Avatar;
+        
         $response['success'] = true;
         $response['message'] = "Dati veiksmīgi atjaunoti!";
     } else {

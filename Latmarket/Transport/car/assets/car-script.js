@@ -1,63 +1,37 @@
-document.querySelectorAll('.filter-box').forEach(filterBox => {
-    const rangeInput = filterBox.querySelectorAll('.range-input input');
-    const priceInput = filterBox.querySelectorAll('.price-input input');
-    const progress = filterBox.querySelector('.range-slider .progress');
-
-    let priceGap = parseInt(filterBox.dataset.gap) || 500; 
-    priceInput.forEach(input => {
-        input.addEventListener('input', e => {
-            let minVal = parseInt(priceInput[0].value),
-                maxVal = parseInt(priceInput[1].value);
-            
-            let minRange = parseInt(rangeInput[0].min);
-            let maxRange = parseInt(rangeInput[1].max);
-
-            if (maxVal - minVal >= priceGap && maxVal <= maxRange && minVal >= minRange) {
-                if (e.target.classList.contains("input-min")) {
-                    rangeInput[0].value = minVal;
-                    progress.style.left = ((minVal - minRange) / (maxRange - minRange)) * 100 + "%";
-                } else {
-                    rangeInput[1].value = maxVal;
-                    progress.style.right = 100 - ((maxVal - minRange) / (maxRange - minRange)) * 100 + "%";
-                }
-            }
-        });
-    });
-
-    rangeInput.forEach(input => {
-        input.addEventListener('input', e => {
-            let minVal = parseInt(rangeInput[0].value),
-                maxVal = parseInt(rangeInput[1].value);
-            
-            let minRange = parseInt(rangeInput[0].min);
-            let maxRange = parseInt(rangeInput[1].max);
-
-            if (maxVal - minVal < priceGap) {
-                if (e.target.classList.contains("range-min")) {
-                    rangeInput[0].value = maxVal - priceGap;
-                } else {
-                    rangeInput[1].value = minVal + priceGap;
-                }
-            } else {
-                priceInput[0].value = minVal;
-                priceInput[1].value = maxVal;
-                progress.style.left = ((minVal - minRange) / (maxRange - minRange)) * 100 + "%";
-                progress.style.right = 100 - ((maxVal - minRange) / (maxRange - minRange)) * 100 + "%";
-            }
-        });
-    });
-});
-
-
 $(document).ready(function () {
-    $("input[name='marka']").on("change", function () {
-        if ($("input[name='marka']:checked").length > 0) {
-            $("#model-select").removeClass("deactive");
+    const select = $("#car_modelis_select");
+
+    const observer = new MutationObserver(function () {
+        if (select.find("option").length > 2) {
+            select.removeAttr("disabled");  
+        } else {
+            select.attr("disabled", "disabled");
         }
     });
+
+    observer.observe(select[0], {
+        childList: true  
+    });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    
+    const selects = document.querySelectorAll('select');
 
+    selects.forEach(select => {
+        const nameOption = select.querySelector('#name');  
+        const clearOption = select.querySelector('#clear'); 
+
+        select.addEventListener('change', function () {
+            if (clearOption.selected) {
+               
+                select.value = '';  
+                clearOption.selected = false;  
+                nameOption.selected = true; 
+            }
+        });
+    });
+});
 
 $(document).ready(function() {
     $(".photobtn button").click(function() {

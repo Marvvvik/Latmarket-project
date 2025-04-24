@@ -78,6 +78,12 @@ $('#registerForm').submit(e => {
 // ------------------------------------------------------------Datu ielase Settingos 
 
 $(document).ready(function() {
+
+datuIzvade();
+
+});
+
+function datuIzvade() {
     var userId = $("#lietotajaId").val();
 
     $.ajax({
@@ -94,8 +100,10 @@ $(document).ready(function() {
                 setField("#telefons", response.telefons);
 
   
-                $(".name-i p").text(response.vards + " " + response.uzvards);
+                $(".name-i p").text(response.full_name);
                 $(".email-i p").text(response.epasts); 
+                $(".avatarImg").attr("src", response.avatar);
+
             } 
         },
         error: function() {
@@ -110,8 +118,7 @@ $(document).ready(function() {
             $(selector).val(value);
         }
     }
-});
-
+};
 
 // ------------------------------------------------------------Datu edit Settingos 
 
@@ -137,9 +144,8 @@ $('#editForm').submit(e => {
     formData.append('password1', password1);
     formData.append('password2', password2);
     formData.append('editPassActive', editPassActive);
-    if (newavatar) {
-        formData.append('newavatar', newavatar); 
-    }
+    formData.append('newavatar', newavatar); 
+    
 
     const editUrl = '/database/edit-profile.php';
 
@@ -179,8 +185,7 @@ $('#editForm').submit(e => {
             }, 5000);
 
             if (response.success) {
-                $(".name-i p").text(vards + " " + uzvards);
-                $(".email-i p").text(epasts);
+                datuIzvade();
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -209,7 +214,7 @@ $('#editForm').submit(e => {
 
 
 
-// ------------------------------------------------------------Atsaukmes add un izvade
+// ------------------------------------------------------------Atsaukmes add un izvade un delet
 
 
 
@@ -221,18 +226,29 @@ $('#atsakmes-form').submit(e => {
     const stars = $('#rating-value').val();
     const at_text = $('#atsaukmes-text').val();
     const lietotaja_id = $('#atsaukmes-lit-id').val();
+    const avatar = $('#atsaukmes-avatar').val();  
+
+    
+    const formData = new FormData();
+    formData.append('vards', vards);
+    formData.append('uzvards', uzvards);
+    formData.append('stars', stars);
+    formData.append('at_text', at_text);
+    formData.append('lietotaja_id', lietotaja_id);
+    formData.append('atsukmes_avatar', avatar); 
 
 
-    const editData = { vards, uzvards, stars, at_text, lietotaja_id};
-    const editUrl = '/database/atsaukmes-add.php';
-
-    // console.log(editData)
+    const addUrl = '/database/atsaukmes-add.php';
+    
+    console.log(formData)
 
     $.ajax({
         type: 'POST',
-        url: editUrl,
-        data: editData,
+        url: addUrl,
+        data: formData,
         dataType: 'json',
+        processData: false,  
+        contentType: false, 
         success: response => {
             const messageType = response.success ? "success" : "error";
             const messageText = response.success ? response.message : response.error;
@@ -262,8 +278,6 @@ $('#atsakmes-form').submit(e => {
             }, 5000);
 
             if (response.success) {
-                $(".name-i p").text(vards + " " + uzvards);
-                $(".email-i p").text(epasts);
                 atsaukmesIzvade();
             }
         },
@@ -313,6 +327,80 @@ function atsaukmesIzvade() {
         }
     });
 }
+
+
+window.addEventListener('load', function () {
+$('#atsakmeDelet').submit(e => {
+    e.preventDefault();
+
+    const atID = $('#atID').val();
+
+    const editData = {atID};
+    const editUrl = '/database/atsaukmes-delet.php';
+
+    // console.log(editData)
+
+    $.ajax({
+        type: 'POST',
+        url: editUrl,
+        data: editData,
+        dataType: 'json',
+        success: response => {
+            const messageType = response.success ? "success" : "error";
+            const messageText = response.success ? response.message : response.error;
+            const iconClass = response.success ? "fa-check" : "fa-close";
+            const titleText = response.success ? "Veiksmīgi!" : "Ne veiksmīgi!";
+
+            $('.linemess').remove();
+
+            const messageBox = `<div class="linemess ${messageType}">
+                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+
+                                    <div class="mesinfobox">
+                                        <i class="fas ${iconClass}"></i>
+
+                                        <div class="mesinfo">
+                                            <h2>${titleText}</h2>
+                                            <p>${messageText}</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline"></div>
+                                </div>`;
+
+            $('body').append(messageBox);
+
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
+
+            if (response.success) {
+                atsaukmesIzvade();
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('Kļuda pie datu nosūtīšanas:', errorThrown);
+            $('.linemess').remove();
+            const errorMessage = `<div class="linemess error">
+                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+
+                                    <div class="mesinfobox">
+                                        <i class="fas fa-close"></i>
+
+                                        <div class="mesinfo">
+                                            <h2>Ne veiksmīgi!</h2>
+                                            <p>Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline"></div>
+                                </div>`;
+            $('body').append(errorMessage);
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
+        }
+    });
+});
+});
 
 // ------------------------------------------------------------Favorit add un izvade
 
