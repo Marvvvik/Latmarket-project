@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const stars = document.querySelectorAll(".stars i");
-    const ratingInput = document.getElementById("rating-value");
+    const stars = document.querySelectorAll(".review__stars i");
+    const ratingInput = document.getElementById("review-rating");
 
     stars.forEach(star => {
         star.addEventListener("click", function () {
@@ -18,32 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    const textarea = document.querySelector(".textarea-long textarea");
-    const counter = document.querySelector(".textarea-long .long");
+    const textarea = document.querySelector(".review__textarea-group textarea");
+    const counter = document.querySelector(".review__textarea-group .review__char-limit");
     const maxLength = 800;
 
     textarea.addEventListener("input", function () {
         const currentLength = textarea.value.length;
         counter.textContent = `${currentLength}/${maxLength}`;
     });
-});
-
-
-
-window.addEventListener('load', function () {
-    const openBtn = document.querySelector("[data-target='#deletmodal']");
-    const modal = document.querySelector("#deletmodal");
-    const closeBtn = document.querySelector("#no");
-
-    if (openBtn && modal) {
-        openBtn.addEventListener('click', function () {
-            modal.classList.add('active');
-        });
-    }
-
-    if (closeBtn && modal) {
-        closeBtn.addEventListener('click', function () {
-            modal.classList.remove('active');
-        });
-    }
 });

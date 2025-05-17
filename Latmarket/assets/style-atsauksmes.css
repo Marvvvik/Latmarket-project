@@ -1,0 +1,462 @@
+.review{
+padding: 1rem 15%;
+}
+
+.review__title{
+font-size: 1.5rem;
+display: flex;
+align-items: center;
+margin-bottom: 3rem;
+}
+
+.review__title i{
+font-size: 2rem;
+color: var(--secondcolor);
+margin-right: .5rem;
+}
+
+
+.review__form-wrapper{
+width: 100%;
+background: var(--maincolor);
+height: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 20%);
+border-radius: 1rem;
+}
+
+.review__form-wrapper h1{
+background: var(--secondcolor);
+padding: 2rem 2rem;
+color: var(--texcolor);
+border-bottom-left-radius: 1rem;
+border-bottom-right-radius: 1rem;
+}
+
+
+.review__form-wrapper .review__form{
+margin-top: 4rem;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+width: 90%;
+}
+
+.review__stars{
+font-size: 2rem;
+}
+
+.review__stars i{
+cursor: pointer;    
+}
+
+.review__stars i.active{
+color: var(--secondcolor);
+}
+
+.review__textarea-group{
+position: relative;
+height: 100%;
+width: 100%;
+margin-top: 3rem;
+margin-bottom: 2rem;
+}
+
+.review__textarea-group textarea{
+
+width: 100%;
+height: 15rem;
+padding: 1rem;
+background: var(--maincolor-2);
+resize: none;
+color: var(--white);
+border-radius: 1rem;
+font-size: 1rem;
+
+}
+
+.review__char-limit{
+position: absolute;
+bottom: 5%;
+right: 3%;
+color: var(--white);
+} 
+
+.review__submit-button{
+background: var(--secondcolor);
+font-size: 1.2rem ;
+padding: .8rem;
+border-radius: .5rem;
+color: var(--textcolor-2);
+margin-bottom: 3rem;
+cursor: pointer;
+}
+
+
+.review__submit-button:hover{
+background: var(--hover);
+}
+
+.review__submit-button i{
+margin-right: .5rem;
+}
+
+/* -----------------------------izvade */
+
+.review__output_buttons{
+padding: 5rem 15% 0 15%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.review__output_buttons button{
+padding: .7rem 1rem;
+background: var(--secondcolor);
+border-radius: .5rem;
+color: var(--textcolor-2);
+font-size: 1rem;
+margin: 0 .5rem;
+cursor: pointer;
+opacity: 60%;
+}
+
+.review__output_buttons button:hover{
+background: var(--hover);
+opacity: 100%;
+}
+
+.review__output_buttons button.active{
+opacity: 100%;
+}
+
+.review__output_buttons button.active:hover{
+background: var(--secondcolor);
+cursor: default;
+}
+
+.review__list{
+padding: 2rem 15% 2rem 15%;
+}
+
+.review__list .box{
+width: 100%;
+height: auto;
+border-radius: 1rem;
+background: var(--maincolor);
+padding: 2rem;
+margin: 2rem 0;
+}
+
+.avatarAt{
+
+width: 5rem;
+height: 5rem;
+border-radius: 50%;
+border: .15rem solid var(--secondcolor);
+overflow: hidden;
+
+}
+
+.avatarAt img{
+
+width: 100%;
+height: 100%;
+object-fit: cover;
+
+}
+
+.at-info{
+
+display: flex;
+justify-content: space-between;
+
+}
+
+.av-name-st{
+
+display: flex;
+align-items: center;
+
+}
+
+.av-name-st h1{
+
+font-size: 1.5rem;
+
+}
+
+.name-star{
+
+margin-left: .5rem;
+
+}
+
+.name-form{
+
+display: flex;
+align-items: center;
+
+}
+
+
+.name-form .deletBtn{
+
+font-size: 1.5rem;
+cursor: pointer;
+color: #c6c5c5;
+margin-left: .5rem;
+
+}
+
+.name-form .deletBtn:hover{
+
+color: #ff0000;
+
+}
+
+.stars-at{
+
+font-size: 1.5rem;
+
+}
+
+.stars-at i.active{
+
+color: var(--secondcolor);
+
+}
+
+.time p{
+
+font-size: 1.3rem;
+opacity: 50%;
+
+}
+
+
+.at-text{
+
+margin-top: 2rem;
+
+}
+
+.deletmodal, .repmodal{
+
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+background: rgba(0, 0, 0, 60%);
+backdrop-filter: blur(5px);
+z-index: 3;
+display: none;
+
+}
+
+.deletmodal.active, .repmodal.active{
+
+display: block;
+
+}
+
+
+.deletmodal .delforma{
+
+width: 30%;
+height: auto;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: var(--maincolor);
+border-radius: 1rem;
+padding: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+z-index: 4;
+
+}
+
+.deletmodal .delforma form{
+
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+
+.deletmodal .delforma form p{
+
+font-size: 1.2rem;
+
+}
+
+.del-buttons{
+
+width: 30%;
+height: auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 2rem;
+
+}
+
+
+.del-buttons button{
+
+background: var(--secondcolor);
+color: var(--textcolor-2);
+border-radius: .5rem;
+padding: .7rem 1rem;
+font-size: 1rem;
+cursor: pointer;
+
+}
+
+.del-buttons #yes:hover{
+
+background: #009212;
+
+}
+
+
+.del-buttons #no:hover{
+
+background: #920700;
+
+}
+
+
+.repForm{
+
+width: 25%;
+height: auto;
+background: var(--maincolor);
+border-radius: 1rem;
+padding: 2rem;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+text-align: left;
+
+}
+
+.repText{
+
+width: 90%;
+text-align: left;
+
+}
+
+.repText h1{
+
+margin-top: 1rem;
+margin-bottom: 2rem;
+
+}
+
+.repForm form{
+
+width: 90%;
+height: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+
+
+.selectRep, .repTextarea{
+
+width: 100%;
+display: flex;
+justify-content: center;
+flex-direction: column;
+margin-bottom: 3rem;
+
+}
+
+.selectRep label, .repTextarea label{
+
+margin-bottom: .5rem;
+
+}
+
+
+.selectRep select{
+
+padding: .7rem 1rem;
+border-radius: .5rem;
+font-size: 1rem;
+border: .1rem solid #000;
+
+}
+
+.repTextarea textarea{
+
+resize: none;
+border-radius: .5rem;
+padding: .7rem 1rem;
+font-size: 1rem;
+border: .1rem solid #000;
+height: 10rem;
+
+}
+
+
+.repbtn{
+
+padding: .7rem 1rem;
+border-radius: .5rem;
+background: var(--secondcolor);
+font-size: 1rem;
+color: var(--textcolor-2);
+cursor: pointer;
+
+}
+
+.repbtn i{
+
+margin-right: .5rem;
+
+}
+
+.repbtn:hover{
+
+background: var(--hover);
+
+}
+
+.name-form .reportbtn{
+
+font-size: 1.5rem;
+cursor: pointer;
+color: #c6c5c5;
+margin-left: .5rem;
+
+}
+
+
+.name-form .reportbtn:hover{
+    
+color: #ff0000;
+
+}

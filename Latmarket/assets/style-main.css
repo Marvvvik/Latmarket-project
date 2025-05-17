@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{
-
 padding: 0%;
 margin: 0%;
 box-sizing: border-box;
@@ -11,12 +10,9 @@ border: none;
 outline: none;
 transition: .2s linear;
 letter-spacing: .1rem;
-
 }
 
-
 :root{
-
 --maincolor: #f9f9f9;
 --maincolor-2: #e4e4e4;
 --textcolor: #000;
@@ -27,17 +23,13 @@ letter-spacing: .1rem;
 --hover-3:  #acbfd3;
 --gray: #999;
 --shadow: 0 .5rem 1.5rem rgba(0, 0, 0, 30%);
-
 }
 
 body{
-
 background: var(--maincolor-2);
-
 }
 
 header{
-
 padding: 1.5rem 12%;
 display: flex;
 justify-content: space-between;
@@ -46,62 +38,47 @@ background: var(--maincolor);
 width: 100%;
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 20%);
 margin-bottom: 2rem;
-
 }
 
 .logo a{
-
 font-size: 1.6rem;
 color: var(--textcolor);
 font-weight: bold;
 display: flex;
 justify-content: center;
 align-items: center;
-
 }
 
 .logo a i{
-
 font-size: 2rem;
 color: var(--secondcolor);
 margin-right: .5rem;
-
 }
 
-.navmenu{
-
+.navigation-menu{
 display: flex;
 justify-content: center;
 align-items: center;
-
 }
 
-.navmenu a{
-
+.navigation-menu a{
 color: var(--gray);
 margin: 0 1rem;
 display: flex;
 justify-content: center;
 align-items: center;
-
 }
 
-.navmenu a i{
-
+.navigation-menu a i{
 font-size: 1.2rem;
 margin-right: .5rem;
-
 }
 
-
-.navmenu a:hover{
-
+.navigation-menu a:hover{
 color: var(--secondcolor);
-
 }
 
-#OpenLogReg{
-
+#openLoginModal{
 background: var(--secondcolor);
 font-size: 1rem;
 padding: .8rem;
@@ -109,31 +86,24 @@ border-radius: .5rem;
 cursor: pointer;
 color: var(--textcolor-2);
 margin: 0 1rem;
-
 }
 
-#OpenLogReg i{
-
+#openLoginModal i{
 margin-right: .5rem;
-
 }
 
-#OpenLogReg:hover{
-
+#openLoginModal:hover{
 background: var(--hover);
-
 }
 
-.profset{
-
+.profile-settings{
 position: relative;
-
 }
 
-.proimage{
+.profile-image-header{
 
-width: 3rem;
-height: 3rem;
+width: 4rem;
+height: 4rem;
 border: var(--secondcolor) solid .15rem;
 border-radius: 50%;
 cursor: pointer;
@@ -141,21 +111,17 @@ display: flex;
 justify-content: center;
 align-items: center;
 overflow: hidden;
-
 }
 
-.proimage img{
-
+.profile-image-header img{
 width: 100%;
 height: 100%;
 object-fit: cover;
-
 }
 
-.profmenu{
-
+.profile-menu{
 position: absolute;
-top: 11rem;
+top: 12rem;
 left: 50%;
 width: auto;
 height: auto;
@@ -170,17 +136,13 @@ flex-direction: column;
 z-index: 2;
 border-radius: 1rem;
 overflow: hidden;
-
 }
 
-.profmenu.active{
-
+.profile-menu.active{
 display: flex;
-
 }
 
-.profmenu a, .profmenu button{
-
+.profile-menu a, .profile-menu button{
 width: 100%;
 text-align: center;
 padding: .8rem 1rem;
@@ -190,92 +152,70 @@ align-items: center;
 background: var(--maincolor);
 cursor: pointer;
 font-size: 1rem;
-
 }
 
-.profmenu button{
-
+.profile-menu button{
 color: var(--textcolor);
-
 }
 
-.profmenu button i{
-
+.profile-menu button i{
 color: var(--secondcolor);
 margin-right: .3rem
-
 }
 
-.profmenu a{
-
+.profile-menu a{
 color: red;
 font-weight: normal;
 margin: 0;
-
 }
 
-.profmenu a i{
-
+.profile-menu a i{
 color: red;
-
 }
 
-.profmenu button:hover{
-
+.profile-menu button:hover{
 background: var(--hover-3);
 color: var(--textcolor-2);
-
 }
 
-.profmenu button:hover #spin{
-
+.profile-menu button:hover #spin{
 animation: spin 1s ease-out forwards;
-
 }
 
-.profmenu button:hover #rotate-spin{
-
+.profile-menu button:hover #rotate-spin{
 animation: rotate-spin 1s ease-out forwards;
-
 }
 
-#logout:hover{
-
+#logoutBtn:hover{
 background: rgba(255, 0, 0, 30%);
 color: red;
-
 }
 
-footer{
+/* ---------------------------------- footer */
 
+footer{
 display: flex;
 justify-content: center;
 align-items: center;
 background: var(--maincolor);
 color: var(--textcolor);
 padding: 3rem 15%;
-
 }
 
 .footerbox{
-
 display: flex;
 justify-content: center;
 align-items: center;
-
 }
 
 .footerbox .box{
-
 text-align: center;
 margin: 4rem;
-
 }
 
-/* ---------------------------------------modal */
+/* ---------------------------------------Login-Register */
 
-.logmodal{
-
+.auth-modal{
 background: rgba(0, 0, 0, 60%);
 backdrop-filter: blur(5px);
 width: 100%;
@@ -285,18 +225,13 @@ position: fixed;
 top: 0;
 right: 0;
 display: none;
-
 }
 
-.logmodal.active{
-
+.auth-modal.active{
 display: block;
-
 }
 
-
-.log-reg{
-
+.auth-container{
 width: 30rem;
 height: auto;
 background: var(--maincolor);
@@ -312,11 +247,9 @@ position: relative;
 border-radius: 1rem;
 padding: 0 5rem;
 z-index: 4;
-
 }
 
-.closemodal, .close-ml{
-
+.close-Modal{
 color: var(--textcolor);
 position: absolute;
 font-size: 1.5rem;
@@ -324,12 +257,9 @@ top: 1rem;
 right: 1rem;
 cursor: pointer;
 color: red;
-
 }
 
-
-.reg-log-btn{
-
+.auth-toggle-buttons{
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -339,11 +269,9 @@ background: var(--maincolor-2);
 margin-top: 4rem;
 padding: .3rem;
 border-radius: .5rem;
-
 }
 
-.reg-log-btn button{
-
+.auth-toggle-buttons button{
 padding: .8rem 1.2rem;
 background: rgba(0, 0, 0, 0%);
 cursor: pointer;
@@ -351,48 +279,37 @@ font-size: 1rem;
 color: var(--textcolor);
 border-radius: .5rem;
 font-weight: bold;
-
 }
 
-.reg-log-btn button.active{
-
+.auth-toggle-buttons button.active{
 background: var(--maincolor);
 color: var(--secondcolor);
-
 }
 
-
-.login-form, .reg-form{
-
+.login-form-container, .register-form-container{
 width: 100%;
 height: auto;
 display: none;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-
 }
 
-.login-form.active, .reg-form.active{
-
+.login-form-container.active, .register-form-container.active{
 display: flex;
-
 }
 
 
-.login-form form, .reg-form form{
-
+.login-form-container form, .register-form-container form{
 width: 100%;
 height: auto;
 display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-
 }
 
-.login-form form button, .reg-form form button{
-
+.login-form-container form button, .register-form-container form button{
 font-size: 1.5rem;
 margin: 3rem 0 3rem 0;
 cursor: pointer;
@@ -400,41 +317,31 @@ background: var(--secondcolor);
 color: var(--textcolor-2);
 padding: .5rem .8rem;
 border-radius: .5rem;
-
 }
 
-.login-form form button:hover, .reg-form form button:hover{
-
+.login-form-container form button:hover, .register-form-container form button:hover{
 background: var(--hover);
-
 }
 
-.fomrtext{
-
+.form-header{
 width: 100%;
 height: auto;
 text-align: left;
 margin: 1rem 0 1rem 0;
-
 }
 
-.fomrtext h1{
-    
-font-size: 1.5rem;
-    
+.form-header h1{
+font-size: 1.5rem; 
 }
 
-.form-control {
-
+.form-control{
 position: relative;
 margin: 20px 0 20px 0;
 width: 100%;
 position: relative;
-
 }
 
-.lookpassL, .lookpassR{
-
+.toggle-password-visibility{
 position: absolute;
 top: 17%;
 right: .5rem;
@@ -444,21 +351,14 @@ justify-content: center;
 align-items: center;  
 width: 1.5rem;
 height: 1.5rem;
-
-
 }
 
-
-.lookpassL img, .lookpassR img{
-
+.toggle-password-visibility img{
 width: 100%;
 height: 100%;
-
 }
 
-
 .form-control input {
-
 background-color: transparent;
 border: 0;
 border-bottom: 2px var(--secondcolor) solid;
@@ -467,109 +367,81 @@ width: 100%;
 padding: 15px 0;
 font-size: 18px;
 color: var(--textcolor);
-
 }
 
 .form-control input:focus,
 .form-control input:valid {
-
 outline: 0;
 border-bottom-color: var(--secondcolor);
-
 }
 
 .form-control label {
-
 position: absolute;
 top: 15px;
 left: 0;
 pointer-events: none;
-
 }
 
 .form-control label span {
-
 display: inline-block;
 font-size: 15px;
 min-width: 5px;
 color: var(--textcolor);
-transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
+transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)
 }
 
 .form-control input:focus+label span,
 .form-control input:valid+label span {
-
 color: var(--textcolor);
 transform: translateY(-30px);
-
 }
 
-.resPass{
-
+.reset-password{
 width: 100%;
 height: auto;
 text-align: right;
 margin-top: .5rem;
-
 }
 
-.resPass a{
-
+.reset-password a{
 color: var(--secondcolor);
 font-size: .9rem;
-
 }
 
-.resPass a:hover{
-
+.reset-password a:hover{
 color: var(--hover);
-
 }
 
-.configpass{
-
+.password-requirements{
 display: none;
 margin-top: 10px;
-
 }
 
-.configpass p{
-
+.password-requirements p{
 color: var(--textcolor);
 font-size: .8rem;
 margin: .3rem 0;
-
+color: #999;
 }
 
-
-.configpass p {
-    color: #999;
+.password-requirements .valid{
+color: green;
 }
 
-
-.configpass .valid {
-    color: green;
+.password-requirements .invalid{
+color: red;
 }
 
-
-.configpass .invalid {
-    color: red;
-}
-
-.btnreg[disabled], .btnlog[disabled]{
-
+.btn-login[disabled], .btn-register[disabled]{
 opacity: 50%;
 cursor: no-drop;
-
 }
 
-.btnreg[disabled]:hover, .btnlog[disabled]:hover{
-
+.btn-login[disabled]:hover, .btn-register[disabled]:hover{
 background: var(--secondcolor);
-
 }
 
+/* ------------------------------------------------------------message */
 
 .logmes{
 
@@ -745,8 +617,7 @@ color: rgba(255, 0, 0, 70%);
 /* --------------------------------Profile */
 
 
-.profelimenu{
-
+.modal{
 width: 100%;
 height: 100vh;
 background: rgba(0, 0, 0, 60%);
@@ -756,18 +627,14 @@ top: 0;
 left: 0;
 z-index: 3;
 display: none;
-
 }
 
 
-.profelimenu.active{
-
+.modal.active{
 display: block;
-
 }
 
-.base{
-
+.profile-container{
 width: 70%;
 height: 80%;
 background: var(--maincolor);
@@ -779,20 +646,18 @@ transform: translate(-50%, -50%);
 border-radius: 1rem;
 overflow: hidden;
 z-index: 4;
-
+overflow: hidden;
 }
 
-
-.selectmenu{
-
+.profile-control{
 width: 25%;
 height: 100%;
-box-shadow: 0 0 10px #000;
-
+box-shadow: var(--shadow);
+z-index: 2;
 }
 
-.profinfo{
 
+.profile-header{
 width: 100%;
 height: 20%;
 border-bottom: var(--secondcolor) solid .2rem;
@@ -800,12 +665,10 @@ display: flex;
 justify-content: center;
 align-items: center;
 color: var(--textcolor);
-
 }
 
 
 .profile-image{
-
 width: 5rem;
 height: 5rem;
 border: var(--secondcolor) solid .2rem;
@@ -814,46 +677,32 @@ display: flex;
 justify-content: center;
 align-items: center;
 overflow: hidden;
-
 }
 
 .profile-image img{
-
 width: 100%;
 height: 100%;
 object-fit: cover;
-
 }
 
-
-.prof-name{
-
-margin: 0 0 0 1rem;
-
+.user-info{
+margin-left: 1rem;
 }
 
-
-.email-i{
-
+#userEmail{
 font-size: .8rem;
 margin-top: 1rem;
-
 }
 
-
-.profbtns{
-
+.profile-nav-btn{
 width: 100%;
 height: auto;
 display: flex;
 justify-content: center;
 align-items: center;
-flex-direction: column;
-
 }
 
-.profbtns button, .logoutbtn a{
-
+.profile-nav-btn, .logout-link{
 padding: 1.5rem 0;
 color: var(--textcolor);
 font-size: 1rem;
@@ -864,111 +713,71 @@ justify-content: center;
 align-items: center;
 cursor: pointer;
 background: var(--maincolor);
-
 }
 
-.profbtns button:hover{
-
-background: var(--hover-3);
-color: var(--textcolor-2);
-
-}
-
-.profbtns button i, .logoutbtn a i{
-
+.profile-nav-btn i, .logout-link i{
 margin-right: 1rem;  
 font-size: 1.5rem; 
 color: var(--secondcolor);
-
 }
 
-.logoutbtn a i{
-
+.logout-link i{
 color: red;
-
 }
 
-.logoutbtn{
-
-width: 100%;
-height: auto;
-display: flex;
-justify-content: center;
-align-items: end;
-
+.profile-nav-btn:hover{
+background: var(--hover-3);
+color: var(--textcolor-2);
 }
 
-.profbtns button:hover #spin{
-
+.profile-nav-btn:hover #spin{
 animation: spin 1s ease-out forwards;
-
 }
 
-.profbtns button:hover #rotate-spin{
-
+.profile-nav-btn:hover #rotate-spin{
 animation: rotate-spin 1s ease-out forwards;
-
 }
 
-.logoutbtn a:hover{
-
+.logout-link:hover{
 background: rgba(255, 0, 0, 30%);
-
 }
 
-
-@keyframes spin {
-
-0% {
-
-transform: rotate(0deg);
-
-}
-
-100% {
-
-transform: rotate(720deg);
-
-}
-
-
-}
-
-@keyframes rotate-spin {
-
-0% {
-
-transform: rotateY(0deg);
-
-}
-
-100% {
-
-transform: rotateY(720deg);
-
-}
-
-}
-
-
-.menu{
-
+.profile-section{
 width: 75%;
 height: 100%;
 display: none;
 background: var(--maincolor-2);
-
 }
 
-.menu.active{
-
+.profile-section.active{
 display: flex;
+}
+
+
+@keyframes spin {
+0% {
+transform: rotate(0deg);
+}
+
+100% {
+transform: rotate(720deg);
+}
 
 }
+
+@keyframes rotate-spin {
+0% {
+transform: rotateY(0deg);
+}
+
+100% {
+transform: rotateY(720deg);
+}
+}
+
 /* -------------settings */
 
-#settings-menu form{
-
+#editProfileForm{
 width: 100%;
 height: 100%;
 display: flex;
@@ -976,21 +785,17 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 flex-wrap: wrap;
-
 }
 
-.box-flex{
-
+.content-group{
 display: flex;
 justify-content: center;
 align-items: center;
 width: 100%;
 height: 15%;
-
 }
 
-#settings-menu .box{
-
+.content-group .box{
 width: 40%;
 height: 100%;
 color: var(--textcolor);
@@ -1001,85 +806,65 @@ display: flex;
 justify-content: center;
 align-items: center;
 border-radius: 2rem;
-
 }
 
 .box.avatar h1{
-
 font-size: 1rem;
 margin-right: 2rem;
 display: none;
-
 }
 
 .box.avatar h1.active{
-
 display: block;
-
 }
 
-.avatarPre{
+.close-Preview{
+width: 5rem;
+height: 5rem;
+margin-right: 2rem;
+position: relative;
+display: none;
+}
 
+.close-Preview i{
+color: red;
+cursor: pointer;
+}
+
+.close-Preview.active{
+display: block;
+}
+
+.avatar-Preview{
 width: 5rem;
 height: 5rem;
 border-radius: 50%;
 border: .2rem solid var(--secondcolor);
 overflow: hidden;
-
 }
 
-.close-prew{
-
-width: 5rem;
-height: 5rem;
-margin-right: 2rem;
-position: relative;
-display: none;
-
-}
-
-.close-prew i{
-
-color: red;
-cursor: pointer;
-
-}
-
-.close-prew.active{
-
-display: block;
-
-}
-
-.avatar-del{
-
+.avatar-Delet{
 position: absolute;
 top: 0;
 right: -10px;
-
 }
 
-.avatarPre img{
-
+.avatar-Preview img{
 width: 100%;
 height: 100%;
 object-fit: cover;
-
 }
 
 .input-file-row {
-	display: inline-block;
+display: inline-block;
 }
 
 .input-file {
-
 position: relative;
 display: inline-block;
-
 }
 
 .input-file span {
-
 position: relative;
 display: inline-block;
 cursor: pointer;
@@ -1090,98 +875,33 @@ vertical-align: middle;
 color: var(--textcolor-2);
 text-align: center;
 border-radius: 4px;
-background-color: var(--secondcolor);
+background: var(--secondcolor);
 line-height: 22px;
 height: 40px;
 padding: 10px 20px;
 box-sizing: border-box;
 border: none;
 margin: 0;
-transition: background-color 0.2s;
-
 }
 
-.input-file:hover span {
-
-background-color: var(--hover);
-
+.input-file:hover span{
+background: var(--hover);
 }
 
 .input-file input[type=file] {
-
 position: absolute;
 z-index: -1;
 opacity: 0;
 display: block;
 width: 0;
 height: 0;
-
 }
 
-.input-file input[type=file]:disabled + span {
-
-background-color: #eee;
-
-}
- 
-.input-file-list {
-
-padding: 10px 0;
-
-}
-
-.input-file-list-item {
-
-display: inline-block;
-margin: 0 15px 15px;
-width: 150px;
-vertical-align: top;
-position: relative;
-
-}
-
-.input-file-list-item img {
-
-width: 150px;
-
-}
-.input-file-list-name {
-
-text-align: center;
-display: block;
-font-size: 12px;
-text-overflow: ellipsis;
-overflow: hidden;
-
-}
-
-.input-file-list-remove {
-
-color: #fff;
-text-decoration: none;
-display: inline-block;
-position: absolute;
-padding: 0;
-margin: 0;
-top: 5px;
-right: 5px;
-background: #ff0202;
-width: 16px;
-height: 16px;
-text-align: center;
-line-height: 16px;
-border-radius: 50%;
-
-}
-
-.username-p span{
-
+#usernameWiev span{
 font-weight: bold;
-
 }
 
-.info-box, .password-c{
-
+.info-Change{
 padding: 1rem;
 width: calc(80% + 32px);
 height: auto;
@@ -1192,11 +912,9 @@ flex-wrap: wrap;
 margin-top: 2rem;
 border-radius: 2rem;
 background: var(--maincolor);
-
 }
 
-.info-box input, .password-c input{
-
+.info-Change input{
 width: 100%;
 padding: .7rem 1rem;
 font-size: 1rem;
@@ -1205,50 +923,29 @@ color: var(--textcolor);
 border-radius: 2rem;
 background: var(--maincolor);
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 20%);
-
 }
 
-#probtn{
-
-margin-top: 3rem;
-
-}
-
-#probtn span{
-
-font-size: 1.3rem;
-
-}
-
-.input-l{
-    
+.input-lable{
 width: 40%;
 display: flex;
 justify-content: center;
 flex-direction: column;
 margin: 1rem;
-
 }
 
-.input-l label{
-
+.input-lable label{
 color: var(--textcolor);
 font-size: 1rem;
 margin-bottom: .5rem;
 padding: 0 .5rem;
-
 }
 
-.password-c{
-
+#passwordChange{
 position: relative;
 overflow: hidden;
-
 }
 
-
-.passwordC{
-
+.password-Chanege-Switcher{
 position: absolute;
 width: 100%;
 height: 100%;
@@ -1260,69 +957,51 @@ justify-content: center;
 align-items: center;
 cursor: pointer;
 z-index: 2;
-
 }
 
-.passwordC:hover{
-
+.password-Chanege-Switcher:hover{
 background: var(--secondcolor);
 opacity: 50%;
-
 }
 
-
-.passwordC p{
-
+.password-Chanege-Switcher p{
 color: var(--textcolor);
 font-weight: bold;
-
 }
 
-
-.passwordC.active{
-
+.password-Chanege-Switcher.active{
 display: none;
-
 }
-
 
 .setBtn{
-
 background: var(--secondcolor);
 font-size: 1.5rem;
 color: var(--textcolor-2);
 border-radius: .5rem;
 padding: .7rem 1rem;
 cursor: pointer;
-
+margin-top: 3rem;
 }
 
 .setBtn i{
-
 margin-right: .5rem;
-
 }
 
 .setBtn:hover{
-
 background: var(--hover);
-
 }
 
 
 /* --------------favorite */
 
-#favoriti-menu{
-
-padding: 2rem 2rem 0 2rem;
+#favoritesSection{
+padding: 2rem 1rem 0 1rem;
 justify-content: top;
 align-items: center;
 flex-direction: column;
-
 }
 
-.fav-filter{
-
+.favorites-Filter{
 width: 90%;
 height: auto;
 background: var(--maincolor);
@@ -1333,12 +1012,9 @@ margin-top: 2rem;
 display: flex;
 justify-content: center;
 align-items: center;
-
 }
 
-
-.filt-cont select {
-    
+.filt-cont select { 
 appearance: none;
 outline: 10px red;
 box-shadow: none;
@@ -1352,26 +1028,20 @@ font-weight: bold;
 font-size: 1rem;
 border-radius: .5rem;
 margin: 0 2rem;
-
 }
 
 .filt-cont select option{
-
 font-size: 1rem;
-
 }
 
 .select {
-
 position: relative;
 display: flex;
 width: 20em;
 height: 3em;
 border-radius: .25em;
 overflow: hidden;
-
 }
-
 
 .select::after {
 content: '\25BC';
@@ -1384,55 +1054,59 @@ transition: .25s all ease;
 pointer-events: none;
 }
 
-
 .select:hover::after {
-
 color: var(--maincolor);
-
 }
 
-#favoriti-menu .page-btn button{
-
-background: var(--hover);
-padding: .8rem 1rem;
-font-size: 1rem;
-font-weight: bold;
-color: var(--textcolor);
-cursor: pointer;
-border-radius: 2rem;
-margin: 0 .3rem;
-text-align: center;
-
+.favorites-buttons{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 2rem;
 }
 
-#favoriti-menu .page-btn button:hover{
-
+.favorites-buttons button{
+padding: .7rem 1rem;
 background: var(--secondcolor);
-
+border-radius: .5rem;
+color: var(--textcolor-2);
+font-size: 1rem;
+margin: 0 .5rem;
+cursor: pointer;
+opacity: 60%;
 }
 
-.fav-container{
+.favorites-buttons button:hover{
+background: var(--hover);
+opacity: 100%;
+}
 
+.favorites-buttons button.active{
+opacity: 100%;
+}
+
+.favorites-buttons button.active:hover{
+background: var(--secondcolor);
+cursor: default;
+}
+
+.favorites-container{
 display: flex;
 justify-content: center;
 flex-wrap: wrap;
 margin-top: 1.5rem;
-
 }
 
-.fav-container h2{
-
+.favorites-container h2{
 background: var(--secondcolor);
 color: var(--textcolor-2);
 border-radius: .5rem;
 padding: 1rem 1.5rem;
 font-size: 1rem;
-
 }
 
-
-.fav-container .box{
-
+.favorites-container .box{
 width: 17rem;
 height: 20rem;
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 50%);
@@ -1444,38 +1118,205 @@ display: flex;
 justify-content: top;
 align-items: center;
 flex-direction: column;
-
 }
 
-.fav-container .box img{
-
+.favorites-container .box img{
 width: 100%;
 height: 50%;
 object-fit: cover;
-
 }
 
-.fav-container .box h1{
-
+.favorites-container .box h1{
 margin-top: 1rem;
 font-size: 1.2rem;
-
 }
 
-.fav-container .box .cena{
-
+.favorites-container .box .cena{
 width: 60%;
 height: 1.5rem;
-
 }
 
-
-.fav-container .box p{
-
+.favorites-container .box p{
 background: var(--secondcolor);
 padding: .5rem 1rem;
 margin-top: 3rem;
 font-size: 1rem;
 border-radius: 2rem;
+}
 
+
+/* -------------saraksti */
+
+
+#messagesSection{
+display: none;
+justify-content: space-between;
+align-items: center;
+}
+
+
+#messagesSection.active{
+display: flex;
+}
+
+.contacts-Container{
+background: var(--maincolor-2);
+width: 30%;
+height: 100%;
+padding: 1rem 0;
+display: flex;
+justify-content: top;
+align-items: center;
+flex-direction: column;
+border-right: .1rem solid #000;
+}
+
+.contacts-Header{
+width: 100%;
+height: 20%;
+border-bottom: .1rem solid #000;
+}
+
+#contactsSearch{
+width: 100%;
+height: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 3rem;
+}
+
+.input-Icon{
+width: 90%;
+height: 100%;
+background: var(--maincolor);
+border-radius: .5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+padding: 0 .5rem;
+}
+
+.input-Icon i{
+font-size: 2rem;
+margin-right: .5rem;
+background: var(--maincolor);
+color: var(--secondcolor);
+}
+
+#contactsSearch input{
+font-size: 1rem;
+padding: .7rem 1rem;
+background: var(--maincolor);
+width: 80%;
+}
+
+.contacts-List{
+
+width: 100%;
+height: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+overflow: auto;
+
+}
+
+.contacts-List .box{
+width: 90%;
+height: 5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 1rem;
+cursor: pointer;
+margin: .5rem 0;
+}
+
+.contacts-List .box .contacts-Name{
+margin-left: 1rem;
+}
+
+.contacts-List .box .contacts-Name h1{
+font-size: 1rem;
+}
+
+.contacts-List .box .avatar-Container{
+width: 4rem;
+height: 4rem;
+border-radius: 50%;
+border: .1rem solid var(--secondcolor);
+}
+
+.contacts-List .box.active{
+background: var(--hover-2);
+color: var(--textcolor-2);
+}
+
+.contacts-List .box.active .avatar-Container{
+border: .1rem solid var(--maincolor);
+}
+
+.chat-Container{
+width: 70%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.chatInfo{
+width: 100%;
+height: 15%;
+background: var(--maincolor);
+}
+
+
+.chatText{
+width: 100%;
+height: 70%;
+}
+
+.inputChat{
+width: 100%;
+height: 15%;
+background: var(--maincolor);
+}
+
+.inputChat form{
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.inputChat form input{
+width: 60%;
+margin-right: 2rem;
+font-size: 1rem;
+padding: .7rem 1rem;
+border-radius: .5rem;
+border: .1rem solid #000;
+}
+
+.sarBtn{
+padding: .7rem 1rem;
+background: var(--secondcolor);
+font-size: 1rem;
+border-radius: .5rem;
+color: var(--textcolor-2);
+cursor: pointer;
+}
+
+.sarBtn i{
+margin-right: .5rem;
+
+}
+
+.sarBtn:hover{
+background: var(--hover);
 }

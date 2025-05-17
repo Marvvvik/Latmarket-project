@@ -1,21 +1,15 @@
 <?php
+  // подключение к базе данных (DDEV)
+  $servers = "db"; // хост базы данных внутри DDEV
+  $lietotajs = "root"; // стандартный пользователь DDEV
+  $parole = "root"; // стандартный пароль DDEV
+  $db_nosaukums = "Latmarket"; // стандартное имя базы данных DDEV
 
-    $servers = "localhost";
-    $lietotajs = "root";
-    $parole = "";
-    $db_nosaukums = "Latmarket";
+  $savienojums = mysqli_connect($servers, $lietotajs, $parole, $db_nosaukums);
 
-    $savienojums = mysqli_connect($servers, $lietotajs, $parole, $db_nosaukums);
-
-
-    if(!$savienojums){
-
-       #die("Kļuda ar datubazi!eror 404".mysqli_connect_errno());
-
-    }else{
-
-       #echo "Savienojums veiksmigs!";
-
-    }
-
+  if (!$savienojums) {
+    die("Kļūda ar datubāzi! Error: " . mysqli_connect_error());
+  } else {
+    // echo "Savienojums veiksmīgs!";
+  }
 ?>

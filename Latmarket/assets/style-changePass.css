@@ -1,60 +1,45 @@
-.changePass{
-
+.password-reset{
 display: flex;
 justify-content: center;
 align-items: center;
 width: 100%;
 height: 70vh;
 flex-direction: column;
-
 }
 
-.btnback{
-
+.password-reset__back{
 width: 30%;
 margin-bottom: 2rem;
-
 }
 
-.btnback a{
-
+.password-reset__back a{
 color: #7b7b7b;
 font-weight: bold;
 cursor: pointer;
-
 }
 
-.btnback a:hover{
-
+.password-reset__back a:hover{
 color: #3e3e3e;
-
 }
 
-.btnback a i{
-
+.password-reset__back a i{
 margin-right: .5rem;
-    
 }
 
-.selectUser{
-
+.password-reset__form-container{
 background: var(--maincolor);
 width: 30%;
 height: auto;
 border-radius: 1rem;
 padding: 2rem;
-
 }
 
-.selectUser p{
-
+.password-reset__form-container p{
 margin-top: 1rem;
 opacity: 80%;
-
 }
 
-.selectUser form{
-
+.password-reset__form{
 margin-top: 3rem;
 width: 100%;
 height: auto;
@@ -62,25 +47,19 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-
 }
 
-.selectUser form .user-email{
-
+.password-reset__form .password-reset__input-group{
 width: 100%;
 height: auto;
-
 }
 
-.selectUser form .user-email label{
-
+.password-reset__form .password-reset__input-group label{
 font-weight: bold;
 font-size: 1.2rem;
-
 }
 
-.selectUser form .user-email input{
-
+.password-reset__form .password-reset__input-group input{
 width: 100%;
 padding: .7rem 1rem;
 border-radius: .5rem;
@@ -88,11 +67,9 @@ border: .01rem solid #000;
 background: var(--maincolor);
 margin-top: .5rem;
 font-size: 1.2rem;
-
 }
 
-.selectUser form button{ 
-
+.password-reset__form button{ 
 background: var(--secondcolor);
 border-radius: .5rem;
 padding: .7rem 1rem;
@@ -102,18 +79,13 @@ color: var(--textcolor-2);
 font-weight: bold;
 margin-top: 2rem;
 width: 100%;
-
 }
 
-.selectUser form button i{ 
-
+.password-reset__form button i{ 
 margin-right: .5rem;
-
 }
 
 
-.selectUser form button:hover{ 
-
+.password-reset__form button:hover{ 
 background: var(--hover);
-
 }

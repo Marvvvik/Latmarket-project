@@ -8,11 +8,11 @@ flex-direction: column;
 
 }
 
-.car_info_a, .car_apraksts_a, .Car_foto_a{
+.car_info_a, .car_apraksts_a, .Car_foto_a, .price-Info-Section, .komplektacijas_section{
 
 width: 100%;
 height: auto;
-border-radius: 2rem;
+border-radius: 1rem;
 padding: 2rem;
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
 margin-top: 2rem;
@@ -88,18 +88,19 @@ flex-direction: column;
 
 }
 
+
 .skat-info{
 
 display: flex;
 justify-content: center;
 align-items: center;
+margin-top: 17rem;
 
 }
 
 .skat-info p{
 
 margin: 0 .5rem;
-margin-top: 24rem;
 opacity: 30%;
 
 }
@@ -117,8 +118,8 @@ margin-top: 1rem;
 
 .autor-avatar{
 
-width: 4rem;
-height: 4rem;
+width: 5rem;
+height: 5rem;
 border-radius: 50%;
 border: .2rem var(--secondcolor) solid;
 display: flex;
@@ -142,6 +143,25 @@ margin-right: 1rem;
 text-align: right;
 
 }
+
+.chatBtn{
+
+font-size: 1rem;
+padding: .7rem 1rem;
+border-radius: 0.5rem;
+color: var(--textcolor-2);
+background: var(--secondcolor);
+cursor: pointer;
+
+}
+
+
+.chatBtn:hover{
+
+background: var(--hover);
+
+}
+
 
 .info-table{
 
@@ -195,5 +215,108 @@ margin: 1rem 0 1rem 2rem;
 .car_apraksts_a li{
 
 margin: .5rem 0;
+
+}
+
+
+.komplektacijas_section{
+
+display: flex;
+justify-content: space-between;
+
+}
+
+
+.komplektacijas_section .box{
+
+display: flex;
+justify-content: left;
+flex-direction: column;
+
+}
+
+.komplektacijas-Title{
+
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+background: var(--secondcolor);
+padding: .7rem 1rem;
+border-radius: .5rem;
+margin-bottom: 1rem;
+
+}
+
+.komplektacijas-Title h1{
+
+color: var(--textcolor-2);
+font-size: 1rem;
+
+}
+
+.komplektacijas_section .box p{
+
+margin: .5rem 0;
+font-size: .9rem;
+opacity: 50%;
+
+}
+
+.komplektacijas_section .box p.active{
+
+opacity: 100%;
+font-weight: bold;
+
+}
+
+.slud-Rep{
+
+margin-right: 1rem;
+color: red;
+font-size: 1.5rem;
+cursor: pointer;
+
+}
+
+
+
+.info-container{
+    
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 80%;
+
+}
+
+
+.price-Info-Section{
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+.info-container p{
+
+font-size: 1.2rem;
+
+}
+
+#price{
+
+background: var(--secondcolor);
+padding: .7rem 1rem;
+border-radius: .5rem;
+color: var(--textcolor-2);
+
+}
+
+
+.info-container p span{
+
+font-weight: bold;    
 
 }

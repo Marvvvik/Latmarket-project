@@ -1,250 +1,192 @@
 // --------------------------------------------------------------------------Login-Register-Modal
 
 document.addEventListener("DOMContentLoaded", function () {
-    const openButton = document.getElementById("OpenLogReg");
-    const logModal = document.querySelector(".logmodal");
-    const closeButton = document.querySelector(".close-ml");
+    const openButton = document.getElementById("openLoginModal");
+    const logModal = document.querySelector(".auth-modal");
+    const closeButton = document.getElementById("closeAuth");
 
-    if (openButton) {
+    if (openButton && logModal) {
         openButton.addEventListener("click", function () {
             logModal.classList.add("active");
         });
     }
 
-    if (closeButton) {
+    if (closeButton && logModal) {
         closeButton.addEventListener("click", function () {
             logModal.classList.remove("active");
         });
     }
-});
 
-const loginBtn = document.getElementById('logBtn');
-const registerBtn = document.getElementById('regBtn');
-const logForm = document.querySelector('.login-form');
-const regForm = document.querySelector('.reg-form');
+    const loginBtn = document.getElementById('login-tab-button');
+    const registerBtn = document.getElementById('register-tab-button');
+    const logForm = document.querySelector('.login-form-container');
+    const regForm = document.querySelector('.register-form-container');
 
-if (loginBtn) {
-    loginBtn.addEventListener('click', () => toggleActive(loginBtn));
-}
+    if (loginBtn && registerBtn && logForm && regForm) {
+        loginBtn.addEventListener('click', () => toggleActive(loginBtn));
+        registerBtn.addEventListener('click', () => toggleActive(registerBtn));
 
-if (registerBtn) {
-    registerBtn.addEventListener('click', () => toggleActive(registerBtn));
-}
+        window.addEventListener('load', function () {
+            const activeState = localStorage.getItem('active');
 
-function toggleActive(button) {
-    if (button.id === 'logBtn') {
-        logForm.classList.add('active');
-        regForm.classList.remove('active');
-        logBtn.classList.add('active');
-        registerBtn.classList.remove('active');
-        localStorage.setItem('active', 'login');
-    } else if (button.id === 'regBtn') {
-        regForm.classList.add('active');
-        logForm.classList.remove('active');
-        registerBtn.classList.add('active');
-        logBtn.classList.remove('active');
-        localStorage.setItem('active', 'register');
+            if (activeState === 'login') {
+                logForm.classList.add('active');
+                regForm.classList.remove('active');
+                loginBtn.classList.add('active');
+                registerBtn.classList.remove('active');
+            } else if (activeState === 'register') {
+                regForm.classList.add('active');
+                logForm.classList.remove('active');
+                registerBtn.classList.add('active');
+                loginBtn.classList.remove('active');
+            }
+        });
+
+        function toggleActive(button) {
+            if (button.id === 'login-tab-button') {
+                logForm.classList.add('active');
+                regForm.classList.remove('active');
+                loginBtn.classList.add('active');
+                registerBtn.classList.remove('active');
+                localStorage.setItem('active', 'login');
+            } else if (button.id === 'register-tab-button') {
+                regForm.classList.add('active');
+                logForm.classList.remove('active');
+                registerBtn.classList.add('active');
+                loginBtn.classList.remove('active');
+                localStorage.setItem('active', 'register');
+            }
+        }
     }
-}
 
+// ---------------------------------------------------------Toggle password in login
+const passwordInput = document.getElementById('login-password');
+const toggleBtn = document.getElementById('passworVisibilityLogin');
 
-window.addEventListener('load', function() {
-    const activeState = localStorage.getItem('active');
-
-    if (activeState === 'login') {
-        logForm.classList.add('active');
-        regForm.classList.remove('active');
-        logBtn.classList.add('active');
-        registerBtn.classList.remove('active');
-    } else if (activeState === 'register') {
-        regForm.classList.add('active');
-        logForm.classList.remove('active');
-        registerBtn.classList.add('active');
-        logBtn.classList.remove('active');
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const passwordInput = document.getElementById('lpassword');
-    const toggleBtn = document.querySelector('.lookpassL img');
-
+if (passwordInput && toggleBtn) {
     toggleBtn.addEventListener('click', function () {
         const isPassword = passwordInput.type === 'password';
-
         passwordInput.type = isPassword ? 'text' : 'password';
         toggleBtn.src = isPassword ? '/image/icons/hide.png' : '/image/icons/view.png';
     });
-});
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-    const passwordInput1 = document.getElementById('rpassword1');
-    const passwordInput2 = document.getElementById('rpassword2');
-    const toggleBtnR = document.querySelector('.lookpassR img');
+// ---------------------------------------------------------Toggle password in register
+const passwordInput1 = document.getElementById('register-password1');
+const passwordInput2 = document.getElementById('register-password2');
+const toggleBtnR = document.getElementById('passwordVisibilityRegister');
 
+if (passwordInput1 && passwordInput2 && toggleBtnR) {
     toggleBtnR.addEventListener('click', function () {
         const isPassword1 = passwordInput1.type === 'password';
         const isPassword2 = passwordInput2.type === 'password';
-
-
         passwordInput1.type = isPassword1 ? 'text' : 'password';
         passwordInput2.type = isPassword2 ? 'text' : 'password';
         toggleBtnR.src = isPassword1 ? '/image/icons/hide.png' : '/image/icons/view.png';
     });
-});
+}
 
-// --------------------------------------------------------------------------Paroles-kriteriju-izvade
+// -----------------------------------------------------------------Paroles-kriteriju-izvade
+    if (passwordInput1) {
+        passwordInput1.addEventListener('focus', function () {
+            const configpass = document.querySelector('.password-requirements');
+            if (configpass) {
+                configpass.style.display = 'block';
+            }
+        });
 
-loginBtn.addEventListener('click', () => toggleActive(loginBtn));
-registerBtn.addEventListener('click', () => toggleActive(registerBtn));
+        passwordInput1.addEventListener('blur', function () {
+            const configpass = document.querySelector('.password-requirements');
+            if (configpass && !this.value) {
+                configpass.style.display = 'none';
+            }
+        });
+    }
 
+// ----------------------Password-Check
+    const registerButton = document.getElementById("register-submit-button");
 
-document.getElementById('rpassword1').addEventListener('focus', function() {
-    document.querySelector('.configpass').style.display = 'block';
-});
+    if (passwordInput1 && passwordInput2 && registerButton) {
+        function validatePasswords() {
+            const password = passwordInput1.value;
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasNumber = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            const lengthValid = password.length >= 8 && password.length <= 20;
 
-document.getElementById('rpassword1').addEventListener('blur', function() {
-    if (!this.value) {
-        document.querySelector('.configpass').style.display = 'none';
+            updateValidation('uppercase-requirement', hasUpperCase);
+            updateValidation('lowercase-requirement', hasLowerCase);
+            updateValidation('specialchar-requirement', hasSpecialChar);
+            updateValidation('digit-requirement', hasNumber);
+            updateValidation('length-requirement', lengthValid);
+
+            passwordInput1.style.borderColor = (hasLowerCase && hasUpperCase && hasNumber && lengthValid && passwordInput1.value !== "") ? "green" : "red";
+            passwordInput2.style.borderColor = (passwordInput1.value === passwordInput2.value && passwordInput2.value !== "") ? "green" : "red";
+
+            registerButton.disabled = !(hasLowerCase && hasSpecialChar && hasUpperCase && hasNumber && lengthValid && passwordInput1.value === passwordInput2.value && passwordInput1.value !== "" && passwordInput2.value !== "");
+        }
+
+        function updateValidation(id, isValid) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.classList.toggle('valid', isValid);
+                element.classList.toggle('invalid', !isValid);
+            }
+        }
+
+        passwordInput1.addEventListener("input", validatePasswords);
+        passwordInput2.addEventListener("input", validatePasswords);
+    }
+
+// ----------------------------------------Login form validation
+
+    const username = document.getElementById("login-username");
+    const loginPassword = document.getElementById("login-password");
+    const loginButton = document.getElementById("login-submit-button");
+
+    if (username && loginPassword && loginButton) {
+        function checkLogin() {
+            loginButton.disabled = !(username.value !== "" && loginPassword.value !== "");
+        }
+
+        username.addEventListener("input", checkLogin);
+        loginPassword.addEventListener("input", checkLogin);
     }
 });
 
-// --------------------------------------------------------------------------Password-Check
+// --------------------------------------------------------------------------Profile-menu
 
+const profileImageHeader = document.querySelector('.profile-image-header');
+const profileMenu = document.getElementById('profileMenu');
+
+if (profileImageHeader && profileMenu) {
+    profileImageHeader.addEventListener('click', function(event) {
+        profileMenu.classList.toggle('active');
+        event.stopPropagation();
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!profileImageHeader.contains(event.target) && !profileMenu.contains(event.target)) {
+            profileMenu.classList.remove('active');
+        }
+    });
+}
 
 document.addEventListener("DOMContentLoaded", function () {
-    const password1 = document.getElementById("rpassword1");
-    const password2 = document.getElementById("rpassword2");
-    const registerBtn = document.getElementById("registerBtn");
-
-    function validatePasswords() {
-        const password = password1.value;
-        
-        
-        const hasLowerCase = /[a-z]/.test(password);
-        const hasUpperCase = /[A-Z]/.test(password);
-        const hasNumber = /\d/.test(password);
-        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-        const lengthValid = password.length >= 8 && password.length <= 20;
-
-        
-        updateValidation('mBurts', hasLowerCase);
-        updateValidation('lBurts', hasUpperCase);
-        updateValidation('cipars', hasNumber);
-        updateValidation('sSimbols', hasSpecialChar);
-        updateValidation('Garums', lengthValid);
-
-        if (hasLowerCase && hasUpperCase && hasNumber && lengthValid && password1.value !== "") {
-
-            password1.style.borderColor = "green";
-
-        }else{
-
-            password1.style.borderColor = "red";
-
-        }
-
-        if(password1.value === password2.value && password2.value !== ""){
-
-            password2.style.borderColor = "green";
-
-        }else{
-
-            password2.style.borderColor = "red";
-
-        }
-
-        if (hasLowerCase && hasSpecialChar && hasUpperCase && hasNumber && lengthValid && password1.value === password2.value && password1.value !== "" && password2.value !== "") {
-            registerBtn.disabled = false; 
-        } else {
-            registerBtn.disabled = true; 
-        }
-
-    }
-
-    function updateValidation(id, isValid) {
-        const element = document.getElementById(id);
-        if (isValid) {
-            element.classList.add('valid');
-            element.classList.remove('invalid');
-        } else {
-            element.classList.add('invalid');
-            element.classList.remove('valid');
-        }
-    }
-
-
-    password1.addEventListener("input", validatePasswords);
-    password2.addEventListener("input", validatePasswords);
-});
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const username = document.getElementById("lusername");
-    const password = document.getElementById("lpassword");
-    const loginBtn = document.getElementById("loginbtn");
-
-    function checkLogin() {
-
-        if (username.value !== "" && password.value !== "") {
-            loginBtn.disabled = false; 
-        } else {
-            loginBtn.disabled = true;  
-        }
-
-    }
-
-    username.addEventListener("input", checkLogin);
-    password.addEventListener("input", checkLogin);
-});
-
-// --------------------------------------------------------------------------Modal-Open
-
-let modalbtn = document.querySelectorAll('[data-target]')
-let closeModal = document.querySelectorAll('.closemodal')
-
-
-modalbtn.forEach(function(btn){
-
-    btn.addEventListener('click', function(){
-
-        document.querySelector(btn.dataset.target).classList.toggle('active')
-
-    })
-
-})
-
-
-closeModal.forEach(function(btn){
-
-    btn.addEventListener('click', function(){
-
-        document.querySelector(btn.dataset.target).classList.remove('active')
-
-    })
-
-})
-
-// --------------------------------------------------------------------------Prof-menu-open
-
-document.addEventListener("DOMContentLoaded", function () {
+    // -------------------------- Section Buttons Toggle
     const buttons = {
-        iestbtn: "settings-menu",
-        favbtn: "favoriti-menu",
-        sludbtn: "slud-menu",
-        sarbtn: "sar-menu"
+        settingsBtn: "settingsSection",
+        favoritesBtn: "favoritesSection",
+        offerBtn: "offerSection",
+        messagesBtn: "messagesSection"
     };
 
-    const profelimenu = document.querySelector(".profelimenu");
-
-    if (!profelimenu) {
-        return; 
-    }
+    const profelimenu = document.querySelector(".modal");
 
     Object.keys(buttons).forEach(btnId => {
         const button = document.getElementById(btnId);
         const menu = document.getElementById(buttons[btnId]);
-
 
         if (button && menu) {
             button.addEventListener("click", function () {
@@ -261,47 +203,96 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     });
-});
 
+    const closeProfileModal = document.getElementById('closeProfileMdoal');
+    if (closeProfileModal) {
+        closeProfileModal.addEventListener('click', function () {
+            if (profelimenu) {
+                profelimenu.classList.remove('active');
+            }
+        });
+    }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const settingsBtn = document.getElementById('Iestatijumi');
-    const favoritiBtn = document.getElementById('Favoriti');
-    const sludinajumiBtn = document.getElementById('Sludinajumi');
-    const sarakstiBtn = document.getElementById('Saraksti');
+    // -------------------------- Menu Section
+    const settingsBtn = document.getElementById('settingsSectionBtn');
+    const favoritiBtn = document.getElementById('favoritesSectionBtn');
+    const sludinajumiBtn = document.getElementById('offersSectionBtn');
+    const sarakstiBtn = document.getElementById('messagesSectionBtn');
   
-    const settingsMenu = document.getElementById('settings-menu');
-    const favoritiMenu = document.getElementById('favoriti-menu');
-    const sludMenu = document.getElementById('slud-menu');
-    const sarMenu = document.getElementById('sar-menu');
+    const settingsMenu = document.getElementById('settingsSection');
+    const favoritiMenu = document.getElementById('favoritesSection');
+    const sludMenu = document.getElementById('offerSection');
+    const sarMenu = document.getElementById('messagesSection');
   
     function setActiveMenu(activeButton, activeMenu) {
-      settingsMenu.classList.remove('active');
-      favoritiMenu.classList.remove('active');
-      sludMenu.classList.remove('active');
-      sarMenu.classList.remove('active');
+        settingsMenu.classList.remove('active');
+        favoritiMenu.classList.remove('active');
+        sludMenu.classList.remove('active');
+        sarMenu.classList.remove('active');
   
+        activeMenu.classList.add('active');
+    }
 
-      activeMenu.classList.add('active');
+    if (settingsBtn && settingsMenu) {
+        settingsBtn.addEventListener('click', function() {
+            setActiveMenu(this, settingsMenu);
+        });
     }
   
-    settingsBtn.addEventListener('click', function() {
-      setActiveMenu(this, settingsMenu);
-    });
+    if (favoritiBtn && favoritiMenu) {
+        favoritiBtn.addEventListener('click', function() {
+            setActiveMenu(this, favoritiMenu);
+        });
+    }
   
-    favoritiBtn.addEventListener('click', function() {
-      setActiveMenu(this, favoritiMenu);
-    });
+    if (sludinajumiBtn && sludMenu) {
+        sludinajumiBtn.addEventListener('click', function() {
+            setActiveMenu(this, sludMenu);
+        });
+    }
   
-    sludinajumiBtn.addEventListener('click', function() {
-      setActiveMenu(this, sludMenu);
-    });
-  
-    sarakstiBtn.addEventListener('click', function() {
-      setActiveMenu(this, sarMenu);
-    });
-  });
+    if (sarakstiBtn && sarMenu) {
+        sarakstiBtn.addEventListener('click', function() {
+            setActiveMenu(this, sarMenu);
+        });
+    }
 
+    // -------------------------- Avatar Change
+    const fileInput = document.getElementById("newAvatar");
+    const imgPreview = document.getElementById("avatarPreview");
+    const title = document.getElementById("avatarTitle");
+    const closePreview = document.querySelector(".close-Preview");
+    const deleteButton = document.querySelector(".avatar-Delet");
+
+    if (fileInput && imgPreview) {
+        fileInput.addEventListener("change", function () {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    imgPreview.src = e.target.result;
+                    if (closePreview) {
+                        closePreview.classList.add("active");
+                        title.classList.remove("active");
+                    }
+                };
+                
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    }
+
+    if (deleteButton && imgPreview) {
+        deleteButton.addEventListener("click", function () {
+            imgPreview.src = "";
+            fileInput.value = "";
+            if (closePreview) {
+                closePreview.classList.remove("active");
+                title.classList.add("active");
+            }
+        });
+    }
+});
 
 // --------------------------------------------------------------------------Mes-Modal-close
 
@@ -317,42 +308,6 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// --------------------------------------------------------------------------Avatar-change
-
-document.addEventListener("DOMContentLoaded", function () {
-    const fileInput = document.getElementById("newavatar");
-    const imgPreview = document.getElementById("avatar-preview");
-    const title = document.getElementById("av-title");
-    const closePreview = document.querySelector(".close-prew");
-    const deleteButton = document.querySelector(".avatar-del");
-
-    fileInput.addEventListener("change", function () {
-        if (this.files && this.files[0]) {
-            const reader = new FileReader();
-            
-            reader.onload = function (e) {
-                imgPreview.src = e.target.result;
-                if (closePreview) {
-                    closePreview.classList.add("active");
-                    title.classList.remove("active");
-                }
-            };
-            
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-
-    if (deleteButton) {
-        deleteButton.addEventListener("click", function () {
-            imgPreview.src = "";
-            fileInput.value = "";
-            if (closePreview) {
-                closePreview.classList.remove("active");
-                title.classList.add("active");
-            }
-        });
-    }
-});
 
 
 

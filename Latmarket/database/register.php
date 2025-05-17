@@ -5,14 +5,10 @@ session_start();
 
 $response = [];
 
-// получаем данные с ajax 
-
 $lietotajvards = htmlspecialchars($_POST['username']);
 $parole1 = htmlspecialchars($_POST['rpassword1']);
 $parole2 = htmlspecialchars($_POST['rpassword2']);
 $avatar = isset($_FILES['avatar']) ? $_FILES['avatar'] : null;
-
-// функция для проверки пароля по критериям 
 
 function validatePassword($password) {
     return preg_match('/[a-z]/', $password) &&
@@ -22,28 +18,28 @@ function validatePassword($password) {
            strlen($password) >= 8 && strlen($password) <= 20;
 }
 
-if (!empty($lietotajvards) && !empty($parole1) && !empty($parole2)) { // проверяю не пустые ли поля 
-    if ($parole1 === $parole2) { // проверяю совподают ли пароли  
-        if (validatePassword($parole1)) { // проверпяю соответствует ли пароль критериям 
+if (!empty($lietotajvards) && !empty($parole1) && !empty($parole2)) { 
+    if ($parole1 === $parole2) { 
+        if (validatePassword($parole1)) { 
 
             $vaicajums = $savienojums->prepare("SELECT * FROM lietotaji WHERE username = ?");
             $vaicajums->bind_param("s", $lietotajvards);
             $vaicajums->execute();
             $rezultats = $vaicajums->get_result();
 
-            if ($rezultats->num_rows > 0) {  // проверяю ести ли уже пользователь с таким ником 
+            if ($rezultats->num_rows > 0) { 
                 $response['success'] = false;
                 $response['error'] = "Lietotājs ar šādu vārdu jau pastāv!";
             } else {
-                $hashedPassword = password_hash($parole1, PASSWORD_BCRYPT);  // хеширую пароль
+                $hashedPassword = password_hash($parole1, PASSWORD_BCRYPT); 
 
-                if ($avatar && $avatar['error'] == UPLOAD_ERR_OK) {   // добавляю базовую аватарку
+                if ($avatar && $avatar['error'] == UPLOAD_ERR_OK) {  
                     $avatarData = file_get_contents($avatar['tmp_name']);
                 } else {
                     $avatarData = file_get_contents('../image/Unknown_person.jpg');
                 }
 
-                $vaicajums = $savienojums->prepare("INSERT INTO lietotaji (username, parole, avatar) VALUES (?, ?, ?)"); // добавляю данные в базу данных
+                $vaicajums = $savienojums->prepare("INSERT INTO lietotaji (username, parole, avatar) VALUES (?, ?, ?)");
                 $null = NULL;
                 $vaicajums->bind_param("ssb", $lietotajvards, $hashedPassword, $null);
                 $vaicajums->send_long_data(2, $avatarData);

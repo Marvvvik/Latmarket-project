@@ -1,4 +1,4 @@
-$(document).on('change', "#Car_brends_select", function() {
+$(document).on('change', "#Car_brends_select", function () {
     var car_marka = $(this).val(); 
 
     $.ajax({
@@ -21,68 +21,117 @@ $(document).on('change', "#Car_brends_select", function() {
         }
     });
 
-    updateCarList();
+    FilterCarList();
 });
 
+$(document).ready(function () {
+    const select = $("#car_modelis_select");
 
-$(document).on('change', "select, input[type='radio'], input[type='range'], input[type='number']", function() {
-    updateCarList();
+    const observer = new MutationObserver(function () {
+        if (select.find("option").length > 2) {
+            select.removeAttr("disabled");  
+        } else {
+            select.attr("disabled", "disabled");
+        }
+    });
+
+    observer.observe(select[0], {
+        childList: true  
+    });
 });
 
-function updateCarList() {
-    var car_marka = $('#Car_brends_select').val(); 
-    var car_modelis = $('#car_modelis_select').val(); 
-    var car_virsbuve = $('#car_virsbuves_select').val(); 
-    var car_benzin_tips = $('#car_Dzineja_tips_select').val(); 
-    var car_atrumkarba = $('#car_atrumkarba_select').val(); 
-    var car_krasa = $('#car_krasa_select').val(); 
-    var car_piedzina = $('#car_piedzina_select').val(); 
-    var car_tehniska_apskate = $('#car_tehniska_apskate_select').val(); 
-    var car_min_cena = $('#car_min_cena_select').val(); 
-    var car_max_cena = $('#car_max_cena_select').val(); 
-    var car_min_gads = $('#car_min_gads_select').val(); 
-    var car_max_gads = $('#car_max_gads_select').val(); 
-    var car_min_nobrakums = $('#car_min_nobrakums_select').val(); 
-    var car_max_nobrakums = $('#car_max_nobrakums_select').val(); 
-    var car_min_jauda = $('#car_min_jauda_select').val(); 
-    var car_max_jauda = $('#car_max_jauda_select').val(); 
-    var dtp = $('input[name="dtp"]:checked').val();  
-    var jauda_m = $('input[name="jauda-m"]:checked').val(); 
-    var nobrakums_m = $('input[name="nobrakums-m"]:checked').val();
+$(document).on('change', 'select', function () {
+    const clearOption = this.querySelector('#clear');
+    const nameOption = this.querySelector('#name');
+
+    if (clearOption && clearOption.selected) {
+        this.value = '';
+        clearOption.selected = false;
+        if (nameOption) nameOption.selected = true;
+
+        $(this).trigger('change');
+    }
+});
+
+$(document).ready(function () {
+    FilterCarList(1);
+});
+
+$(document).on('change', "select, input[type='radio'], input[type='range'], input[type='number']", function () {
+    FilterCarList();
+});
+
+function FilterCarList(page = 1) {
+    $("#carsContainer").html("<div class='loader'>Notiek ielāde...</div>");
 
     var requestData = { 
-        marka: car_marka,
-        modelis: car_modelis,
-        virsbuve: car_virsbuve,
-        benzina_tips: car_benzin_tips,
-        atrumkarba: car_atrumkarba,
-        krasa: car_krasa,
-        piedzina: car_piedzina,
-        tehniska_apskate: car_tehniska_apskate,
-        min_cena: car_min_cena,
-        max_cena: car_max_cena,
-        min_gads: car_min_gads,
-        max_gads: car_max_gads, 
-        min_nobrakums: car_min_nobrakums,
-        max_nobrakums: car_max_nobrakums,
-        min_jauda: car_min_jauda,
-        max_jauda: car_max_jauda,
-        dtp: dtp,
-        jauda_m: jauda_m,
-        nobrakums_m: nobrakums_m
+        marka: $('#Car_brends_select').val(),
+        modelis: $('#car_modelis_select').val(),
+        virsbuve: $('#car_virsbuves_select').val(),
+        benzina_tips: $('#car_Dzineja_tips_select').val(),
+        atrumkarba: $('#car_atrumkarba_select').val(),
+        krasa: $('#car_krasa_select').val(),
+        piedzina: $('#car_piedzina_select').val(),
+        tehniska_apskate: $('#car_tehniska_apskate_select').val(),
+        min_cena: $('#car_min_cena_select').val(),
+        max_cena: $('#car_max_cena_select').val(),
+        min_gads: $('#car_min_gads_select').val(),
+        max_gads: $('#car_max_gads_select').val(),
+        min_nobrakums: $('#car_min_nobrakums_select').val(),
+        max_nobrakums: $('#car_max_nobrakums_select').val(),
+        min_jauda: $('#car_min_jauda_select').val(),
+        max_jauda: $('#car_max_jauda_select').val(),
+        dtp: $('input[name="dtp"]:checked').val(),
+        jauda_m: $('input[name="jauda-m"]:checked').val(),
+        nobrakums_m: $('input[name="nobrakums-m"]:checked').val(),
+        page: page
     };
-
-    // console.log("Отправляемые данные на сервер:", requestData);
 
     $.ajax({
         type: "POST",
-        url: "car-izvade.php", 
+        url: "car-izvade.php",
         data: requestData,
+        dataType: "json",
         success: function(response) {
-            $("#cars-container").html(response);
+            if ($.trim(response.cars) === "") {
+                $("#carsContainer").html("<h2>Nav nevienas aktuālas atsaukmes!</h2>");
+                $(".offer-buttons").html("");
+            } else {
+                $("#carsContainer").html(response.cars);
+                carRenderPagination(response.totalPages, page);
+            }
         },
-        error: function(xhr, status, error) {
-            $("#cars-container").html("Kļuda: " + xhr.responseText);
+        error: function(xhr) {
+            $("#review-output-container").html("<h1>Kļūda: " + xhr.statusText + "</h1>");
         }
     });
 }
+
+function carRenderPagination(totalPages, currentPage) {
+    let html = '';
+    let maxButtons = 5;
+    let start = Math.max(1, currentPage - 2);
+    let end = Math.min(totalPages, start + maxButtons - 1);
+
+    if (end - start < maxButtons - 1) { start = Math.max(1, end - maxButtons + 1); }
+    for (let i = start; i <= end; i++) { html += `<button class="cars-page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`; }
+    if (totalPages > end) { html += `<span>...</span><button class="cars-page-btn" data-page="${totalPages}">${totalPages}</button>`; }
+
+    $(".offer-buttons").html(html);
+}
+
+$(document).on("click", ".cars-page-btn", function() {
+    const page = $(this).data("page");
+    FilterCarList(page);
+});
+
+$(document).on("click", ".photobtn button", function() {
+    var carId = $(this).closest('.photobtn').attr('id'); 
+
+    var photosContainer = $(".photos-container[id='" + carId + "']");
+    var currentIndex = $(this).index();
+    photosContainer.css("transform", "translateX(-" + (currentIndex * 100) + "%)");
+
+    $(".photobtn[id='" + carId + "'] button").removeClass("active");
+    $(this).addClass("active");
+});

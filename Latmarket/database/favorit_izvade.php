@@ -3,10 +3,19 @@
 require "con_db_l.php";
 session_start();
 
+$limit = 6;
+$page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
+$offset = ($page - 1) * $limit;
+$FavoriteHTML = '';
 
-$favoritSQL = "SELECT * FROM favoriti WHERE lietotaja_id = ?";
+$countQuery = "SELECT COUNT(*) AS total FROM favoriti";
+$countResult = $savienojums->query($countQuery);
+$totalRows = $countResult->fetch_assoc()['total'];
+$totalPages = ceil($totalRows / $limit);
+
+$favoritSQL = "SELECT * FROM favoriti WHERE lietotaja_id = ? LIMIT ? OFFSET ?";
 $stmt = $savienojums->prepare($favoritSQL);
-$stmt->bind_param("i", $_SESSION['IdHOMIK']);
+$stmt->bind_param("iii", $_SESSION['IdHOMIK'], $limit, $offset);
 $stmt->execute();
 $favoritResult = $stmt->get_result();
 
@@ -41,10 +50,9 @@ while ($favorit = $favoritResult->fetch_assoc()) {
             $photoHTML .= "<img src='data:image/jpeg;base64,{$base64Image}'/>";
         }
     
-        echo "
+        $FavoriteHTML .= "
         
         <div class='box'>
-
             $photoHTML
 
             <h1>{$Favizvade['Marka']} {$Favizvade['Modelis']} {$Favizvade['Izladuma_gads']}</h1>
@@ -59,5 +67,10 @@ while ($favorit = $favoritResult->fetch_assoc()) {
 
     }
 }
+
+echo json_encode([
+    'favorite' => $FavoriteHTML,
+    'totalPages' => $totalPages
+]);
 
 ?>

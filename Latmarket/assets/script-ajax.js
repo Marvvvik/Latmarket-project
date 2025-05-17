@@ -1,5 +1,34 @@
 // ------------------------------------------------------------Registracija
 
+function checkUsernameAvailability() {
+    const username = $("#register-username").val();
+
+    if (username.length < 3) return;
+
+    console.log(username)
+
+    $.ajax({
+        type: "POST",
+        url: "/database/user_check.php",
+        data: { username: username },
+        dataType: "json",
+        success: function(response) {
+            if (response.status === "exists") {
+                $("#register-username").css("border-bottom", "2px solid red");
+            } else if (response.status === "available") {
+                $("#register-username").css("border-bottom", "2px solid green");
+            }
+        },
+        error: function(xhr) {
+            console.error("Kļūda:", xhr.statusText);
+        }
+    });
+}
+
+$("#register-username").on("input", function () {
+    checkUsernameAvailability();
+});
+
 $(document).on('click', '.closemodal', function() {
     $(this).closest('.linemess').fadeOut(100, function() {
     $(this).remove();
@@ -9,9 +38,9 @@ $(document).on('click', '.closemodal', function() {
 $('#registerForm').submit(e => {
     e.preventDefault();
 
-    const username = $('#username').val();
-    const rpassword1 = $('#rpassword1').val();
-    const rpassword2 = $('#rpassword2').val();
+    const username = $('#register-username').val();
+    const rpassword1 = $('#register-password1').val();
+    const rpassword2 = $('#register-password2').val();
 
     const postData = { username, rpassword1, rpassword2 };
     const url = '/database/register.php';
@@ -30,7 +59,7 @@ $('#registerForm').submit(e => {
             const titleText = response.success ? "Veiksmīgi!" : "Ne veiksmīgi!";
 
             const messageBox = `<div class="linemess ${messageType}">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
                                     <div class="mesinfobox">
                                         <i class="fas ${iconClass}"></i>
                                         <div class="mesinfo">
@@ -56,7 +85,7 @@ $('#registerForm').submit(e => {
             console.error('Kļūda pie datu nmosutišanas:', errorThrown);
             $('.linemess').remove();
             const errorMessage = `<div class="linemess error">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
                                     <div class="mesinfobox">
                                         <i class="fas fa-close"></i>
                                         <div class="mesinfo">
@@ -87,7 +116,7 @@ function datuIzvade() {
     var userId = $("#lietotajaId").val();
 
     $.ajax({
-        url: "/database/setting-ielasa.php", 
+        url: "/database/setting_ielasa.php", 
         type: "POST",
         data: { id: userId },
         dataType: "json",
@@ -100,9 +129,9 @@ function datuIzvade() {
                 setField("#telefons", response.telefons);
 
   
-                $(".name-i p").text(response.full_name);
-                $(".email-i p").text(response.epasts); 
-                $(".avatarImg").attr("src", response.avatar);
+                $("#userFullName").text(response.full_name);
+                $("#userEmail").text(response.epasts); 
+                $(".avatar-img").attr("src", response.avatar);
 
             } 
         },
@@ -122,10 +151,10 @@ function datuIzvade() {
 
 // ------------------------------------------------------------Datu edit Settingos 
 
-$('#editForm').submit(e => {
+$('#editProfileForm').submit(e => {
     e.preventDefault();
 
-    const editPassActive = $('.passwordC').hasClass('active');
+    const editPassActive = $('.password-Chanege-Switcher').hasClass('active');
     const liet_id = $('#lietotajaId').val();
     const vards = $('#vards').val();
     const uzvards = $('#uzvards').val();
@@ -133,7 +162,7 @@ $('#editForm').submit(e => {
     const telefons = $('#telefons').val();
     const password1 = $('#password1-c').val();
     const password2 = $('#password2-c').val();
-    const newavatar = $('#newavatar')[0].files[0];  
+    const newavatar = $('#newAvatar')[0].files[0];  
 
     const formData = new FormData();
     formData.append('liet_id', liet_id);
@@ -147,7 +176,7 @@ $('#editForm').submit(e => {
     formData.append('newavatar', newavatar); 
     
 
-    const editUrl = '/database/edit-profile.php';
+    const editUrl = '/database/edit_profile.php';
 
     $.ajax({
         type: 'POST',
@@ -165,7 +194,7 @@ $('#editForm').submit(e => {
             $('.linemess').remove();
 
             const messageBox = `<div class="linemess ${messageType}">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
 
                                     <div class="mesinfobox">
                                         <i class="fas ${iconClass}"></i>
@@ -192,7 +221,7 @@ $('#editForm').submit(e => {
             console.error('Kļuda pie datu nosūtīšanas:', errorThrown);
             $('.linemess').remove();
             const errorMessage = `<div class="linemess error">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
 
                                     <div class="mesinfobox">
                                         <i class="fas fa-close"></i>
@@ -217,16 +246,15 @@ $('#editForm').submit(e => {
 // ------------------------------------------------------------Atsaukmes add un izvade un delet
 
 
-
-$('#atsakmes-form').submit(e => {
+$('#review-form').submit(e => {
     e.preventDefault();
 
-    const vards = $('#atsaukmes-vards').val();
-    const uzvards = $('#atsaukmes-uzvards').val();
-    const stars = $('#rating-value').val();
-    const at_text = $('#atsaukmes-text').val();
-    const lietotaja_id = $('#atsaukmes-lit-id').val();
-    const avatar = $('#atsaukmes-avatar').val();  
+    const stars = $('#review-rating').val();
+    const vards = $('#review-user-firstname').val();
+    const uzvards = $('#review-user-lastname').val();
+    const at_text = $('#review-text').val();
+    const lietotaja_id = $('#review-user-id').val();
+    const avatar = $('#review-user-avatar').val();  
 
     
     const formData = new FormData();
@@ -238,7 +266,7 @@ $('#atsakmes-form').submit(e => {
     formData.append('atsukmes_avatar', avatar); 
 
 
-    const addUrl = '/database/atsaukmes-add.php';
+    const addUrl = '/database/atsaukmes_add.php';
     
     console.log(formData)
 
@@ -258,7 +286,7 @@ $('#atsakmes-form').submit(e => {
             $('.linemess').remove();
 
             const messageBox = `<div class="linemess ${messageType}">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
 
                                     <div class="mesinfobox">
                                         <i class="fas ${iconClass}"></i>
@@ -285,7 +313,7 @@ $('#atsakmes-form').submit(e => {
             console.error('Kļuda pie datu nosūtīšanas:', errorThrown);
             $('.linemess').remove();
             const errorMessage = `<div class="linemess error">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
 
                                     <div class="mesinfobox">
                                         <i class="fas fa-close"></i>
@@ -311,34 +339,57 @@ $(document).ready(function() {
 
 })
 
-function atsaukmesIzvade() {
+function atsaukmesIzvade(page = 1) {
     $.ajax({
         type: "POST",
-        url: "/database/atsaukmes-izvade.php",
+        url: "/database/atsaukmes_izvade.php",
+        data: { page: page },
+        dataType: "json",
         success: function(response) {
-            if ($.trim(response) === "") {
-                $("#atsaukmes-container").html("<h2>Neviens sludinajums nav pievienots favoritos!</h2>");
+            if ($.trim(response.comments) === "") {
+                $("#review-output-container").html("<h2>Nav nevienas atsaukmes!</h2>");
+                $(".review__output_buttons").html("");
             } else {
-                $("#atsaukmes-container").html(response);
+                $("#review-output-container").html(response.comments);
+                AtsaukmesRenderPagination(response.totalPages, page);
             }
         },
-        error: function(xhr, status, error) {
-            $("#atsaukmes-container").html("<h1>Kļūda: " + xhr + "</h1>");  
+        error: function(xhr) {
+            $("#review-output-container").html("<h1>Kļūda: " + xhr.statusText + "</h1>");
         }
     });
 }
 
+function AtsaukmesRenderPagination(totalPages, currentPage) {
+    let html = '';
+    let maxButtons = 5;
+    let start = Math.max(1, currentPage - 2);
+    let end = Math.min(totalPages, start + maxButtons - 1);
 
-window.addEventListener('load', function () {
-$('#atsakmeDelet').submit(e => {
+    if (end - start < maxButtons - 1) { start = Math.max(1, end - maxButtons + 1); }
+    for (let i = start; i <= end; i++) { html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`; }
+    if (totalPages > end) { html += `<span>...</span><button class="page-btn" data-page="${totalPages}">${totalPages}</button>`;}
+
+    $(".review__output_buttons").html(html);
+}
+
+$(document).on("click", ".page-btn", function() {
+    const page = $(this).data("page");
+    atsaukmesIzvade(page);
+});
+
+$(document).ready(function() {
+    atsaukmesIzvade(1);
+});
+
+$(document).on('submit', '.atsakmeDelet', function(e) {
     e.preventDefault();
 
-    const atID = $('#atID').val();
+    const form = $(this);
+    const atID = form.find('#atID').val(); 
 
-    const editData = {atID};
-    const editUrl = '/database/atsaukmes-delet.php';
-
-    // console.log(editData)
+    const editData = { atID };
+    const editUrl = '/database/atsaukmes_delet.php';
 
     $.ajax({
         type: 'POST',
@@ -354,7 +405,7 @@ $('#atsakmeDelet').submit(e => {
             $('.linemess').remove();
 
             const messageBox = `<div class="linemess ${messageType}">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
 
                                     <div class="mesinfobox">
                                         <i class="fas ${iconClass}"></i>
@@ -374,6 +425,7 @@ $('#atsakmeDelet').submit(e => {
             }, 5000);
 
             if (response.success) {
+                form.closest('.deletmodal').removeClass('active'); 
                 atsaukmesIzvade();
             }
         },
@@ -381,7 +433,7 @@ $('#atsakmeDelet').submit(e => {
             console.error('Kļuda pie datu nosūtīšanas:', errorThrown);
             $('.linemess').remove();
             const errorMessage = `<div class="linemess error">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
 
                                     <div class="mesinfobox">
                                         <i class="fas fa-close"></i>
@@ -400,11 +452,23 @@ $('#atsakmeDelet').submit(e => {
         }
     });
 });
+
+$(document).on('click', '[data-target]', function () {
+    const targetSelector = $(this).data('target');
+    $(targetSelector).addClass('active');
+});
+
+$(document).on('click', '#no', function () {
+    $(this).closest('.deletmodal').removeClass('active');
+});
+
+$(document).on('click', '#closeRep', function () {
+    $(this).closest('.repmodal').removeClass('active');
 });
 
 // ------------------------------------------------------------Favorit add un izvade
 
-$('.favoriti').submit(function (e) {
+$(document).on('submit', '.favoriti', function (e) {
     e.preventDefault();
 
     const form = $(this);
@@ -428,7 +492,7 @@ $('.favoriti').submit(function (e) {
             $('.linemess').remove();
 
             const messageBox = `<div class="linemess ${messageType}">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
                                     <div class="mesinfobox">
                                         <i class="fas ${iconClass}"></i>
                                         <div class="mesinfo">
@@ -446,18 +510,15 @@ $('.favoriti').submit(function (e) {
             }, 5000);
 
             if (response.success) {
-               
                 const starIcon = response.star_icon;
                 form.find('.favBtn i').attr('class', starIcon);
-
                 favoritIzvade();  
             }
         },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.error('Ошибка при отправке данных:', errorThrown);
+        error: function () {
             $('.linemess').remove();
             const errorMessage = `<div class="linemess error">
-                                    <i class="fas fa-close closemodal" id="mesclose"></i>
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
                                     <div class="mesinfobox">
                                         <i class="fas fa-close"></i>
                                         <div class="mesinfo">
@@ -475,28 +536,50 @@ $('.favoriti').submit(function (e) {
     });
 });
 
+$(document).on("click", ".favorite-page-btn", function() {
+    const page = $(this).data("page");
+    favoritIzvade(page);
+});
+
 $(document).ready(function() {
+    favoritIzvade(1);
+});
 
-    favoritIzvade();
-
-})
-
-function favoritIzvade() {
+function favoritIzvade(page = 1) {
     $.ajax({
         type: "POST",
         url: "/database/favorit_izvade.php",
+        data: { page: page },
+        dataType: 'json',
         success: function(response) {
-            if ($.trim(response) === "") {
-                $("#fav-container").html("<h2>Neviens sludinajums nav pievienots favoritos!</h2>");
+            if ($.trim(response.favorite) === "") {
+                $("#favorites-container").html("<h2>Nav pievienots neviens favorīts!</h2>");
+                $(".favorites-buttons").html("");
             } else {
-                $("#fav-container").html(response);
+                $("#favorites-container").html(response.favorite);
+                FavoriteRenderPagination(response.totalPages, page);
             }
         },
-        error: function(xhr, status, error) {
-            $("#fav-container").html("<h1>Kļūda: " + xhr + "</h1>");  
+        error: function(xhr) {
+            $("#favorites-container").html("<h1>Kļūda: " + xhr.statusText + "</h1>");
         }
     });
 }
+
+function FavoriteRenderPagination(totalPages, currentPage) {
+    let html = '';
+    let maxButtons = 5;
+    let start = Math.max(1, currentPage - 2);
+    let end = Math.min(totalPages, start + maxButtons - 1);
+
+    if (end - start < maxButtons - 1) { start = Math.max(1, end - maxButtons + 1); }
+    for (let i = start; i <= end; i++) { html += `<button class="favorite-page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`; }
+    if (totalPages > end) { html += `<span>...</span><button class="favorite-page-btn" data-page="${totalPages}">${totalPages}</button>`;}
+
+    $(".favorites-buttons").html(html);
+}
+
+
 
 
 

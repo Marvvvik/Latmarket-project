@@ -10,7 +10,7 @@ align-items: center;
 .filter-menu{
 
 width: 100%;
-padding: 2rem 10%;
+padding: 2rem 10% 0 10%;
 height: auto;
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
 background: var(--maincolor);
@@ -22,7 +22,7 @@ margin-top: 6rem;
 
 }
 
-.filterbox{
+.select-Container{
 
 display: flex;
 justify-content: center;
@@ -31,7 +31,7 @@ flex-wrap: wrap;
 
 }
 
-.filterbox .box{
+.select-Container .box{
 
 margin: 1rem;
 padding: 0%;
@@ -324,11 +324,98 @@ color: #fff;
 }
 
 
+.add-Filter{
+width: 100%;
+height: 4rem;
+border-top: .1rem solid var(--gray);
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.box-Container{
+width: 60%;
+height: 100%;
+padding: 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.box-Container .box{
+width: 50%;
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.add-Filter .box button{
+background: var(--secondcolor);
+color: var(--textcolor-2);
+padding: .7rem 1rem;
+border-radius: .5rem;
+cursor: pointer;
+font-size: 1rem;
+}
+
+.add-Filter .box button i{
+margin-right: .5rem;
+}
+
+
+.add-Filter .box button:hover{
+background: var(--hover);
+}
+
+
+.offer-buttons{
+padding: 5rem 10% 0 10%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.offer-buttons button{
+padding: .7rem 1rem;
+background: var(--secondcolor);
+border-radius: .5rem;
+color: var(--textcolor-2);
+font-size: 1rem;
+margin: 0 .5rem;
+cursor: pointer;
+opacity: 60%;
+}
+
+.offer-buttons button:hover{
+background: var(--hover);
+opacity: 100%;
+}
+
+.offer-buttons button.active{
+opacity: 100%;
+}
+
+.offer-buttons button.active:hover{
+background: var(--secondcolor);
+cursor: default;
+}
 
 .offers{
 
 background: var(--maincolor-2);
 padding: 3rem 10%;
+
+}
+
+#carsContainer h2{
+
+padding: .7rem 1rem;
+background: var(--secondcolor);
+color: var(--textcolor-2);
+font-size: 1.2rem;
+border-radius: .5rem;
+margin: 1rem 0 3rem 0;
 
 }
 
@@ -440,6 +527,7 @@ background: var(--maincolor);
 margin: 0 .5rem;
 cursor: pointer;
 opacity: 80%;
+z-index: 2;
 
 }
 
