@@ -70,7 +70,6 @@ $offset = ($page - 1) * $limit;
 
 $whereClause = count($filtrets) > 0 ? "WHERE " . implode(" AND ", $filtrets) : "";
 
-// Получаем общее количество для пагинации
 $countSQL = "SELECT COUNT(*) AS total FROM Cars $whereClause";
 $countStmt = $savienojums->prepare($countSQL);
 if (!empty($params)) {
@@ -81,7 +80,6 @@ $countResult = $countStmt->get_result();
 $totalRows = $countResult->fetch_assoc()['total'];
 $totalPages = ceil($totalRows / $limit);
 
-// Получаем нужные записи
 $params[] = $limit;
 $params[] = $offset;
 $types .= "ii";

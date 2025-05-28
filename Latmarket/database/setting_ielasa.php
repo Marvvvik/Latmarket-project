@@ -3,7 +3,10 @@
 require "con_db_l.php"; 
 session_start();
 
-define('ENCRYPTION_KEY', $_SESSION['ENCRYPTION_KEY']);
+$config = require 'config.php';
+$encryptionKey = $config['encryption_key'];
+
+define('ENCRYPTION_KEY', $encryptionKey); 
 define('ENCRYPTION_METHOD', 'AES-256-CBC');
 
 function decryptData($data) {

@@ -16,11 +16,14 @@ if(isset($_POST['carizvele'])){
     $chatBtn = null;
     if(session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['IdHOMIK']) && $Car['autora_id'] !== $_SESSION['IdHOMIK']){
 
-    $chatBtn = "<i class='fa fa-ban slud-Rep'></i><button class='chatBtn'>Uzrakstit</button>";
+    $chatBtn = "<button class='chatBtn'>Uzrakstit</button>";
     
     }
 
-    define('ENCRYPTION_KEY', $_SESSION['ENCRYPTION_KEY']); 
+    $config = require '../../database/config.php';
+    $encryptionKey = $config['encryption_key'];
+
+    define('ENCRYPTION_KEY', $encryptionKey); 
     define('ENCRYPTION_METHOD', 'AES-256-CBC');
 
     function decryptData($data) {
@@ -52,9 +55,11 @@ if(isset($_POST['carizvele'])){
 
     $carfoto_id = 1;
     $photoHTML = ""; 
+    $fotoSliderHtml = "";
     while ($photo = $photosResult->fetch_assoc()) {
         $base64Image = base64_encode($photo['photo']);
         $photoHTML .= "<img src='data:image/jpeg;base64,{$base64Image}' alt='Car Photo'/>";
+        $fotoSliderHtml .="<div class='sliderFotos'><img src='data:image/jpeg;base64,{$base64Image}' alt='Car Photo'/></div>";
     }
     
     $tehniska_apskate_izvade = ($Car['Tehniska_apskate'] == 0) ? "Nav" : $Car['Tehniska_apskate'];

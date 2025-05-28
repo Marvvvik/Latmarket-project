@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (
+    session_status() === PHP_SESSION_ACTIVE &&
+    isset($_SESSION['lietotajvardsHOMIK']) &&
+    isset($_SESSION['rooleHOMIK']) &&
+    $_SESSION['rooleHOMIK'] === 'admin'
+) {
+?>
+
 <!DOCTYPE html>
 <html lang="lv">
 <head>
@@ -14,20 +25,11 @@
 </head>
 <body>
 
-<header>
+<?php 
 
-    <a href="" class="in"><i class="fa fa-home"></i>Sakuma lapa</a>
+require "navigation.php";
 
-    <a href=""><i class="far fa-comment"></i>Atsaukmes</a>
-
-    <a href=""><i class="fa fa-home"></i>Sludinājumi</a>
-
-    <a href=""><i class="fas fa-newspaper"></i>Jaunumi</a>
-
-    <a href="/database/logout.php" class="logout"><i class="fa fa-sign-out"></i>Logout</a>
-
-</header>
-
+?>
 
 <section id="sakumlapa">
 
@@ -50,3 +52,9 @@
 
 </body>
 </html>
+<?php
+} else {
+    header("Location: /index.php");
+    exit;
+}
+?>

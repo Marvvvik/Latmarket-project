@@ -19,63 +19,143 @@ margin-top: 2rem;
 
 }
 
-.Car_foto_a, .car_info_a{
+
+.Car_foto_a{
 
 display: flex;
-justify-content: center;
+justify-content: space-between;
+align-items: center;
 
 }
 
-.slidersbox{
-
-width: 60%;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-
-}
-
-.slide-show{
-    
+.slide-show{  
+width: 55%;
 display: flex;
 align-items: center;
-width: 100%;
+background: #000;
 height: 25rem;
 overflow: hidden;
 border-radius: 1rem;
-
+position: relative;
 }
 
-.slide-show img{
+.slide-show img {
+position: absolute;
+top: 0;
+left: 0;
+display: none;
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: none;
+cursor: zoom-in;
+}
 
+.slide-show img:first-of-type {
+display: block;
+}
+
+.slide-btn{
+background: rgba(0, 0, 0, 0.0);
+height: 100%;
+width: 20%;
+position: absolute;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.slide-btn.main{
+background: rgba(0, 0, 0, 0.0);
+height: 80%;
+width: 10%;
+position: absolute;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.slide-btn i{
+color: var(--secondcolor);
+font-size: 2rem;
+opacity: 0;
+}
+
+.slide-btn:hover{
+background: rgba(0, 0, 0, 0.4);
+backdrop-filter: blur(5px);
+}
+
+.slide-btn.main:hover{
+background: rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+}
+
+.slide-btn:hover i{
+opacity: 100%;
+}
+
+.slide-btn.left{
+top: 50%;
+left: 0%;
+transform: translate(0%, -50%);
+}
+
+.slide-btn.right{
+top: 50%;
+right: 0%;
+transform: translate(0%, -50%);
+}
+
+.slide-show-rewiev{
+position: fixed;
+width: 100%;
+height: 100%;
+backdrop-filter: blur(5px);
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: rgba(0, 0, 0, 0.6);
+z-index: 2;
+display: none;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.slide-show-rewiev.active{
+display: flex;
+}
+
+.no-scroll {
+overflow: hidden;
+height: 100vh;
+}
+
+
+.slider-main{
+display: flex;
+width: 55%;
+height: 80%;
+position: relative;
+overflow: hidden;
+}
+
+.slider-main img {
+position: absolute;
+top: 0;
+left: 0;
+display: none;
 width: 100%;
 height: auto;
 object-fit: cover;
-
+transition: none;
 }
 
-.mini-slider{
-
-display: flex;
-align-items: center;
-justify-content: center;
-width: 100%;
-height: 5rem;
-margin-top: .5rem;
-
-}
-
-.mini-slider img{
-
-width: 25%;
-height: 100%;
-object-fit: cover;
-margin-right: .5rem;
-cursor: pointer;
-border-radius: .5rem;
-filter: grayscale(100%);
-
+.slider-main img:first-of-type {
+display: block;
 }
 
 .ator-info{
@@ -162,6 +242,12 @@ background: var(--hover);
 
 }
 
+.car_info_a{
+
+display: flex;
+justify-content: center;
+
+}
 
 .info-table{
 

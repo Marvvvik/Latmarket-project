@@ -30,14 +30,25 @@ require "car-parskate-izvade.php";
 
     <div class="Car_foto_a">
 
-        <div class="slidersbox">
+        <div class="slide-show">
 
-            <div class="slide-show">
+            <?php echo $photoHTML;?>
 
+            <div class="slide-btn left"><i class="fas fa-angle-left"></i></div>
+            <div class="slide-btn right"><i class="fas fa-angle-right"></i></div>
+
+        </div>
+
+        <div class="slide-show-rewiev">
+
+            <i class="fas fa-close close-Modal" id="closeSlider"></i>
+                
+            <div class="slider-main">
                 <?php echo $photoHTML;?>
-
             </div>
 
+            <div class="slide-btn main left"><i class="fas fa-angle-left"></i></div>
+            <div class="slide-btn main right"><i class="fas fa-angle-right"></i></div>
         </div>
 
         <div class="ator-info">

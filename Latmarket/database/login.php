@@ -3,9 +3,10 @@
 require "con_db_l.php";
 session_start();
 
-$_SESSION['ENCRYPTION_KEY'] = '1234567890abcdef1234567890abcdef';
+$config = require 'config.php';
+$encryptionKey = $config['encryption_key'];
 
-define('ENCRYPTION_KEY', $_SESSION['ENCRYPTION_KEY']); 
+define('ENCRYPTION_KEY', $encryptionKey); 
 define('ENCRYPTION_METHOD', 'AES-256-CBC');
 
 function decryptData($data) {
@@ -38,6 +39,16 @@ if (isset($_POST["login"])) {
             $_SESSION['epastsHOMIK'] = decryptData($lietotajs['epasts']);
             $_SESSION['telefonsHOMIK'] = decryptData($lietotajs['telefons']);
             $_SESSION['avatarHOMIK'] = 'data:image/jpeg;base64,' . base64_encode($lietotajs['avatar']);
+            $_SESSION['rooleHOMIK'] = $lietotajs['roole'];
+
+            if ($_SESSION['rooleHOMIK'] === 'admin') {
+                header('Location: ../admin/index.php');
+            } else {
+                $redirect_url = !empty($_POST['redirect']) ? $_POST['redirect'] : '../';
+                header('Location: ' . $redirect_url);
+            }
+
+            exit;
 
         } else {
             $_SESSION['log_paz'] = "Nepareizs logins vai parole!";
@@ -45,9 +56,6 @@ if (isset($_POST["login"])) {
     } else {
         $_SESSION['log_paz'] = "Visi lauki nav aizpildīti!";
     }
-
-    $redirect_url = !empty($_POST['redirect']) ? $_POST['redirect'] : '../';
-    header('Location: ' . $redirect_url);
     
     $vaicajums->close();
     $savienojums->close();

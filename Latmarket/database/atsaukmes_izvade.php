@@ -57,24 +57,25 @@ while ($atsakmes = $atsakmesResult->fetch_assoc()) {
                     <div class='repText'>
                         <h1>Ziņot par komentāru</h1>
                     </div>
-                    <form>
+                    <form class='reportForm'>
                         <div class='selectRep'>
                             <label>Pārkāpuma kategorija</label>
-                            <select>
+                            <select id='rep_title'>
                                 <option value='' hidden>Pēc kategorijām</option>
-                                <option value=''>Spam</option>
-                                <option value=''>Nepiedienīgs saturs</option>
-                                <option value=''>Naida runa</option>
-                                <option value=''>Dezinformācija</option>
-                                <option value=''>Personas datu pārkāpums</option>
-                                <option value=''>Cits iemesls</option>
+                                <option value='Spam'>Spam</option>
+                                <option value='Nepiedienīgs saturs'>Nepiedienīgs saturs</option>
+                                <option value='Naida runa'>Naida runa</option>
+                                <option value='Dezinformācija'>Dezinformācija</option>
+                                <option value='Personas datu pārkāpums'>Personas datu pārkāpums</option>
+                                <option value='Cits iemesls'>Cits iemesls</option>
                             </select>
                         </div>
                         <div class='repTextarea'>
                             <label>Apraksts</label>
-                            <textarea></textarea>
+                            <textarea id='rep_text'></textarea>
+                            <input id='atsakmes_id' type='hidden' value='{$atsakmes['atsakmes_id']}'>
                         </div>
-                        <button class='repbtn'><i class='fas fa-paper-plane'></i>Iesniegt</button>
+                        <button class='repbtn' type='submit'><i class='fas fa-paper-plane'></i>Iesniegt</button>
                     </form>
                 </div>
             </div>";
