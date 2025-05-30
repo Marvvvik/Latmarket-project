@@ -1,8 +1,10 @@
+//---------------------------------------------------------------------------Izvade filtracija 
+
 $(document).on('change', "#Car_brends_select", function () {
     var car_marka = $(this).val(); 
 
     $.ajax({
-        url: 'marka-izvade.php',
+        url: 'database/model-izvade.php',
         type: 'POST',
         data: { marka: car_marka },
         dataType: 'json', 
@@ -17,7 +19,7 @@ $(document).on('change', "#Car_brends_select", function () {
             $('#car_modelis_select').html(template);
         },
         error: function () {
-            alert("Neizdevās ielasīt datus");
+            console.log("Neizdevās ielasīt datus");
         }
     });
 
@@ -53,6 +55,9 @@ $(document).on('change', 'select', function () {
     }
 });
 
+//---------------------------------------------------------------------------Izvade filtracija 
+
+
 $(document).ready(function () {
     FilterCarList(1);
 });
@@ -62,7 +67,7 @@ $(document).on('change', "select, input[type='radio'], input[type='range'], inpu
 });
 
 function FilterCarList(page = 1) {
-    $("#carsContainer").html("<div class='loader'>Notiek ielāde...</div>");
+    $("#carsContainer").html("<div class='loader-container'><span class='loader'></span><div class='loader-text'>Notiek ielāde...</div></div>");
 
     var requestData = { 
         marka: $('#Car_brends_select').val(),
@@ -89,7 +94,7 @@ function FilterCarList(page = 1) {
 
     $.ajax({
         type: "POST",
-        url: "car-izvade.php",
+        url: "database/car-izvade.php",
         data: requestData,
         dataType: "json",
         success: function(response) {
@@ -135,3 +140,96 @@ $(document).on("click", ".photobtn button", function() {
     $(".photobtn[id='" + carId + "'] button").removeClass("active");
     $(this).addClass("active");
 });
+
+//---------------------------------------------------------------------------Atsakmes add 
+
+$('#addCar').submit(e => {
+    e.preventDefault();
+
+    const marka = $('#markaSelect').val();
+    const gads = $('#gadsInput').val();
+    const virsBuve = $('#virsSelect').val();
+    const tilpums = $('#tilInput').val();
+    const jauda = $('#jauInput').val();
+    const atrumkarba = $('#atrumSelect').val();
+    const degviela = $('#degSelect').val();
+    const piedzina = $('#piedzSelect').val();
+    const nobraukums = $('#nobInput').val();
+    const krasa = $('#krasSelect').val();
+    const apskate = $('#askateSelect').val();
+    const pilseta = $('#pilsetaSelect').val();
+    const vin = $('#winInput').val();
+    const cena = $('#cenaInput').val();
+
+    const formData = new FormData();
+    formData.append('marka', marka);
+    formData.append('gads', gads);
+    formData.append('virsBuve', virsBuve);
+    formData.append('tilpums', tilpums);
+    formData.append('jauda', jauda);
+    formData.append('atrumkarba', atrumkarba);
+    formData.append('degviela', degviela);
+    formData.append('piedzina', piedzina);
+    formData.append('nobraukums', nobraukums);
+    formData.append('krasa', krasa);
+    formData.append('apskate', apskate);
+    formData.append('pilseta', pilseta);
+    formData.append('vin', vin);
+    formData.append('cena', cena);
+
+    const addUrl = 'database/car_add_db.php';
+
+    $.ajax({
+        type: 'POST',
+        url: addUrl,
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        success: response => {
+            if (response.success && response.payment_url) {
+                window.location.href = response.payment_url;
+            } else {
+                $('.linemess').remove();
+
+                const messageBox = `<div class="linemess error">
+                                        <i class="fas fa-close close-Modal" id="mesclose"></i>
+                                        <div class="mesinfobox">
+                                            <i class="fas fa-close"></i>
+                                            <div class="mesinfo">
+                                                <h2>Ne veiksmīgi!</h2>
+                                                <p>${response.error || 'Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.'}</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline"></div>
+                                    </div>`;
+
+                $('body').append(messageBox);
+
+                setTimeout(() => {
+                    $('.linemess').fadeOut(300, function () { $(this).remove(); });
+                }, 5000);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('Kļuda pie datu nosūtīšanas:', errorThrown);
+            $('.linemess').remove();
+            const errorMessage = `<div class="linemess error">
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
+                                    <div class="mesinfobox">
+                                        <i class="fas fa-close"></i>
+                                        <div class="mesinfo">
+                                            <h2>Ne veiksmīgi!</h2>
+                                            <p>Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline"></div>
+                                </div>`;
+            $('body').append(errorMessage);
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
+        }
+    });
+});
+

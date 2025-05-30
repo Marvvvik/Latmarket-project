@@ -1,6 +1,6 @@
 <?php
 
-require "../con_db_transports.php";
+require "con_db_transports.php";
 
 $marka = isset($_POST['marka']) ? $_POST['marka'] : null;
 

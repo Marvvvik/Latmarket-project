@@ -1,6 +1,6 @@
 <?php
 
-require "../con_db_transports.php";
+require "con_db_transports.php";
 
 
 if(isset($_POST['carizvele'])){

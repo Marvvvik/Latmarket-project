@@ -175,7 +175,6 @@ $('#editProfileForm').submit(e => {
     formData.append('editPassActive', editPassActive);
     formData.append('newavatar', newavatar); 
     
-
     const editUrl = '/database/edit_profile.php';
 
     $.ajax({
@@ -264,9 +263,6 @@ $('#review-form').submit(e => {
     formData.append('at_text', at_text);
     formData.append('lietotaja_id', lietotaja_id);
     formData.append('atsukmes_avatar', avatar); 
-
-
-    const addUrl = '/database/atsaukmes_add.php';
     
     console.log(formData)
 
@@ -518,10 +514,6 @@ $(document).on('submit', '.reportForm', function(e) {
             setTimeout(() => {
                 $('.linemess').fadeOut(300, function () { $(this).remove(); });
             }, 5000);
-
-            if (response.success) {
-                atsaukmesIzvade();
-            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error('Kļuda pie datu nosūtīšanas:', errorThrown);

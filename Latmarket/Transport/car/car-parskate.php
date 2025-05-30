@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LatMarket  || Car</title>
+    <title>LatMarket  || Vieglie auto</title>
     <link rel="shortcut icon" href="../../image/Latmarket-logo-mini.png" type="image/png">
     <link rel="stylesheet" href="../../assets/style-main.css">
     <link rel="stylesheet" href="assets/style-apskate.css">
@@ -21,8 +21,8 @@
 <?php
 
 require "../../header.php";
-require "../con_db_transports.php";
-require "car-parskate-izvade.php";
+require "database/con_db_transports.php";
+require "database/car-parskate-izvade.php";
 
 ?>
 
@@ -289,7 +289,7 @@ require "car-parskate-izvade.php";
 
             <p>Pilsēta: <span><?php echo $Car['Pilseta']?></span></p>
 
-            <p>Vin: <span><?php echo $Car['Vin']?></span></p>
+            <p>VIN: <span><?php echo $Car['Vin']?></span></p>
 
             <p>Tel: <span><?php echo $Izvade_telefons; ?></span></p>
 

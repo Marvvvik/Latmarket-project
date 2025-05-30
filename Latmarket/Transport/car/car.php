@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LatMarket  || Car</title>
+    <title>LatMarket  || Vieglie auto</title>
     <link rel="shortcut icon" href="../../image/Latmarket-logo-mini.png" type="image/png">
     <link rel="stylesheet" href="../../assets/style-main.css">
     <link rel="stylesheet" href="assets/style-car.css">
@@ -38,7 +38,7 @@ require "../../header.php";
                             <option value='' id="name" hidden>Marka</option>
                             <option value='' id="clear">-</option>
                             <?php 
-                                require "car-filter.php"; 
+                                require "database/car-filter.php"; 
                                 echo $Car_brendss; 
                             ?>
                             
@@ -323,10 +323,11 @@ require "../../header.php";
 
             <div class="box-Container">
 
+                <?php if(session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['lietotajvardsHOMIK'])){ ?>
                 <div class="box">
-                    <button><i class="fa fa-plus"></i>Izveidot sludinājumu</button>
+                    <a href="car-add.php"><i class="fa fa-plus"></i>Izveidot sludinājumu</a>
                 </div>
-
+                <?php }; ?>
                 <div class="box">
                     <div class= "filt-cont">
                         <div class="select">
@@ -340,7 +341,7 @@ require "../../header.php";
                                 <option value="Dzeltena">Dzeltena</option>
                                 <option value="Zila">Zila</option>
                                 <option value="Oraņža">Oraņža</option>
-                                <option value="Violeta">Violeta</option>
+                                 <option value="Violeta">Violeta</option>
                                 <option value="Pelēka">Pelēka</option>
                                 <option value="Sudraba">Sudraba</option>
 

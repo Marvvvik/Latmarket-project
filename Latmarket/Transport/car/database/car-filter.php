@@ -1,6 +1,6 @@
 <?php
 
-require "../con_db_transports.php";
+require "con_db_transports.php";
 
 $Cars_selct_SQl = "SELECT DISTINCT Marka FROM Cars";
 $atlasa_car_select = mysqli_query($savienojums, $Cars_selct_SQl);

@@ -372,7 +372,7 @@ cursor: pointer;
 display: flex;
 justify-content: space-between;
 align-items: center;
-width: 80%;
+width: 90%;
 
 }
 
@@ -388,6 +388,7 @@ align-items: center;
 .info-container p{
 
 font-size: 1.2rem;
+margin: 0 1rem;
 
 }
 

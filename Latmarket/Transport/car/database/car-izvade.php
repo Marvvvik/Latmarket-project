@@ -1,5 +1,5 @@
 <?php
-require "../con_db_transports.php";
+require "con_db_transports.php";
 session_start();
 
 $modelis = $_POST['modelis'] ?? null;
@@ -67,8 +67,13 @@ if ($dtp == 2) {
 $limit = 5;
 $page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
 $offset = ($page - 1) * $limit;
+$statusCondition = "Statuss = 'active'";
 
-$whereClause = count($filtrets) > 0 ? "WHERE " . implode(" AND ", $filtrets) : "";
+if (count($filtrets) > 0) {
+    $whereClause = "WHERE " . implode(" AND ", $filtrets) . " AND " . $statusCondition;
+} else {
+    $whereClause = "WHERE " . $statusCondition;
+}
 
 $countSQL = "SELECT COUNT(*) AS total FROM Cars $whereClause";
 $countStmt = $savienojums->prepare($countSQL);

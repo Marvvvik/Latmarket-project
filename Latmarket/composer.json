@@ -1,0 +1,5 @@
+{
+    "require": {
+        "klix/klix-sdk-php": "^3.1"
+    }
+}

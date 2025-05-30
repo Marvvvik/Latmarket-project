@@ -1,0 +1,460 @@
+#car-add{
+padding: 5rem 20%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+#car-add form{
+width: 100%;
+height: auto;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.car-info, .car-description, .car-photo-container, .car-info-contacts, .features-section, .accommodation-contacts{
+width: 100%;
+height: auto;
+border-radius: 1rem;
+padding: 2rem;
+box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
+margin-top: 2rem;
+}
+
+.car-photo-container{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+.car-slider{  
+width: 55%;
+display: flex;
+align-items: center;
+background: #000;
+height: 25rem;
+overflow: hidden;
+border-radius: 1rem;
+position: relative;
+}
+
+.car-slider img {
+position: absolute;
+top: 0;
+left: 0;
+display: none;
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: none;
+cursor: zoom-in;
+}
+
+.car-slider img:first-of-type {
+display: block;
+}
+
+.slider-button{
+background: rgba(0, 0, 0, 0.0);
+height: 100%;
+width: 20%;
+position: absolute;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.slide-slider-button.main{
+background: rgba(0, 0, 0, 0.0);
+height: 80%;
+width: 10%;
+position: absolute;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.slide-btn i{
+color: var(--secondcolor);
+font-size: 2rem;
+opacity: 0;
+}
+
+.slide-btn:hover{
+background: rgba(0, 0, 0, 0.4);
+backdrop-filter: blur(5px);
+}
+
+.slide-btn.main:hover{
+background: rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+}
+
+.slide-btn:hover i{
+opacity: 100%;
+}
+
+.slide-btn.left{
+top: 50%;
+left: 0%;
+transform: translate(0%, -50%);
+}
+
+.slide-btn.right{
+top: 50%;
+right: 0%;
+transform: translate(0%, -50%);
+}
+
+.slider-modal{
+position: fixed;
+width: 100%;
+height: 100%;
+backdrop-filter: blur(5px);
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: rgba(0, 0, 0, 0.6);
+z-index: 2;
+display: none;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.slider-modal.active{
+display: flex;
+}
+
+.no-scroll {
+overflow: hidden;
+height: 100vh;
+}
+
+.slider-main{
+display: flex;
+width: 55%;
+height: 80%;
+position: relative;
+overflow: hidden;
+}
+
+.slider-main img {
+position: absolute;
+top: 0;
+left: 0;
+display: none;
+width: 100%;
+height: auto;
+object-fit: cover;
+transition: none;
+}
+
+.slider-main img:first-of-type {
+display: block;
+}
+
+.author-info{
+width: 40%;
+height: 100%;
+display: flex;
+justify-content: right;
+flex-direction: column;
+}
+
+.author-box{
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 1rem;
+}
+
+.author-avatar{
+width: 5rem;
+height: 5rem;
+border-radius: 50%;
+border: .2rem var(--secondcolor) solid;
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+}
+
+.author-avatar img{
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.author-name{
+margin-right: 1rem;
+text-align: right;
+}
+
+.post-date{
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 17rem;
+}
+
+.post-date p{
+margin: 0 .5rem;
+opacity: 30%;
+}
+
+.car-info{
+display: flex;
+justify-content: center;
+}
+
+.info-table{
+display: flex;
+justify-content: center;
+align-items: center; 
+flex-wrap: wrap;
+background: var(--secondcolor);
+padding: 1rem 0;
+border-radius: 1rem;
+}
+
+.info-row{
+display: flex;
+align-items: center;
+width: 30%;
+margin: .5rem;
+}
+
+.info-row img{
+width: 3rem;
+height: 3rem;
+margin-right: 1rem;
+}
+
+.info-row input,.info-row select{
+padding: .5rem .7rem;
+width: 40%;
+border-radius: .5rem;
+margin: 0 .5rem;
+}
+
+/* ------------------------------------car-description */
+
+.car-description{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.edit-buttons{
+display: flex;
+justify-content: center;
+align-items: center;
+margin: .5rem 0 1rem 0;
+}
+
+.edit-buttons button{
+color: var(--textcolor-2);
+background: var(--secondcolor);
+padding: .4rem .7rem;
+border-radius: .5rem;
+font-size: 1rem;
+cursor: pointer;
+margin: 0 .5rem;
+}
+
+.edit-buttons button:hover{
+background: var(--hover)
+}
+
+.contenteditable-box{
+resize: none;
+width: 100%;
+height: 30rem;
+border-radius: 1rem;
+padding: 1rem;
+background: var(--maincolor);
+position: relative;
+}
+
+.contenteditable{
+width: 100%;
+height: 100%;
+padding: 1rem;
+overflow: auto;
+}
+
+.contenteditable h1{
+font-size: 1.5rem;
+}
+
+.contenteditable h2{
+font-size: 1.3rem;
+}
+
+.contenteditable p{
+font-size: 1rem;
+}
+
+.review_char-limit{
+position: absolute;
+bottom: 1rem;
+right: 3rem;
+opacity: 50%;
+}
+
+.placeholder-text {
+position: absolute;
+top: 2rem;
+left: 2rem;
+color: #888;
+pointer-events: none;
+user-select: none;
+}
+
+.contenteditable:focus + .placeholder-text,
+.contenteditable:not(:empty) + .placeholder-text {
+display: none;
+}
+
+/* ------------------------------------features-section */
+
+.features-section{
+display: flex;
+justify-content: space-between;
+}
+
+.features-section .feature-box{
+display: flex;
+justify-content: left;
+flex-direction: column;
+}
+
+.feature-title{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+background: var(--secondcolor);
+padding: .7rem 1rem;
+border-radius: .5rem;
+margin-bottom: 1rem;
+}
+
+.feature-title h1{
+color: var(--textcolor-2);
+font-size: 1rem;
+}
+
+.checkbox-box{
+display: flex;
+justify-content: left;
+align-items: center;
+}
+
+.checkbox-box input[type="checkbox"] {
+width: 15px;      
+height: 15px;     
+transform: scale(1.5);      
+}
+
+.checkbox-box label{
+margin: .5rem 0 .5rem .5rem;
+font-size: .9rem;
+opacity: 50%;
+font-weight: bold;
+}
+
+.checkbox-box label.active{
+opacity: 100%;
+}
+
+.car-info-contacts{
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 2rem 1rem;
+}
+
+.car-info-contacts p{
+font-size: 1rem;
+}
+
+.car-info-contacts p span{
+font-weight: bold;    
+}
+
+.contacts-details{
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+}
+
+.contacts-box{
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 1rem;
+width: 25%;
+}
+
+.contacts-box input, .contacts-box select{
+padding: .5rem .7rem;
+width: 80%;
+border-radius: .5rem;
+margin: 0 .5rem;
+}
+
+#winInput{
+width: 100%;
+}
+
+#cenaInput{
+width: 40%;
+}
+
+.accommodation-contacts{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.accommodation-contacts button{
+padding: .5rem .7rem;
+background: var(--secondcolor);
+color: var(--textcolor-2);
+border-radius: 1rem;
+cursor: pointer;
+font-size: 1.2rem;
+}
+
+.accommodation-contacts button i{
+margin-right: .5rem;
+font-size: 1rem;
+}
+
+.accommodation-contacts button:hover{
+background: var(--hover);
+}
+
+.accommodation-contacts button:hover i{
+animation: spin 1s ease-out forwards;
+}
+
+@keyframes spin {
+0% {
+transform: rotate(0deg);
+}
+
+100% {
+transform: rotate(720deg);
+}
+
+}
