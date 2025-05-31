@@ -1319,3 +1319,122 @@ margin-right: .5rem;
 .sarBtn:hover{
 background: var(--hover);
 }
+
+
+.payment-container{
+width: 100%;
+height: 100vh;
+background: rgba(0, 0, 0, 60%);
+backdrop-filter: blur(5px);
+position: fixed;
+top: 0;
+left: 0;
+z-index: 3;
+}
+
+.payment-info{
+position: fixed;
+width: 25%;
+height: auto;
+background: var(--maincolor-2);
+border-radius: 1rem;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+display: flex;
+align-items: center;
+flex-direction: column;
+padding: 2rem;
+}
+
+.payment-info p{
+font-size: 1.3rem;
+margin: .5rem 0;
+}
+
+.payment-info h1{
+border-radius: .5rem;
+background: var(--secondcolor);
+padding: .5rem .7rem;
+color: var(--textcolor-2);
+}
+
+.paymeny-id{
+width: 100%;
+text-align: left;
+margin-top: 3rem;
+}
+
+.paymeny-id p{
+font-size: 1.3rem;
+margin: .5rem 0;
+}
+
+.paymeny-id p span{
+font-weight: bold;
+}
+
+.success-animation{
+margin: 2rem 0;
+}
+
+.checkmark {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+display: block;
+stroke-width: 2;
+stroke: #4bb71b;
+stroke-miterlimit: 10;
+box-shadow: inset 0px 0px 0px #4bb71b;
+animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+position:relative;
+top: 5px;
+right: 5px;
+margin: 0 auto;
+}
+.checkmark__circle {
+stroke-dasharray: 166;
+stroke-dashoffset: 166;
+stroke-width: 2;
+stroke-miterlimit: 10;
+stroke: #4bb71b;
+fill: var(--maincolor-2);
+animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+
+}
+
+.checkmark__check {
+transform-origin: 50% 50%;
+stroke-dasharray: 48;
+stroke-dashoffset: 48;
+animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+100% {
+    stroke-dashoffset: 0;
+}
+}
+
+@keyframes scale {
+0%, 100% {
+    transform: none;
+}
+
+50% {
+    transform: scale3d(1.1, 1.1, 1);
+}
+}
+
+@keyframes fill {
+100% {
+    box-shadow: inset 0px 0px 0px 30px #4bb71b;
+}
+}
+
+.line{
+width: 90%;
+border-bottom: .2rem solid rgba(0, 0, 0, 50%);
+margin: 1rem 0;
+}

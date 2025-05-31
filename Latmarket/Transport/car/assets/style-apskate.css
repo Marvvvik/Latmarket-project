@@ -280,28 +280,20 @@ margin-right: 1rem;
 
 }
 
-.apskateSpan{
+.car_apraksts_a h1{
+font-size: 1.5rem;
+}
 
-font-weight: bold;
-
+.car_apraksts_a h2{
+font-size: 1.3rem;
 }
 
 .car_apraksts_a p{
-
-margin: 1rem 0;
-
+font-size: 1rem;
 }
 
-.car_apraksts_a ul{
-
-margin: 1rem 0 1rem 2rem;
-
-}
-
-.car_apraksts_a li{
-
-margin: .5rem 0;
-
+.car_apraksts_a b{
+font-weight: bold;
 }
 
 

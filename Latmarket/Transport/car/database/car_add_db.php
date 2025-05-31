@@ -2,13 +2,15 @@
 require "con_db_transports.php";
 session_start();
 
-$response = [];
+$response = ['success' => false];
 
 $marka = htmlspecialchars($_POST['marka']);
-// $modelis = htmlspecialchars($_POST['modelis']);
+$modelis = htmlspecialchars($_POST['modelis']);
 $gads = htmlspecialchars($_POST['gads']);
 $virsBuve = htmlspecialchars($_POST['virsBuve']);
 $tilpums = htmlspecialchars($_POST['tilpums']);
+$tilpums_attirits = str_replace(',', '.', $tilpums);
+
 $jauda = htmlspecialchars($_POST['jauda']);
 $atrumkarba = htmlspecialchars($_POST['atrumkarba']);
 $degviela = htmlspecialchars($_POST['degviela']);
@@ -16,9 +18,22 @@ $piedzina = htmlspecialchars($_POST['piedzina']);
 $nobraukums = htmlspecialchars($_POST['nobraukums']);
 $krasa = htmlspecialchars($_POST['krasa']);
 $apskate = htmlspecialchars($_POST['apskate']);
+$apskates_datums = new DateTime($apskate);
+$aktualaisLaiks = new DateTime();
+$aktualaisLaiks->setTime(0, 0, 0);
+
+$apraksts = $_POST['apraksts'];
+$apraksts_bez_tegiem = strip_tags($apraksts);
+$garums = mb_strlen($apraksts_bez_tegiem, 'UTF-8');
+
+$komplektacijas_json = $_POST['komplektacijas'] ?? '';
+$komplektacijas = json_decode($komplektacijas_json, true);
+
 $pilseta = htmlspecialchars($_POST['pilseta']);
 $vin = strtoupper(trim(htmlspecialchars($_POST['vin'])));
 $cena = strtoupper(trim(htmlspecialchars($_POST['cena'])));
+
+
 $autors = $_SESSION['IdHOMIK'];
 $status = "not paid";
 $price = "500";
@@ -110,100 +125,160 @@ function isValidVIN(string $vin): bool {
     return true; 
 }
 
-if (!empty($marka) && !empty($gads) && !empty($virsBuve) && !empty($tilpums) && 
-    !empty($jauda) && !empty($atrumkarba) && !empty($degviela) && !empty($piedzina) 
-    && !empty($nobraukums) && !empty($krasa) && !empty($krasa) && !empty($pilseta) 
-    && !empty($vin) && !empty($cena)) { 
 
-    if (in_array($marka, $markaTypes)) { 
-        if ($gads >= 1950 && $gads <= date("Y")) { 
-            if (in_array($virsBuve, $virsbuvesTypes)) { 
-                if (filter_var($jauda, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1,"max_range" => 3000]])){
-                    if ($atrumkarba == "Automāts" || $atrumkarba == "Manuāla") { 
-                        if (in_array($degviela, $FuelTypes)) {
-                            if (in_array($piedzina, $Drivetrains)) {
-                                if (filter_var($nobraukums, FILTER_VALIDATE_INT, ["options" => ["min_range" => 0,"max_range" => 1500000]])) {
-                                    if (in_array($krasa, $allowedColors)) {
-                                        if (in_array($pilseta, $allowedLocations)) {
-                                            if (isValidVIN($vin)) {
-                                                if (is_numeric($cena)) {
-                                                    if (floatval($cena) >= 0) {
-                                                        if (filter_var($tilpums, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1,"max_range" => 10]])){
+if (empty($marka) || empty($gads) || empty($virsBuve) || empty($tilpums) || empty($atrumkarba) 
+    || empty($degviela) || empty($piedzina) || empty($nobraukums) || empty($krasa) || 
+    empty($pilseta) || empty($vin) || empty($cena) || empty($modelis) || $modelis === null || $modelis === "" || $modelis === "null") {
+    $response['error'] = "Visi lauki nav aizpildīti!";
+    echo json_encode($response);
+    exit;
+}
 
-                                                            $vaicajums = $savienojums->prepare("INSERT INTO Cars (Marka, Izladuma_gads, Virsbuves_tips, Dzinejs, Jauda, Atrumkarba_tips, Bezina_tips, Piedzina, Nobrakums, Krasa, Pilseta, Vin, Cena, autora_id, Statuss) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                                                            $vaicajums->bind_param("sisdisssisisdis", $marka, $gads, $virsBuve, $tilpums, $jauda, $atrumkarba, $degviela, $piedzina, $nobraukums, $krasa, $pilseta, $vin, $cena, $autors, $status);
+if (!in_array($marka, $markaTypes)) {
+    $response['error'] = "Nav norādīti korekti Marka!";
+    echo json_encode($response);
+    exit;
+}
 
-                                                            if ($vaicajums->execute()) {
-                                                                $insertedId = $savienojums->insert_id;
-                                                                $paymentUrl = "/payment/cheсkout.php?announcement=" . $insertedId . "&price=" . urlencode($price) . "&table=" . urlencode($table);
-                                                                
-                                                                $response['success'] = true;
-                                                                $response['message'] = "Auto veiksmīgi pievienots.";
-                                                                $response['payment_url'] = $paymentUrl;
-                                                            } else {
-                                                                $response['success'] = false;
-                                                                $response['error'] = "Sistēmas kļūda.";
-                                                            }
+if ($gads < 1950 || $gads > date("Y")) {
+    $response['error'] = "Nav norādīts pareizs izlaiduma gads!";
+    echo json_encode($response);
+    exit;
+}
 
-                                                        } else {
-                                                            $response['success'] = false;
-                                                            $response['error'] = "Nav noradīta korekti Tilpums!"; 
-                                                        } 
-                                                    } else {
-                                                        $response['success'] = false;
-                                                        $response['error'] = "Cenai jābūt lielākai par nulli!"; 
-                                                    }
-                                                } else {
-                                                    $response['success'] = false;
-                                                    $response['error'] = "Cenai jābūt skaitlim!";
-                                                }
-                                            } else {
-                                                $response['success'] = false;
-                                                $response['error'] = "Nav noradīta korekti VIN!"; 
-                                            }
-                                        } else {
-                                            $response['success'] = false;
-                                            $response['error'] = "Nav noradīta korekti pilsēta!";
-                                        }
-                                    } else {
-                                        $response['success'] = false;
-                                        $response['error'] = "Nav noradīta korekti krāsa!";
-                                    }
-                                } else {
-                                    $response['success'] = false;
-                                    $response['error'] = "Nav noradīta korekti nobrakums!";
-                                }
-                            } else {
-                                $response['success'] = false;
-                                $response['error'] = "Nav noradīta korekti piedziņa!";
-                            }
-                        } else {
-                            $response['success'] = false;
-                            $response['error'] = "Nav noradīta korekti degviela!";
-                        }
-                    } else {
-                        $response['success'] = false;
-                        $response['error'] = "Nav noradīta korekti ātrumkārba!";
-                    }
-                } else {
-                    $response['success'] = false;
-                    $response['error'] = "Nav noradīta korekti jauda!";
-                }
-            } else {
-                $response['success'] = false;
-                $response['error'] = "Nav noradīti korekti virsbūves tips!";
-            }
-        } else {
-            $response['success'] = false;
-            $response['error'] = "Nav noradīts pareizs izlaiduma gads!";
-        }
-    }else {
-            $response['success'] = false;
-            $response['error'] = "Nav noradīti korekti Marka!";
-        }
+if (!in_array($virsBuve, $virsbuvesTypes)) {
+    $response['error'] = "Nav norādīts korekts virsbūves tips!";
+    echo json_encode($response);
+    exit;
+}
+
+if (!filter_var($jauda, FILTER_VALIDATE_INT, ["options" => ["min_range" => 1, "max_range" => 3000]])) {
+    $response['error'] = "Nav norādīta korekta jauda!";
+    echo json_encode($response);
+    exit;
+}
+
+if ($atrumkarba !== "Automāts" && $atrumkarba !== "Manuāla") {
+    $response['error'] = "Nav norādīta korekta ātrumkārba!";
+    echo json_encode($response);
+    exit;
+}
+
+if (!in_array($degviela, $FuelTypes)) {
+    $response['error'] = "Nav norādīta korekta degviela!";
+    echo json_encode($response);
+    exit;
+}
+
+if (!in_array($piedzina, $Drivetrains)) {
+    $response['error'] = "Nav norādīta korekta piedziņa!";
+    echo json_encode($response);
+    exit;
+}
+
+if (!filter_var($nobraukums, FILTER_VALIDATE_INT, ["options" => ["min_range" => 0, "max_range" => 1500000]])) {
+    $response['error'] = "Nav norādīts korekts nobraukums!";
+    echo json_encode($response);
+    exit;
+}
+
+if (!in_array($krasa, $allowedColors)) {
+    $response['error'] = "Nav norādīta korekta krāsa!";
+    echo json_encode($response);
+    exit;
+}
+
+if (!in_array($pilseta, $allowedLocations)) {
+    $response['error'] = "Nav norādīta korekta pilsēta!";
+    echo json_encode($response);
+    exit;
+}
+
+if (!isValidVIN($vin)) {
+    $response['error'] = "Nav norādīts korekts VIN!";
+    echo json_encode($response);
+    exit;
+}
+
+if (!is_numeric($cena) || floatval($cena) < 0) {
+    $response['error'] = "Cena jābūt skaitlim un lielāka vai vienāda ar nulli!";
+    echo json_encode($response);
+    exit;
+}
+
+if (!preg_match('/^(?:[1-9]|10)(?:\.\d{1})?$/', $tilpums_attirits)) {
+    $response['error'] = "Lūdzu, norādiet korektu dzinēja tilpumu (piemēram, 1.5, 3.0)!";
+    echo json_encode($response);
+    exit;
+}
+
+$tilpums_skaitlis = floatval($tilpums_attirits);
+
+if ($tilpums_skaitlis < 1 || $tilpums_skaitlis > 10) {
+    $response['error'] = "Dzinēja tilpumam jābūt diapazonā no 1 līdz 10!";
+    echo json_encode($response);
+    exit;
+}
+
+if (fmod($tilpums_skaitlis, 1) == 0) {
+    $tilpums_db = intval($tilpums_skaitlis); 
 } else {
-    $response['success'] = false;
-    $response['error'] = "Visi lauki nav aizpilditi!";
+    $tilpums_db = round($tilpums_skaitlis, 1); 
+}
+
+if ($komplektacijas === null) {
+    $response = ['success' => false, 'error' => 'Nepareizs konfigurācijas datu formāts!'];
+    echo json_encode($response);
+    exit();
+}
+
+if ($apskates_datums < $aktualaisLaiks) {
+    $response['error'] = "Tehniskās apskates datums nevar būt pagātnē!";
+    echo json_encode($response);
+    exit;
+}
+
+if ($garums > 5000) {
+    $response['error'] = "Apraksts nedrīkst būt garāks par 5000 simboliem!";
+    echo json_encode($response);
+    exit;
+}
+
+
+$vaicajums = $savienojums->prepare("INSERT INTO Cars (Marka, Modelis, Izladuma_gads, Virsbuves_tips, Dzinejs, Jauda, Atrumkarba_tips, Bezina_tips, Piedzina, Nobrakums, Krasa, Pilseta, Vin, Cena, autora_id, Statuss, Tehniska_apskate, Apraksts) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$vaicajums->bind_param("ssisdisssisssdisss", $marka, $modelis, $gads, $virsBuve, $tilpums_db, $jauda, $atrumkarba, $degviela, $piedzina, $nobraukums, $krasa, $pilseta, $vin, $cena, $autors, $status, $apskate, $apraksts);
+
+if ($vaicajums->execute()) {
+    $car_id = $savienojums->insert_id;
+    $komplektacijas_pievienotas = true;
+
+    $komplektacija = $savienojums->prepare("INSERT INTO Car_komplektacija (Car_ID, Komplektacijas_id) VALUES (?, ?)");
+    $komplektacija->bind_param("ii", $car_id, $komplektacijas_id);
+
+    foreach ($komplektacijas as $komplektacijas_id) {
+        if (!$komplektacija->execute()) {
+            $komplektacijas_pievienotas = false;
+            $response['error'] = "Kļūda, pievienojot komplektācijas.";
+            break; 
+        }
+    }
+
+    if ($komplektacijas_pievienotas) {
+        $paymentUrl = "/payment/cheсkout.php?announcement=" . $car_id . "&price=" . urlencode($price) . "&table=" . urlencode($table);
+        $response['success'] = true;
+        $response['message'] = "Auto un komplektācijas veiksmīgi pievienotas.";
+        $response['payment_url'] = $paymentUrl;
+    } else if (!isset($response['error'])) {
+        $response['success'] = true;
+        $response['message'] = "Auto veiksmīgi pievienots.";
+        $paymentUrl = "/payment/cheсkout.php?announcement=" . $car_id . "&price=" . urlencode($price) . "&table=" . urlencode($table);
+        $response['payment_url'] = $paymentUrl;
+    }
+
+    $komplektacija->close();
+
+} else {
+    $response['error'] = "Sistēmas kļūda.";
 }
 
 $savienojums->close();

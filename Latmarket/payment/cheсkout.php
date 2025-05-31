@@ -1,19 +1,19 @@
 <?php
 
-// require_once '../../../klix/klix-sdk-php/KlixApi.php'; 
 require_once 'con_klix.php'; 
 session_start();
 
 error_reporting(E_ALL & ~E_DEPRECATED);
 
 $price = htmlspecialchars($_GET['price']);
+$table = htmlspecialchars($_GET['table']);
+$announcement = htmlspecialchars($_GET['announcement']);
 
 try {
     $purchaseResponse = $client->createPurchase([
         'amount' => $price, 
-        "language" => "lv",
-        "success_callback" => "https://latmarket.ddev.site/payment/success.php",
-        "success_redirect" => "https://latmarket.ddev.site/", 
+        'language' => 'lv',
+        'success_redirect' => 'https://latmarket.ddev.site/payment/success.php?table=' . $table . '&announcement=' . $announcement . '&purchase_id=' . $purchaseResponse->id,
         'purchase' => [
             "products" => [
                 [
@@ -28,6 +28,8 @@ try {
         
         "brand_id" => $brandId,
     ]);
+    
+    $_SESSION['purchase_id'] = $purchaseResponse->id;
 
     header('Location: ' . $purchaseResponse->checkout_url);
     exit;

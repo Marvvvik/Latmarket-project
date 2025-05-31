@@ -302,6 +302,10 @@ font-size: 1.3rem;
 font-size: 1rem;
 }
 
+.contenteditable b{
+font-weight: bold;
+}
+
 .review_char-limit{
 position: absolute;
 bottom: 1rem;
@@ -424,6 +428,85 @@ width: 40%;
 display: flex;
 align-items: center;
 justify-content: center;
+flex-direction: column;
+text-align: center;
+}
+
+.accommodation-contacts h1{
+font-size: 1rem;
+margin: 1rem 0 .5rem 0;
+line-height: 2rem;
+}
+
+.accommodation-contacts h1 span{
+background: var(--secondcolor);
+color: var(--textcolor-2);
+padding: .5rem .7rem;
+border-radius: .5rem;
+}
+
+.rules{
+margin: 0 0 2rem 0;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+width: 100%;
+}
+
+.rulestitle{
+width: 100%;
+display: flex;
+justify-content: left;
+align-items: center;
+}
+
+.rulestitle h1{
+background: var(--secondcolor);
+color: var(--textcolor-2);
+padding: .2rem .7rem;
+border-radius: .5rem;
+font-size: 1rem;
+}
+
+.rules-container{
+width: 100%;
+height: 20rem;
+background: var(--maincolor);
+border-radius: 1rem;
+text-align: left;
+padding: 1rem;
+overflow-y: auto;
+}
+
+.rules-container ul{
+margin: .5rem 0 .5rem 2rem;
+}
+
+.rules-container ul li{
+margin: .5rem 0;
+}
+
+.rules-container p{
+margin: .5rem 0;
+}
+
+.checkbox-rules{
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+margin-top: 1.5rem;
+}
+
+.checkbox-rules input[type="checkbox"] {
+width: 20px;      
+height: 20px;     
+transform: scale(1.5);   
+}
+
+.checkbox-rules label{
+margin-left: .5rem;
 }
 
 .accommodation-contacts button{
@@ -447,6 +530,21 @@ background: var(--hover);
 .accommodation-contacts button:hover i{
 animation: spin 1s ease-out forwards;
 }
+
+
+.accommodation-contacts button[disabled]{
+opacity: 50%;
+cursor: no-drop;
+}
+
+.accommodation-contacts button:hover[disabled]{
+background: var(--secondcolor);
+}
+
+.accommodation-contacts button:hover[disabled] i{
+animation: none;
+}
+
 
 @keyframes spin {
 0% {

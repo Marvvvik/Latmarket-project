@@ -1,61 +1,56 @@
 <?php
+
+session_start();
+
+require 'con_klix.php';
 require "../database/con_db_l.php";
 
-// Файл для логов webhook (убирай в продакшене или фильтруй)
-$logFile = __DIR__ . '/success_webhook.log';
+$purchaseId = $_SESSION['purchase_id'] ?? null;
+$table = $_GET['table'] ?? null;
+$announcement = $_GET['announcement'] ?? null;
 
-// Логируем все запросы (для отладки)
-file_put_contents($logFile, date('Y-m-d H:i:s') . " Request method: " . $_SERVER['REQUEST_METHOD'] . "\n", FILE_APPEND);
+try {
+    $purchase = $client->getPurchase($purchaseId);
+    $status = $purchase->status ?? null;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Получаем JSON из тела запроса
-    $input = file_get_contents('php://input');
-    file_put_contents($logFile, "POST data: " . $input . "\n", FILE_APPEND);
+    if ($status === 'paid') {
+        $stmt = $savienojums->prepare("UPDATE $table SET Statuss = 'active' WHERE Cars_ID = ?");
+        $stmt->bind_param("i", $announcement);
+        $stmt->execute();
+        $stmt->close();
 
-    $data = json_decode($input, true);
-
-    if ($data && isset($data['status']) && $data['status'] === 'paid') {
-        $announcement = $data['announcement'] ?? null;
-        $table = $data['table'] ?? null;
-
-        if ($announcement && $table) {
-            // Защита от SQL Injection: проверяем имя таблицы (пример - список разрешенных)
-            $allowedTables = ['cars', 'ads', 'announcements']; // <- подставь свои таблицы
-            if (!in_array($table, $allowedTables)) {
-                file_put_contents($logFile, "Invalid table name: $table\n", FILE_APPEND);
-                http_response_code(400);
-                echo json_encode(['status' => 'error', 'message' => 'Invalid table']);
-                exit;
-            }
-
-            // Обновляем статус
-            $stmt = $db->prepare("UPDATE $table SET Statuss = 'active' WHERE id = ?");
-            $stmt->bind_param('i', $announcement);
-
-            if ($stmt->execute()) {
-                file_put_contents($logFile, "Status updated for ID $announcement in table $table\n", FILE_APPEND);
-                http_response_code(200);
-                echo json_encode(['status' => 'ok']);
-            } else {
-                file_put_contents($logFile, "DB error: " . $stmt->error . "\n", FILE_APPEND);
-                http_response_code(500);
-                echo json_encode(['status' => 'error', 'message' => 'DB update failed']);
-            }
-            exit;
-        } else {
-            file_put_contents($logFile, "Missing announcement or table in data\n", FILE_APPEND);
-            http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Missing data']);
-            exit;
-        }
-    } else {
-        file_put_contents($logFile, "Invalid or unpaid status\n", FILE_APPEND);
-        http_response_code(400);
-        echo json_encode(['status' => 'error', 'message' => 'Invalid status']);
+        header("location: ../");
         exit;
+        
+    } else {
+        echo "Оплата не завершена. Текущий статус: " . htmlspecialchars($status);
     }
-} else {
-    // GET запрос — редиректим пользователя после оплаты
-    header('Location: https://latmarket.ddev.site/');
-    exit;
+} catch (Exception $e) {
+    echo "Ошибка при проверке статуса платежа: " . $e->getMessage();
 }
+?>
+
+    <!-- <div class="payment-container">
+        <div class="payment-info">
+            <i class="fas fa-times close-Modal" id="closePayment"></i>
+            <h1>Maksājuma čeks</h1>
+
+            <div class="paymeny-id">
+                <p>Pirkums: <span>FJG345KJGHB34GGJK5</span></p>
+                <p>Pakalpojums: <span>Sludinājuma izvietošana</span></p>
+                <p>Cena: <span>5.00 EUR</span></p>
+                <p>Kopā apmaksai: <span>5.00 EUR</span></p>
+            </div>
+
+            <div class="success-animation">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" /><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" /></svg>
+            </div>
+
+            <div class="line"></div>
+
+            <p>Jūsu sludinājums ir veiksmīgi ievietots!</p>
+
+            <p>Paldies, ka izmantojat Latmarket! </p>
+
+        </div>
+    </div> -->
