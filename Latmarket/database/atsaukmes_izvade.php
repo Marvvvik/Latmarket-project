@@ -3,6 +3,8 @@
 require "con_db_l.php";
 session_start();
 
+// ---------------------------------------------------- page
+
 $limit = 5;
 $page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
 $offset = ($page - 1) * $limit;
@@ -12,26 +14,36 @@ $countResult = $savienojums->query($countQuery);
 $totalRows = $countResult->fetch_assoc()['total'];
 $totalPages = ceil($totalRows / $limit);
 
+// ---------------------------------------------------- Atsakmes
+
 $atsaukmesSQL = "SELECT * FROM Atsauksmes ORDER BY datums DESC LIMIT ? OFFSET ?";
 $atsakmes = $savienojums->prepare($atsaukmesSQL);
 $atsakmes->bind_param("ii", $limit, $offset);
 $atsakmes->execute();
 $atsakmesResult = $atsakmes->get_result();
 
+// ---------------------------------------------------- Izvade
+
 $atsaukmesHTML = '';
 
 while ($atsakmes = $atsakmesResult->fetch_assoc()) {
+
+    // ---------------------------------------------------- Svaigžnu izvade
+
     $stars = $atsakmes['stars'];
     $button = '';
     $formModal = '';
-
     $starsHTML = '';
     for ($i = 1; $i <= 5; $i++) {
         $activeClass = $i <= $stars ? 'active' : '';
         $starsHTML .= "<i class='fas fa-star $activeClass'></i>";
     }
 
+    // ---------------------------------------------------- Foto Decode
+
     $fotoUrl = 'data:image/jpeg;base64,' . base64_encode($atsakmes['avatar']);
+
+    // ---------------------------------------------------- Dzest forma
 
     if (isset($_SESSION['IdHOMIK']) && $atsakmes['lietotaja_id'] === $_SESSION['IdHOMIK']) {
         $button = "<i class='fa fa-trash deletBtn' data-target='#deletmodal-{$atsakmes['atsakmes_id']}'></i>";
@@ -48,6 +60,9 @@ while ($atsakmes = $atsakmesResult->fetch_assoc()) {
                     </form>
                 </div>
             </div>";
+
+    // ---------------------------------------------------- Report forma
+
     } elseif (isset($_SESSION['IdHOMIK'])) {
         $button = "<i class='fa fa-ban rep reportbtn' data-target='#repmodal-{$atsakmes['atsakmes_id']}'></i>";
         $formModal = "
@@ -80,6 +95,8 @@ while ($atsakmes = $atsakmesResult->fetch_assoc()) {
                 </div>
             </div>";
     }
+
+    // ---------------------------------------------------- Report forma
 
     $datums = date('Y-m-d', strtotime($atsakmes['datums']));
 

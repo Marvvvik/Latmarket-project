@@ -1106,9 +1106,8 @@ font-size: 1rem;
 }
 
 .favorites-container .box{
-width: 17rem;
-height: 20rem;
-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 50%);
+width: 19rem;
+height: 29rem;
 border-radius: 1rem;
 overflow: hidden;
 margin: 1rem 1rem;
@@ -1117,11 +1116,12 @@ display: flex;
 justify-content: top;
 align-items: center;
 flex-direction: column;
+background: var(--maincolor);
 }
 
 .favorites-container .box img{
 width: 100%;
-height: 50%;
+height: 40%;
 object-fit: cover;
 }
 
@@ -1130,17 +1130,82 @@ margin-top: 1rem;
 font-size: 1.2rem;
 }
 
-.favorites-container .box .cena{
-width: 60%;
-height: 1.5rem;
+.favorites-container .box .info{
+padding: 0 1rem;
+display: flex;
+justify-content: center;
+flex-direction: column;
+text-align: left;
+width: 100%;
 }
 
-.favorites-container .box p{
+.favorites-container .box .info p{
+font-size: .8rem;
+font-weight: bold;
+opacity: 80%;
+margin: .5rem 0;
+}
+
+.favorites-container .box .cena{
+width: 60%;
+height: auto;
+margin-top: .5rem;
+}
+
+.favorites-container .box .cena p{
 background: var(--secondcolor);
 padding: .5rem 1rem;
-margin-top: 3rem;
 font-size: 1rem;
 border-radius: 2rem;
+color: var(--textcolor-2);
+}
+
+.favorites-container .box .controle-buttons{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 1rem;
+}
+
+.favorites-container .box .controle-buttons form{
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 .5rem;
+}
+
+.favorites-container .box .controle-buttons form button{
+width: 2rem;
+height: 2rem;
+line-height: 2rem;
+text-align: center;
+border-radius: .5rem;
+cursor: pointer;
+}
+
+#viewForm button{
+background: var(--secondcolor);
+}
+
+#viewForm button:hover{
+background: var(--hover);
+}
+
+#viewForm button i{
+color: var(--textcolor-2);
+}
+
+#deletForm button{
+background: #ff9393;
+}
+
+#deletForm button:hover{
+background: #ff0000;
+}
+
+#deletForm button i{
+color: var(--textcolor-2);
 }
 
 

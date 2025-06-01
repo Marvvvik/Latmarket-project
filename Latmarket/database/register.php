@@ -5,10 +5,30 @@ session_start();
 
 $response = [];
 
+$config = require 'config.php';
+define('ENCRYPTION_KEY', $config['encryption_key']);
+define('ENCRYPTION_METHOD', 'AES-256-CBC');
+
+function encryptData($data) {
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length(ENCRYPTION_METHOD));
+    $encrypted = openssl_encrypt($data, ENCRYPTION_METHOD, ENCRYPTION_KEY, 0, $iv);
+    return base64_encode($iv . $encrypted);
+}
+
 $lietotajvards = htmlspecialchars($_POST['username']);
 $parole1 = htmlspecialchars($_POST['rpassword1']);
 $parole2 = htmlspecialchars($_POST['rpassword2']);
 $avatar = isset($_FILES['avatar']) ? $_FILES['avatar'] : null;
+
+$vards = "Unknown";
+$uzvards = "Unknown";
+$epasts = "Unknown";
+$telefons = "Unknown";
+
+$vards_db = encryptData($vards);
+$uzvards_db = encryptData($uzvards);
+$epasts_db = encryptData($epasts);
+$telefons_db = encryptData($telefons);
 
 function validatePassword($password) {
     return preg_match('/[a-z]/', $password) &&
@@ -39,10 +59,10 @@ if (!empty($lietotajvards) && !empty($parole1) && !empty($parole2)) {
                     $avatarData = file_get_contents('../image/Unknown_person.jpg');
                 }
 
-                $vaicajums = $savienojums->prepare("INSERT INTO lietotaji (username, parole, avatar) VALUES (?, ?, ?)");
                 $null = NULL;
-                $vaicajums->bind_param("ssb", $lietotajvards, $hashedPassword, $null);
-                $vaicajums->send_long_data(2, $avatarData);
+                $vaicajums = $savienojums->prepare("INSERT INTO lietotaji (username, parole, vards, uzvards, epasts, telefons, avatar) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $vaicajums->bind_param("ssssssb", $lietotajvards, $hashedPassword, $vards_db, $uzvards_db, $epasts_db, $telefons_db, $null);
+                $vaicajums->send_long_data(6, $avatarData);
 
                 if ($vaicajums->execute()) {
                     $response['success'] = true;

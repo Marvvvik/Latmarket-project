@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------Izvade filtracija 
 
-$(document).on('change', "#Car_brends_select", function () {
+$(document).on('change', "#filter-brand", function () {
     var car_marka = $(this).val(); 
 
     $.ajax({
@@ -16,7 +16,7 @@ $(document).on('change', "#Car_brends_select", function () {
                 template += `<option value='${modelis.modelis}'>${modelis.modelis}</option>`;
             });
 
-            $('#car_modelis_select').html(template);
+            $('#filter-model').html(template);
         },
         error: function () {
             console.log("Neizdevās ielasīt datus");
@@ -27,7 +27,7 @@ $(document).on('change', "#Car_brends_select", function () {
 });
 
 $(document).ready(function () {
-    const select = $("#car_modelis_select");
+    const select = $("#filter-model");
 
     const observer = new MutationObserver(function () {
         if (select.find("option").length > 2) {
@@ -70,20 +70,21 @@ function FilterCarList(page = 1) {
     $("#carsContainer").html("<div class='loader-container'><span class='loader'></span><div class='loader-text'>Notiek ielāde...</div></div>");
 
     var requestData = { 
-        marka: $('#Car_brends_select').val(),
-        modelis: $('#car_modelis_select').val(),
-        virsbuve: $('#car_virsbuves_select').val(),
-        benzina_tips: $('#car_Dzineja_tips_select').val(),
-        atrumkarba: $('#car_atrumkarba_select').val(),
-        krasa: $('#car_krasa_select').val(),
-        piedzina: $('#car_piedzina_select').val(),
-        tehniska_apskate: $('#car_tehniska_apskate_select').val(),
-        min_cena: $('#car_min_cena_select').val(),
-        max_cena: $('#car_max_cena_select').val(),
-        min_gads: $('#car_min_gads_select').val(),
-        max_gads: $('#car_max_gads_select').val(),
-        min_nobrakums: $('#car_min_nobrakums_select').val(),
-        max_nobrakums: $('#car_max_nobrakums_select').val(),
+        marka: $('#filter-brand').val(),
+        modelis: $('#filter-model').val(),
+        virsbuve: $('#filter-body').val(),
+        benzina_tips: $('#filter-engine').val(),
+        atrumkarba: $('#filter-gearbox').val(),
+        krasa: $('#filter-color').val(),
+        piedzina: $('#filter-drive').val(),
+        tehniska_apskate: $('#filter-tech').val(),
+        asc_filter: $('#filter-asc').val(),
+        min_cena: $('#filter-Price-Min').val(),
+        max_cena: $('#filter-Price-Max').val(),
+        min_gads: $('#filter-Gads-Min').val(),
+        max_gads: $('#filter-Gads-Max').val(),
+        min_nobrakums: $('#filter-Nob-Min').val(),
+        max_nobrakums: $('#filter-Nob-Max').val(),
         min_jauda: $('#car_min_jauda_select').val(),
         max_jauda: $('#car_max_jauda_select').val(),
         dtp: $('input[name="dtp"]:checked').val(),

@@ -3,7 +3,7 @@ require "con_db_l.php";
 session_start();
 
 $response = [];
-$atID = isset($_POST['atID']) ? intval($_POST['atID']) : 0;
+$atID = isset($_POST['atID']);
 
 if ($atID > 0) {
     $vaicajums = $savienojums->prepare("DELETE FROM Atsauksmes WHERE atsakmes_id = ? AND lietotaja_id = ?");

@@ -1,3 +1,14 @@
+<?php
+session_start(); 
+
+if (
+    session_status() === PHP_SESSION_ACTIVE &&
+    isset($_SESSION['lietotajvardsHOMIK']) &&
+    isset($_SESSION['rooleHOMIK']) &&
+    $_SESSION['rooleHOMIK'] === 'user'
+) {
+?>
+
 <!DOCTYPE html>
 <html lang="lv">
 <head>
@@ -771,4 +782,12 @@ require "database/con_db_transports.php";
 
 </section>
 
-<?php require "../../footer.php"; ?>
+<?php 
+
+require "../../footer.php"; 
+
+}else{
+header("Location: /");
+exit;
+}
+?>

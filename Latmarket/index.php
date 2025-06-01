@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="lv">
 <head>
@@ -370,6 +372,13 @@
     </div>
 
 </section>
+
+<?php 
+if (isset($_SESSION['Maksājums'])) {
+    echo $_SESSION['Maksājums'];
+    unset($_SESSION['Maksājums']);
+}
+?>
 
 <?php require "footer.php"; ?>
 

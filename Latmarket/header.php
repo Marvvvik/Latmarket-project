@@ -1,6 +1,3 @@
-<?php session_start(); ?>
-
-
 <header>
     <div class="logo">
         <a href="/"><i class="fas fa-tag"></i>Latmarket</a>
@@ -205,7 +202,6 @@
                         <label>Telefons:</label>
                         <input type="text" id="telefons">
                     </div>
-                    <input type="hidden" id="lietotajaId" value="<?php echo $_SESSION['IdHOMIK'];?>">
                 </div>
 
                 <div class="info-Change" id="passwordChange">

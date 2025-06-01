@@ -21,11 +21,20 @@ $tehniska_apskate = $_POST['tehniska_apskate'] ?? null;
 $dtp = $_POST['dtp'] ?? null;
 $jauda_m = $_POST['jauda_m'] ?? 1;
 $nobrakums_m = $_POST['nobrakums_m'] ?? 1;
+$asc_filter = $_POST['asc_filter'] ?? null;
+
 
 $filtrets = [];
 $params = [];
 $types = "";
 $carsHTML = "";
+$orderByClause = '';
+$limit = 5;
+$page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
+$offset = ($page - 1) * $limit;
+$statusCondition = "Statuss = 'active'";
+
+// ----------------------------------------Filter
 
 function addFilter(&$filtrets, &$params, &$types, $column, $value, $operator = "=") {
     if ($value !== null && $value !== "") {
@@ -51,29 +60,35 @@ addFilter($filtrets, $params, $types, "Nobrakums", $max_nobrakums, "<=");
 addFilter($filtrets, $params, $types, "Jauda", $min_jauda, ">=");
 addFilter($filtrets, $params, $types, "Jauda", $max_jauda, "<=");
 
-if ($tehniska_apskate == 1) {
-    $filtrets[] = "Tehniska_apskate != 0";
-}
-if ($tehniska_apskate == 2) {
-    $filtrets[] = "Tehniska_apskate = 0";
-}
-if ($dtp == 1) {
-    $filtrets[] = "dtp != 0";
-}
-if ($dtp == 2) {
-    $filtrets[] = "dtp = 0";
-}
+if ($tehniska_apskate == 1) { $filtrets[] = "Tehniska_apskate != 0"; }
+if ($tehniska_apskate == 2) { $filtrets[] = "Tehniska_apskate = 0"; }
+if ($dtp == 1) { $filtrets[] = "dtp != 0"; }
+if ($dtp == 2) { $filtrets[] = "dtp = 0"; }
 
-$limit = 5;
-$page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
-$offset = ($page - 1) * $limit;
-$statusCondition = "Statuss = 'active'";
+if ($asc_filter == "datums_desc"){ $orderByColumn = "datums"; $orderByDirection = "DESC"; }
+if ($asc_filter == "datums_asc"){ $orderByColumn = "datums"; $orderByDirection = "ASC"; }
+if ($asc_filter == "cena_asc"){ $orderByColumn = "Cena"; $orderByDirection = "ASC"; }
+if ($asc_filter == "cena_desc"){ $orderByColumn = "Cena"; $orderByDirection = "DESC"; }
+if ($asc_filter == "gads_desc"){ $orderByColumn = "Izladuma_gads"; $orderByDirection = "DESC"; }
+if ($asc_filter == "gads_asc"){ $orderByColumn = "Izladuma_gads"; $orderByDirection = "ASC"; }
+if ($asc_filter == "nobraukums_asc"){ $orderByColumn = "Nobrakums"; $orderByDirection = "ASC"; }
+if ($asc_filter == "nobraukums_desc"){ $orderByColumn = "Nobrakums"; $orderByDirection = "DESC"; }
+if ($asc_filter == "Tilpums_asc"){ $orderByColumn = "Dzinejs"; $orderByDirection = "ASC"; }
+if ($asc_filter == "Tilpums_desc"){ $orderByColumn = "Dzinejs"; $orderByDirection = "DESC"; }
+if ($asc_filter == "Jauda_asc"){ $orderByColumn = "Jauda"; $orderByDirection = "ASC"; }
+if ($asc_filter == "Jauda_desc"){ $orderByColumn = "Jauda"; $orderByDirection = "DESC"; }
+
+if (!empty($orderByColumn)) {
+    $orderByClause = "ORDER BY " . $orderByColumn . " " . $orderByDirection;
+}
 
 if (count($filtrets) > 0) {
     $whereClause = "WHERE " . implode(" AND ", $filtrets) . " AND " . $statusCondition;
 } else {
     $whereClause = "WHERE " . $statusCondition;
 }
+
+// ----------------------------------------Page count
 
 $countSQL = "SELECT COUNT(*) AS total FROM Cars $whereClause";
 $countStmt = $savienojums->prepare($countSQL);
@@ -89,13 +104,18 @@ $params[] = $limit;
 $params[] = $offset;
 $types .= "ii";
 
-$carsSQL = "SELECT * FROM Cars $whereClause LIMIT ? OFFSET ?";
+// ----------------------------------------Izvade
+
+$carsSQL = "SELECT * FROM Cars $whereClause $orderByClause LIMIT ? OFFSET ?";
 $carsStmt = $savienojums->prepare($carsSQL);
 $carsStmt->bind_param($types, ...$params);
 $carsStmt->execute();
 $result = $carsStmt->get_result();
 
 while ($Cars = $result->fetch_assoc()) {
+
+    // ----------------------------------------Favorit icon
+
     $starIcon = 'far fa-star fav';
     $favoritSQL = "SELECT * FROM favoriti WHERE lietotaja_id = ? AND table_name = 'Cars' AND item_id = ?";
     $favorit = $savienojums->prepare($favoritSQL);
@@ -105,6 +125,8 @@ while ($Cars = $result->fetch_assoc()) {
     if ($favoritResult->num_rows > 0) {
         $starIcon = 'fa fa-star fav';
     }
+
+    // ----------------------------------------fomated
 
     $formattedDzinejs = number_format($Cars['Dzinejs'], 1);
     $formtedCema = number_format($Cars['Cena'], 0, '', ' ') . ' €';
@@ -116,6 +138,8 @@ while ($Cars = $result->fetch_assoc()) {
     $nobraukums_izvade = $nobrakums_m == 2 ?
         round($Cars['Nobrakums'] * 0.621371) . " MPH" :
         $Cars['Nobrakums'] . " KM";
+
+    // ----------------------------------------Photo
 
     $car_id_p = $Cars['Cars_ID'];
     $photosSQL = "SELECT photo FROM Cars_photos WHERE car_id = ? LIMIT 5";
@@ -138,6 +162,8 @@ while ($Cars = $result->fetch_assoc()) {
         $activeClass = ($i == 0) ? 'active' : '';
         $buttonsHTML .= "<button class='$activeClass'></button>";
     }
+
+    // ----------------------------------------izvade
 
     $carsHTML .= "
     <div class='carsbox'>

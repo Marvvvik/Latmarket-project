@@ -1,14 +1,24 @@
-.filter{
-
+.car-filter{
 background: var(--maincolor-2);
 display: flex;
 justify-content: center;
 align-items: center;
-
+flex-direction: column;
 }
 
-.filter-menu{
+.car-filter__title{
+font-size: 2rem;
+margin-top: 3rem;
+color: var(--textcolor);
+}
 
+.car-filter__subtitle{
+margin-top: 1.3rem;
+color: var(--textcolor);
+opacity: 80%;
+}
+
+.car-filter__form{
 width: 100%;
 padding: 2rem 10% 0 10%;
 height: auto;
@@ -19,232 +29,187 @@ justify-content: center;
 align-items: center;
 flex-direction: column;
 margin-top: 6rem;
-
 }
 
-.select-Container{
+/* -------------------------------------------Select */
 
+.car-filter__select-group{
 display: flex;
 justify-content: center;
 align-items: center;
 flex-wrap: wrap;
-
+width: 100%;
 }
 
-.select-Container .box{
-
+.car-filter__select-group .car-filter__select-box{
+width: 20%;
+height: 3rem;
 margin: 1rem;
-padding: 0%;
-
 }
 
-.filt-cont select {
-    
-appearance: none;
-outline: 10px red;
-box-shadow: none;
-flex: 1;
-padding: 0 1em;
+.filt-cont{
+width: 100%;
+height: 100%;
 color: var(--textcolor);
 background-color: var(--maincolor-2);
-/* border: .1rem solid var(--textcolor); */
-background-image: none;
-cursor: pointer;
 font-weight: bold;
-font-size: 1rem;
 border-radius: .5rem;
+position: relative; 
+}
 
+.filt-cont select{
+width: 100%;
+height: 100%;
+padding: 0 3rem 0 1rem; 
+margin: 0;
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+background-color: transparent;
+border: none;
+cursor: pointer; 
+}
+
+.box-arrow{
+position: absolute;
+background: var(--secondcolor);
+width: 3rem;
+height: 100%;
+top: 0;
+right: 0;
+border-bottom-right-radius: .5rem;
+border-top-right-radius: .5rem;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 1rem;
+pointer-events: none; 
+}
+
+.filt-cont:hover .box-arrow{
+color: var(--textcolor-2); 
 }
 
 .filt-cont select option{
-
 font-size: 1rem;
-
 }
 
-.select {
+/* -------------------------------------------Range */
 
-position: relative;
+.car-filter__range-group{
 display: flex;
-width: 20em;
-height: 3em;
-border-radius: .25em;
-overflow: hidden;
-
-}
-
-
-.select::after {
-content: '\25BC';
-position: absolute;
-top: 0;
-right: 0;
-padding: 1em;
-background-color: var(--secondcolor);
-transition: .25s all ease;
-pointer-events: none;
-}
-
-
-.select:hover::after {
-
-color: var(--maincolor);
-
-}
-
-.min-max-filter{
-
+justify-content: center;
+align-items: center;
 width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 3rem 0 1rem 0;
-
+margin-top: 2rem;
 }
 
-.filter-box{
-
+.car-filter__range-box{
 width: 20%;
-margin: 0 2rem;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-
+margin: 0 1rem;
 }
 
-.fil-box-nos{
-
+.car-filter__range-label{
 width: 100%;
 height: auto;
 text-align: left;
-
 }
 
-.fil-box-nos h1{
-
+.car-filter__range-label h1{
 color: var(--textcolor);
-font-size: 1.3rem;
-margin: 0 .5rem 1rem .5rem;
-
+font-size: 1rem;
+margin: 0 0 1rem 0;
 }
-
     
-.price-input{
-
+.car-filter__range-input {
 display: flex;
-justify-content: center;
 align-items: center;
-
 }
-    
-.price-input input{
 
-padding: .7rem 1rem;
-font-size: 1.2rem;
-width: 40%;
-margin: 0 .5rem;
+.car-filter__range-input input{
+padding: .5rem .7rem;
+width: 50%;
+font-size: 1rem;
 text-align: left;
--moz-appearance: none;
 border-radius: .5rem;
 background: var(--maincolor-2);
-
-
+flex-grow: 1; 
+box-sizing: border-box
 }
 
-.price-input p{
-
-font-size: 1.3rem;
-font-weight: bold;
-
+.car-filter__range-input span{
+margin: 0 0.5rem; 
 }
-    
+  
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button{
-
 -webkit-appearance: none;
-
 }
 
+/* -------------------------------------------radio */
 
-.radio-filter {
-
+.car-filter__radio-group{
 width: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
 margin: 4rem 0 4rem 0;
-
 }
 
-.radio-filter .box {
-
+.car-filter__radio-box {
 color: var(--textcolor);
-margin: 0 4rem;
+margin: 0 1rem;
 display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-width: 25%;
-
+width: 20%;
 }
 
-
-.rad-fil-nos{
-
+.car-filter__radio-title{
 width: 100%;
 height: auto;
 text-align: left;
-
 }
 
-.rad-fil-nos h1{
-
-font-size: 1.3rem;
+.car-filter__radio-title h1{
+font-size: 1rem;
 margin-bottom: 1rem;
-
 }
 
 .wrapper {
-
 display: inline-flex;
-height: 4rem;
+height: 3rem;
 width: 100%;
 align-items: center;
 justify-content: space-evenly;
 padding: 10px 5px;
 border-radius: .5rem;
 background: var(--maincolor-2);
-
 }
 
 .wrapper .option {
-
 background: #fff;
 height: 100%;
-width: 100%;
+width: 50%;
 display: flex;
 align-items: center;
 justify-content: space-evenly;
 margin: 0 5px;
 cursor: pointer;
-padding: 0 10px;
+padding: 0 .5rem;
 border-radius: .5rem;
-
 }
 
 .wrapper .option .dot {
-
 height: 15px;
 width: 15px;
 background: #d9d9d9;
 border-radius: 50%;
 position: relative;
-
 }
 
 .wrapper .option .dot::before {
-
 position: absolute;
 content: "";
 top: 4px;
@@ -256,13 +221,10 @@ border-radius: 50%;
 opacity: 0;
 transform: scale(1.5);
 transition: all 0.3s ease;
-
 }
 
 input[type="radio"] {
-
 display: none;
-
 }
 
 
@@ -273,10 +235,8 @@ input[id="jauda-option-1"]:checked ~ .jauda-option-1,
 input[id="jauda-option-2"]:checked ~ .jauda-option-2,
 input[id="nobraukums-option-1"]:checked ~ .nobraukums-option-1,
 input[id="nobraukums-option-2"]:checked ~ .nobraukums-option-2 {
-
 border-color: var(--secondcolor);
 background: var(--secondcolor);
-
 }
 
 input[id="dtp-option-1"]:checked ~ .dtp-option-1 .dot,
@@ -286,9 +246,7 @@ input[id="jauda-option-1"]:checked ~ .jauda-option-1 .dot,
 input[id="jauda-option-2"]:checked ~ .jauda-option-2 .dot,
 input[id="nobraukums-option-1"]:checked ~ .nobraukums-option-1 .dot,
 input[id="nobraukums-option-2"]:checked ~ .nobraukums-option-2 .dot {
-
 background: #fff;
-
 }
 
 input[id="dtp-option-1"]:checked ~ .dtp-option-1 .dot::before,
@@ -298,17 +256,13 @@ input[id="jauda-option-1"]:checked ~ .jauda-option-1 .dot::before,
 input[id="jauda-option-2"]:checked ~ .jauda-option-2 .dot::before,
 input[id="nobraukums-option-1"]:checked ~ .nobraukums-option-1 .dot::before,
 input[id="nobraukums-option-2"]:checked ~ .nobraukums-option-2 .dot::before {
-
 opacity: 1;
 transform: scale(1);
-
 }
 
 .wrapper .option span {
-
 font-size: 1rem;
 color: #808080;
-
 }
 
 input[id="dtp-option-1"]:checked ~ .dtp-option-1 span,
@@ -318,56 +272,59 @@ input[id="jauda-option-1"]:checked ~ .jauda-option-1 span,
 input[id="jauda-option-2"]:checked ~ .jauda-option-2 span,
 input[id="nobraukums-option-1"]:checked ~ .nobraukums-option-1 span,
 input[id="nobraukums-option-2"]:checked ~ .nobraukums-option-2 span {
-
 color: #fff;
-
 }
 
+/* -------------------------------------------filter__actions */
 
-.add-Filter{
+.car-filter__actions{
 width: 100%;
-height: 4rem;
 border-top: .1rem solid var(--gray);
 display: flex;
 justify-content: center;
 align-items: center;
 }
 
-.box-Container{
-width: 60%;
-height: 100%;
-padding: 1rem;
+.car-filter__actions .box{
+width: 30%;
+margin: 1.5rem 1rem;
 display: flex;
 justify-content: center;
 align-items: center;
 }
 
-.box-Container .box{
-width: 50%;
-height: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
-.add-Filter .box a{
+.car-filter__actions .box a{
 background: var(--secondcolor);
 color: var(--textcolor-2);
-padding: 1rem 1rem;
 border-radius: .5rem;
+padding: .7rem 1rem;
 cursor: pointer;
-font-size: 1rem;
-}
-
-.add-Filter .box a i{
-margin-right: .5rem;
 }
 
 
-.add-Filter .box a:hover{
-background: var(--hover);
+.slud-btn-box:hover i{
+
+animation: rot 1s ease-out forwards;
+
 }
 
+
+@keyframes rot {
+
+0% {
+
+    transform: rotate(0);
+
+}
+
+100% {
+
+    transform: rotate(720deg);
+
+}
+}
+
+/* -------------------------------------------buttons izvade */
 
 .offer-buttons{
 padding: 5rem 10% 0 10%;
@@ -401,36 +358,30 @@ background: var(--secondcolor);
 cursor: default;
 }
 
-.offers{
+/* ------------------------------------------ izvade */
 
+.car-offers{
 background: var(--maincolor-2);
 padding: 3rem 10%;
-
 }
 
-#carsContainer h2{
-
+.car-offers__container h2{
 padding: .7rem 1rem;
 background: var(--secondcolor);
 color: var(--textcolor-2);
 font-size: 1.2rem;
 border-radius: .5rem;
 margin: 1rem 0 3rem 0;
-
 }
 
-
-.offerbox{
-
+.car-offers__container{
 display: flex;
 justify-content: center;
 align-items: center;
 flex-wrap: wrap;
-
 }
 
 .carsbox{
-
 width: 75%;
 height: 25rem;
 box-shadow: 0 0 1.5rem rgba(0, 0, 0, 30%);
@@ -439,9 +390,7 @@ display: flex;
 position: relative;
 border-radius: 1rem;
 overflow: hidden;
-
 }
-
 
 .carinfo{
 
@@ -654,82 +603,7 @@ letter-spacing: 1px;
 
 }
 
-.sludinajumabtn{
 
-width: 100%;
-background: var(--textcolor);
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 3rem 0 0 0;
-
-}
-
-.sludbtn{
-
-background: var(--textcolor);
-margin: 0;
-
-}
-
-
-.slud-btn-box{
-
-background: var(--maincolor);
-font-size: 1.5rem;
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 1rem 1rem;
-
-}
-
-.slud-btn-box:hover{
-
-background: rgba(255, 87, 51, 30%);
-
-}
-
-.slud-btn-box:hover span{
-
-color: var(--maincolor);
-
-}
-
-.slud-btn-box i{
-
-color: var(--secondcolor);
-
-}
-
-.slud-btn-box:hover i{
-
-animation: rot 1s ease-out forwards;
-
-}
-
-
-@keyframes rot {
-
-0% {
-
-    transform: rotate(0);
-
-}
-
-100% {
-
-    transform: rotate(720deg);
-
-}
-}
-
-.slud-btn-box span{
-
-font-size: 1rem;
-margin-left: 1rem;
-
-}
 
 .loader-container{
 width: 100%;

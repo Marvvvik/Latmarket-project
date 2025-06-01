@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="lv">
 <head>
@@ -185,11 +187,13 @@ require "database/car-parskate-izvade.php";
 
     </div>
 
+    <?php if(trim($Car['Apraksts']) !== ""){ ?>
     <div class="car_apraksts_a">
 
         <?php echo $Car['Apraksts']?>
 
     </div>
+    <?php }; ?>
 
     <div class="komplektacijas_section">
 

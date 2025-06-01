@@ -17,39 +17,36 @@ function decryptData($data) {
     return openssl_decrypt($encrypted, ENCRYPTION_METHOD, ENCRYPTION_KEY, 0, $iv);
 }
 
-if (isset($_POST['id'])) {
-    $userId = intval($_POST['id']);
+$userId = $_SESSION['IdHOMIK'];
 
-    $vaicajums = $savienojums->prepare("SELECT vards, uzvards, epasts, telefons, avatar FROM lietotaji WHERE lietotaji_id = ?");
-    $vaicajums->bind_param("i", $userId);
-    $vaicajums->execute();
+$vaicajums = $savienojums->prepare("SELECT vards, uzvards, epasts, telefons, avatar FROM lietotaji WHERE lietotaji_id = ?");
+$vaicajums->bind_param("i", $userId);
+$vaicajums->execute();
 
-    $rezultats = $vaicajums->get_result();
+$rezultats = $vaicajums->get_result();
 
-    if ($lietotajs = $rezultats->fetch_assoc()) {
+if ($lietotajs = $rezultats->fetch_assoc()) {
 
-        $vards = decryptData($lietotajs['vards']);
-        $uzvards = decryptData($lietotajs['uzvards']);
-        $epasts = decryptData($lietotajs['epasts']);
-        $telefons = decryptData($lietotajs['telefons']);
-        $avatarBase64 = 'data:image/jpeg;base64,' . base64_encode($lietotajs['avatar']);
+    $vards = decryptData($lietotajs['vards']);
+    $uzvards = decryptData($lietotajs['uzvards']);
+    $epasts = decryptData($lietotajs['epasts']);
+    $telefons = decryptData($lietotajs['telefons']);
+    $avatarBase64 = 'data:image/jpeg;base64,' . base64_encode($lietotajs['avatar']);
 
-        echo json_encode([
-            "success" => true,
-            "vards" => htmlspecialchars($vards),
-            "uzvards" => htmlspecialchars($uzvards),
-            "epasts" => htmlspecialchars($epasts),
-            "telefons" => htmlspecialchars($telefons),
-            "full_name" => htmlspecialchars($vards) . " " . htmlspecialchars($uzvards),
-            "avatar" => $avatarBase64,
-        ]);
-    } else {
-        echo json_encode(["success" => false, "error" => "Lietotājs netika atrasts."]);
-    }
-
-    $vaicajums->close();
-    $savienojums->close();
+    echo json_encode([
+        "success" => true,
+        "vards" => htmlspecialchars($vards),
+        "uzvards" => htmlspecialchars($uzvards),
+        "epasts" => htmlspecialchars($epasts),
+        "telefons" => htmlspecialchars($telefons),
+        "full_name" => htmlspecialchars($vards) . " " . htmlspecialchars($uzvards),
+        "avatar" => $avatarBase64,
+    ]);
 } else {
-    echo json_encode(["success" => false, "error" => "Nav ID."]);
+    echo json_encode(["success" => false, "error" => "Lietotājs netika atrasts."]);
 }
+
+$vaicajums->close();
+$savienojums->close();
+
 ?>

@@ -99,7 +99,7 @@ $('#registerForm').submit(e => {
             setTimeout(() => {
                 $('.linemess').fadeOut(300, function () { $(this).remove(); });
             }, 5000);
-            $('.regmes').html(`<div class="notif-slide-red">Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</div>`); // Keep the original error message in .regmes as well
+            $('.regmes').html(`<div class="notif-slide-red">Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</div>`); 
         }
     });
 });
@@ -155,7 +155,6 @@ $('#editProfileForm').submit(e => {
     e.preventDefault();
 
     const editPassActive = $('.password-Chanege-Switcher').hasClass('active');
-    const liet_id = $('#lietotajaId').val();
     const vards = $('#vards').val();
     const uzvards = $('#uzvards').val();
     const epasts = $('#epasts').val();
@@ -165,7 +164,6 @@ $('#editProfileForm').submit(e => {
     const newavatar = $('#newAvatar')[0].files[0];  
 
     const formData = new FormData();
-    formData.append('liet_id', liet_id);
     formData.append('vards', vards);
     formData.append('uzvards', uzvards);
     formData.append('epasts', epasts);
@@ -249,22 +247,13 @@ $('#review-form').submit(e => {
     e.preventDefault();
 
     const stars = $('#review-rating').val();
-    const vards = $('#review-user-firstname').val();
-    const uzvards = $('#review-user-lastname').val();
     const at_text = $('#review-text').val();
-    const lietotaja_id = $('#review-user-id').val();
-    const avatar = $('#review-user-avatar').val();  
-
     
     const formData = new FormData();
-    formData.append('vards', vards);
-    formData.append('uzvards', uzvards);
     formData.append('stars', stars);
     formData.append('at_text', at_text);
-    formData.append('lietotaja_id', lietotaja_id);
-    formData.append('atsukmes_avatar', avatar); 
-    
-    console.log(formData)
+
+    const addUrl = '/database/atsaukmes_add.php';
 
     $.ajax({
         type: 'POST',
@@ -477,8 +466,6 @@ $(document).on('submit', '.reportForm', function(e) {
     formData.append('rep_text', rep_text);
 
     const addUrl = '/database/report_add.php';
-    
-    console.log(formData)
 
     $.ajax({
         type: 'POST',

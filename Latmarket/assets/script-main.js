@@ -308,6 +308,15 @@ document.addEventListener('click', function(event) {
     }
 });
 
+// --------------------------------------------------------------------------payment-close
+
+document.getElementById('closePayment').addEventListener('click', function() {
+    const paymentContainer = document.querySelector('.payment-container');
+    if (paymentContainer) {
+        paymentContainer.remove();
+    }
+});
+
 
 
 

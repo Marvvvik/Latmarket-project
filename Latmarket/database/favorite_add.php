@@ -5,9 +5,13 @@ session_start();
 
 $response = [];
 
+// ---------------------------------------------------- Dati
+
 $liet_id = $_SESSION['IdHOMIK'];
 $tb_name = htmlspecialchars($_POST['tb_name']);
 $item_id = htmlspecialchars($_POST['item_id']);
+
+// ---------------------------------------------------- Parabde
 
 if (!empty($liet_id) && !empty($tb_name) && !empty($item_id)) {
 

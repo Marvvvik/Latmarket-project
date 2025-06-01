@@ -1,6 +1,7 @@
 <?php
 
 require_once 'con_klix.php'; 
+
 session_start();
 
 error_reporting(E_ALL & ~E_DEPRECATED);
@@ -9,11 +10,16 @@ $price = htmlspecialchars($_GET['price']);
 $table = htmlspecialchars($_GET['table']);
 $announcement = htmlspecialchars($_GET['announcement']);
 
+if (!$price ||!$table ||!$announcement) {
+    header("Location: /");
+    exit;
+}
+
 try {
     $purchaseResponse = $client->createPurchase([
         'amount' => $price, 
         'language' => 'lv',
-        'success_redirect' => 'https://latmarket.ddev.site/payment/success.php?table=' . $table . '&announcement=' . $announcement . '&purchase_id=' . $purchaseResponse->id,
+        'success_redirect' => 'https://latmarket.ddev.site/payment/success.php?table=' . $table . '&announcement=' . $announcement . '&price=' . $price,
         'purchase' => [
             "products" => [
                 [
