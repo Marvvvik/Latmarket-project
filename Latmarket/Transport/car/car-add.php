@@ -40,13 +40,10 @@ require "database/con_db_transports.php";
         <div class="car-slider">
             <div class="slider-button slider-left"><i class="fas fa-angle-left"></i></div>
             <div class="slider-button slider-right"><i class="fas fa-angle-right"></i></div>
-        </div>
-
-        <div class="slider-modal">
-            <i class="fas fa-close slider-close" id="close-slider"></i>
-            <div class="slider-preview"></div>
-            <div class="slider-button slider-main-left"><i class="fas fa-angle-left"></i></div>
-            <div class="slider-button slider-main-right"><i class="fas fa-angle-right"></i></div>
+            <div class="add-photo">
+                <input type="file" id="car-photos" name="photos[]" multiple accept="image/*" style="display: none;">
+                <label for="car-photos" class="upload-btn">Pievienot foto</label>
+            </div>
         </div>
 
         <div class="author-info">
@@ -325,7 +322,7 @@ require "database/con_db_transports.php";
             </div>
 
             <div class="info-row">
-                <img src='../../image/icons/calendar-icon.png'>
+                <img src='../../image/icons/teh-icon.png'>
                 <p>Tehniskā apskate: <span class="info-value"></span></p>
                 <input type="date" id="apskateInput">
             </div>

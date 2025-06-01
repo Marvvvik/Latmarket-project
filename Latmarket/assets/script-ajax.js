@@ -639,7 +639,134 @@ function FavoriteRenderPagination(totalPages, currentPage) {
     $(".favorites-buttons").html(html);
 }
 
+// ------------------------------------------------------------Sludinajumu
+
+$(document).on("click", ".slud-page-btn", function() {
+    const page = $(this).data("page");
+    sludinajumuIzvade(page);
+});
+
+$(document).ready(function() {
+    sludinajumuIzvade(1);
+
+    $(document).on("click", ".deletButton", function() {
+        const carId = $(this).attr("id").split("-")[1]; 
+        const modalId = `sludDeletModal-${carId}`;
+        $(`#${modalId}`).addClass("active");
+    });
+
+    $(document).on("click", ".slud-Delet-Modal #no", function() {
+        $(this).closest(".slud-Delet-Modal").removeClass("active");
+    });
+
+});
 
 
+function sludinajumuIzvade(page = 1) {
+    $.ajax({
+        type: "POST",
+        url: "/database/slujdinajumu-izvade.php",
+        data: { page: page },
+        dataType: 'json',
+        success: function(response) {
+            if ($.trim(response.userAds) === "") {
+                $("#slud-container").html("<h2>Jums nav izvietots neviens sludinājums!</h2>");
+                $(".slud-buttons").html("");
+            } else {
+                $("#slud-container").html(response.userAds);
+                SludRenderPagination(response.totalPages, page);
+            }
+        },
+        error: function(xhr) {
+            $("#slud-container").html("<h1>Kļūda: " + xhr.statusText + "</h1>");
+        }
+    });
+}
+
+function SludRenderPagination(totalPages, currentPage) {
+    let html = '';
+    let maxButtons = 5;
+    let start = Math.max(1, currentPage - 2);
+    let end = Math.min(totalPages, start + maxButtons - 1);
+
+    if (end - start < maxButtons - 1) { start = Math.max(1, end - maxButtons + 1); }
+    for (let i = start; i <= end; i++) { html += `<button class="slud-page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`; }
+    if (totalPages > end) { html += `<span>...</span><button class="slud-page-btn" data-page="${totalPages}">${totalPages}</button>`;}
+
+    $(".slud-buttons").html(html);
+}
+
+
+$(document).on('submit', '.sludDelet', function(e) {
+    e.preventDefault();
+
+    const form = $(this);
+    const sludID = form.find('#sludID').val();
+    const teg = form.find('#teg').val();
+
+    const editData = { sludID, teg };
+    const editUrl = '/database/slujdinajumu-delet.php';
+
+    $.ajax({
+        type: 'POST',
+        url: editUrl,
+        data: editData,
+        dataType: 'json',
+        success: response => {
+            const messageType = response.success ? "success" : "error";
+            const messageText = response.success ? response.message : response.error;
+            const iconClass = response.success ? "fa-check" : "fa-close";
+            const titleText = response.success ? "Veiksmīgi!" : "Ne veiksmīgi!";
+
+            $('.linemess').remove();
+
+            const messageBox = `<div class="linemess ${messageType}">
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
+
+                                    <div class="mesinfobox">
+                                        <i class="fas ${iconClass}"></i>
+
+                                        <div class="mesinfo">
+                                            <h2>${titleText}</h2>
+                                            <p>${messageText}</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline"></div>
+                                </div>`;
+
+            $('body').append(messageBox);
+
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
+
+            if (response.success) {
+                form.closest('.slud-Delet-Modal').removeClass('active'); 
+                sludinajumuIzvade();
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error('Kļuda pie datu nosūtīšanas:', errorThrown);
+            $('.linemess').remove();
+            const errorMessage = `<div class="linemess error">
+                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
+
+                                    <div class="mesinfobox">
+                                        <i class="fas fa-close"></i>
+
+                                        <div class="mesinfo">
+                                            <h2>Ne veiksmīgi!</h2>
+                                            <p>Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline"></div>
+                                </div>`;
+            $('body').append(errorMessage);
+            setTimeout(() => {
+                $('.linemess').fadeOut(300, function () { $(this).remove(); });
+            }, 5000);
+        }
+    });
+});
 
 

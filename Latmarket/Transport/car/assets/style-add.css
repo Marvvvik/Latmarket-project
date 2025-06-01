@@ -50,7 +50,7 @@ width: 100%;
 height: 100%;
 object-fit: cover;
 transition: none;
-cursor: zoom-in;
+z-index: 1;
 }
 
 .car-slider img:first-of-type {
@@ -66,97 +66,75 @@ cursor: pointer;
 display: flex;
 justify-content: center;
 align-items: center;
+z-index: 2;
 }
 
-.slide-slider-button.main{
-background: rgba(0, 0, 0, 0.0);
-height: 80%;
-width: 10%;
-position: absolute;
-cursor: pointer;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
-.slide-btn i{
+.slider-button i{
 color: var(--secondcolor);
 font-size: 2rem;
 opacity: 0;
 }
 
-.slide-btn:hover{
+.slider-button:hover{
 background: rgba(0, 0, 0, 0.4);
 backdrop-filter: blur(5px);
 }
 
-.slide-btn.main:hover{
-background: rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5px);
-}
-
-.slide-btn:hover i{
+.slider-button:hover i{
 opacity: 100%;
 }
 
-.slide-btn.left{
+.slider-left{
 top: 50%;
 left: 0%;
 transform: translate(0%, -50%);
 }
 
-.slide-btn.right{
+.slider-right{
 top: 50%;
 right: 0%;
 transform: translate(0%, -50%);
 }
 
-.slider-modal{
-position: fixed;
-width: 100%;
-height: 100%;
-backdrop-filter: blur(5px);
-top: 50%;
+.add-photo{
+position: absolute;
+bottom: 5%;
 left: 50%;
-transform: translate(-50%, -50%);
-background: rgba(0, 0, 0, 0.6);
-z-index: 2;
-display: none;
+transform: translate(-50%);
+width: 40%;
+display: flex;
 justify-content: center;
 align-items: center;
-flex-direction: column;
+z-index: 3;
 }
 
-.slider-modal.active{
-display: flex;
+.add-photo label{
+color: var(--textcolor-2);
+background: var(--secondcolor);
+padding: .5rem .7rem;
+border-radius: .5rem;
+cursor: pointer;
 }
 
-.no-scroll {
-overflow: hidden;
-height: 100vh;
+.add-photo label:hover{
+background: var(--hover);
 }
 
-.slider-main{
-display: flex;
-width: 55%;
-height: 80%;
-position: relative;
-overflow: hidden;
-}
-
-.slider-main img {
+.remove-btn{
 position: absolute;
-top: 0;
-left: 0;
-display: none;
-width: 100%;
-height: auto;
-object-fit: cover;
-transition: none;
+top: 5%;
+left: 50%;
+z-index: 3;
+background: #ff9393;
+color: var(--textcolor-2);
+padding: .5rem;
+border-radius: .5rem;
+cursor: pointer;
+transform: translate(-50%);
 }
 
-.slider-main img:first-of-type {
-display: block;
+.remove-btn:hover{
+background: #ff0000;
 }
 
 .author-info{

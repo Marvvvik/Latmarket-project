@@ -137,20 +137,16 @@
 
         <div class="stats-container">
             <div class="stats-card">
-                <h1>8967</h1>
+                <h1>16</h1>
                 <h2>Sludinājumu</h2>
             </div>
             <div class="stats-card">
-                <h1>105784</h1>
+                <h1>3</h1>
                 <h2>Lietotāju</h2>
             </div>
             <div class="stats-card">
-                <h1>13664</h1>
-                <h2>Mašīnu</h2>
-            </div>
-            <div class="stats-card">
-                <h1>88525</h1>
-                <h2>Dzīvokļu</h2>
+                <h1>15</h1>
+                <h2>Komentāru</h2>
             </div>
         </div>
     </div>

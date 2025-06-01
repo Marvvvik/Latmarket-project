@@ -224,33 +224,96 @@
 
 
         <div id="favoritesSection" class="profile-section">
-            <div class="favorites-Filter">
+             <div class="favoriti-Filter">
 
-                <div class= "filt-cont">
-                    <div class="select">
-                        <select id="Kategorijas_select" name="Kategorijas_select" disabled>
-                            <option value='' hidden>Kategorija</option>
+                <div class="car-filter__select-box">
+                    <div class= "filt-cont">
+                        <select id="filter-brand" name="brand" class="car-filter__select">
+                            <option value="" disabled selected hidden>Kategorija</option>
 
-                            <option value=''>-</option>
+                            <optgroup label="Transport">
+                                <option value="Vieglie auto">Vieglie auto</option>
+                                <option value="Kravas automašīnas">Kravas automašīnas</option>
+                                <option value="Moto transports">Moto transports</option>
+                                <option value="Velosipēdi">Velosipēdi</option>
+                                <option value="Remonts un rezerves daļas">Remonts un rezerves daļas</option>
+                                <option value="Transporta noma">Transporta noma</option>
+                            </optgroup>
 
+                            <optgroup label="Darbs un bizness">
+                                <option value="Bentley">Bentley</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Bugatti">Bugatti</option>
+                                <option value="Buick">Buick</option>
+                                <option value="BYD">BYD</option>
+                            </optgroup>
+
+                            <optgroup label="Elektronika">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Mēbeles">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Apģērbi">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Celtniecība">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Bērniem">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Dzīvnieki">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Lauksaimniecība">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
                         </select>
+                        <div class="box-arrow"><i class="fas fa-angle-down"></i></div>
                     </div>
                 </div>
 
-                <div class= "filt-cont">
-                    <div class="select">
-                        <select id="Papildus_select" name="Papildus_select" disabled>
-
-                            <option value=''>Pec kategorijās</option>
-                            <option value=''>Cenas, sākot no augstākās</option>
-                            <option value=''>Cenas, sākot no zemākās</option>
-                            <option value=''>Pedejas pievienotais</option>
-                            <option value=''>Pirmais pievienotais</option>
-
+                <div class="car-filter__select-box">
+                    <div class= "filt-cont">
+                        <select id="filter-brand" name="brand" class="car-filter__select">
+                            <option value="datums_desc">Datums (jaunākie)</option>
+                            <option value="datums_asc">Datums (vecākie)</option>
+                            <option value="cena_asc">Cena (zemākā)</option>
+                            <option value="cena_desc">Cena (augstākā)</option>
                         </select>
+                        <div class="box-arrow"><i class="fas fa-angle-down"></i></div>
                     </div>
                 </div>
             </div>
+            
 
             <div class="favorites-buttons"></div>
             <div class="favorites-container" id="favorites-container"></div>
@@ -258,7 +321,98 @@
         </div>
 
         <div id="offerSection" class="profile-section">
-            <h1>hello slud</h1>
+            <div class="slud-Filter">
+
+                <div class="car-filter__select-box">
+                    <div class= "filt-cont">
+                        <select id="filter-brand" name="brand" class="car-filter__select">
+                            <option value="" disabled selected hidden>Kategorija</option>
+
+                            <optgroup label="Transport">
+                                <option value="Vieglie auto">Vieglie auto</option>
+                                <option value="Kravas automašīnas">Kravas automašīnas</option>
+                                <option value="Moto transports">Moto transports</option>
+                                <option value="Velosipēdi">Velosipēdi</option>
+                                <option value="Remonts un rezerves daļas">Remonts un rezerves daļas</option>
+                                <option value="Transporta noma">Transporta noma</option>
+                            </optgroup>
+
+                            <optgroup label="Darbs un bizness">
+                                <option value="Bentley">Bentley</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Bugatti">Bugatti</option>
+                                <option value="Buick">Buick</option>
+                                <option value="BYD">BYD</option>
+                            </optgroup>
+
+                            <optgroup label="Elektronika">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Mēbeles">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Apģērbi">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Celtniecība">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Bērniem">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Dzīvnieki">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+
+                            <optgroup label="Lauksaimniecība">
+                                <option value="Cadillac">Cadillac</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="Chrysler">Chrysler</option>
+                                <option value="Citroën">Citroën</option>
+                            </optgroup>
+                        </select>
+                        <div class="box-arrow"><i class="fas fa-angle-down"></i></div>
+                    </div>
+                </div>
+
+                <div class="car-filter__select-box">
+                    <div class= "filt-cont">
+                        <select id="filter-brand" name="brand" class="car-filter__select">
+                            <option value="datums_desc">Datums (jaunākie)</option>
+                            <option value="datums_asc">Datums (vecākie)</option>
+                            <option value="cena_asc">Cena (zemākā)</option>
+                            <option value="cena_desc">Cena (augstākā)</option>
+                        </select>
+                        <div class="box-arrow"><i class="fas fa-angle-down"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slud-buttons"></div>
+            <div class="slud-container" id="slud-container"></div>
         </div>
 
         <div id="messagesSection" class="profile-section">

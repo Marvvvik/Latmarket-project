@@ -177,7 +177,7 @@ require "database/car-parskate-izvade.php";
 
             <div class='table-block'>
 
-                <img src='../../image/icons/calendar-icon.png'>
+                <img src='../../image/icons/teh-icon.png'>
 
                 <p> Tehniskā apskate: <span class="apskateSpan"><?php echo $tehniska_apskate_izvade?></span></p>
 

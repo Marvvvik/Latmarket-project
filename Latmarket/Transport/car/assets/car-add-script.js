@@ -163,7 +163,10 @@ $('#addCar').submit(e => {
     formData.append('vin', vin);
     formData.append('cena', cena);
 
-    
+    const photos = $('#car-photos')[0].files;
+    for (let i = 0; i < photos.length; i++) {
+        formData.append('photos[]', photos[i]);
+    }
 
     console.log('Данные FormData перед отправкой:');
     for (const pair of formData.entries()) {
@@ -243,4 +246,117 @@ document.addEventListener('DOMContentLoaded', function() {
   } else {
     postButton.setAttribute('disabled', 'disabled');
   }
+});
+
+
+$(document).ready(function () {
+    let currentSlide = 0;
+    let isAnimating = false;
+
+    function initSlider($container) {
+        const $slides = $container.find('.slide-item img.preview');
+
+        $slides.css({ left: '100%', display: 'none' });
+        currentSlide = 0;
+        isAnimating = false;
+
+        if ($slides.length > 0) {
+            $slides.eq(currentSlide).css({ left: 0, display: 'block' });
+        }
+
+        function slideTo(index, direction) {
+            if (isAnimating || index === currentSlide) return;
+            isAnimating = true;
+
+            const $current = $slides.eq(currentSlide);
+            const $next = $slides.eq(index);
+
+            $next.css({
+                display: 'block',
+                left: (direction === 'left' ? '-100%' : '100%')
+            });
+
+            $current.animate({ left: (direction === 'left' ? '100%' : '-100%') }, 400);
+            $next.animate({ left: '0%' }, 400, function () {
+                $current.css('display', 'none');
+                currentSlide = index;
+                isAnimating = false;
+            });
+        }
+
+        $container.off('click', '.slider-left').on('click', '.slider-left', function () {
+            const $slides = $container.find('.slide-item img.preview');
+            const nextIndex = (currentSlide - 1 + $slides.length) % $slides.length;
+            slideTo(nextIndex, 'left');
+        });
+
+        $container.off('click', '.slider-right').on('click', '.slider-right', function () {
+            const $slides = $container.find('.slide-item img.preview');
+            const nextIndex = (currentSlide + 1) % $slides.length;
+            slideTo(nextIndex, 'right');
+        });
+
+        let scrollTimeout;
+        $container.off('wheel').on('wheel', function (e) {
+            if (isAnimating) return;
+            e.preventDefault();
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const $slides = $container.find('.slide-item img.preview');
+                let nextIndex;
+                if (e.originalEvent.deltaY < 0) {
+                    nextIndex = (currentSlide - 1 + $slides.length) % $slides.length;
+                    slideTo(nextIndex, 'left');
+                } else if (e.originalEvent.deltaY > 0) {
+                    nextIndex = (currentSlide + 1) % $slides.length;
+                    slideTo(nextIndex, 'right');
+                }
+            }, 50);
+        });
+    }
+
+    $('#car-photos').on('change', function (e) {
+        const files = e.target.files;
+        const $slider = $('.car-slider');
+
+        $slider.find('.slide-item').remove();
+
+        if (files.length > 25) {
+            alert('Var izveleties ne vairak par 25 foto!');
+            $(this).val('');
+            return;
+        }
+
+        $.each(files, function (i, file) {
+            if (!file.type.startsWith('image/')) return;
+
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const $imgWrapper = $('<div>', { class: 'slide-item' });
+                const $img = $('<img>', {
+                    src: event.target.result,
+                    class: 'preview'
+                });
+                const $removeBtn = $('<button>', {
+                    class: 'remove-btn',
+                    title: 'Dzest foto',
+                    html: '<i class="fas fa-trash-alt"></i>'
+                });
+
+                $removeBtn.on('click', function () {
+                    $imgWrapper.remove();
+                    initSlider($slider); 
+                });
+
+                $imgWrapper.append($img).append($removeBtn);
+                $slider.append($imgWrapper);
+
+                if (i === files.length - 1) {
+                    setTimeout(() => initSlider($slider), 50);
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    });
 });

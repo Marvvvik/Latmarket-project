@@ -104,7 +104,6 @@ if ($editPassActive) {
     }
 }
 
-// Izpildām vaicājumu un atjaunojam sesiju
 if ($vaicajums_update->execute()) {
     $_SESSION['vardsHOMIK'] = decryptData($vards_db);
     $_SESSION['UzvardsHOMIK'] = decryptData($uzvards_db);

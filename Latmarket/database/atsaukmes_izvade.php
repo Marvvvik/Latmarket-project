@@ -46,7 +46,7 @@ while ($atsakmes = $atsakmesResult->fetch_assoc()) {
     // ---------------------------------------------------- Dzest forma
 
     if (isset($_SESSION['IdHOMIK']) && $atsakmes['lietotaja_id'] === $_SESSION['IdHOMIK']) {
-        $button = "<i class='fa fa-trash deletBtn' data-target='#deletmodal-{$atsakmes['atsakmes_id']}'></i>";
+        $button = "<i class='fa fa-trash deletBtn' title='Dzest komentāru' data-target='#deletmodal-{$atsakmes['atsakmes_id']}'></i>";
         $formModal = "
             <div class='deletmodal' id='deletmodal-{$atsakmes['atsakmes_id']}'> 
                 <div class='delforma'>
@@ -64,7 +64,7 @@ while ($atsakmes = $atsakmesResult->fetch_assoc()) {
     // ---------------------------------------------------- Report forma
 
     } elseif (isset($_SESSION['IdHOMIK'])) {
-        $button = "<i class='fa fa-ban rep reportbtn' data-target='#repmodal-{$atsakmes['atsakmes_id']}'></i>";
+        $button = "<i class='fa fa-ban rep reportbtn' title='Ziņot' data-target='#repmodal-{$atsakmes['atsakmes_id']}'></i>";
         $formModal = "
             <div class='repmodal' id='repmodal-{$atsakmes['atsakmes_id']}'> 
                 <div class='repForm'>

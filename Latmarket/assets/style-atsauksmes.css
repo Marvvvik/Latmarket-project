@@ -240,9 +240,12 @@ opacity: 50%;
 
 
 .at-text{
-
 margin-top: 2rem;
-
+width: 100%;
+height: auto;
+white-space: pre-wrap;
+word-break: break-word;
+line-height: 1.5rem;
 }
 
 .deletmodal, .repmodal{

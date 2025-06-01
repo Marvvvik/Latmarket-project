@@ -33,6 +33,7 @@ $pilseta = htmlspecialchars($_POST['pilseta']);
 $vin = strtoupper(trim(htmlspecialchars($_POST['vin'])));
 $cena = strtoupper(trim(htmlspecialchars($_POST['cena'])));
 
+$files = $_FILES['photos'];
 
 $autors = $_SESSION['IdHOMIK'];
 $status = "not paid";
@@ -259,14 +260,54 @@ if ($vaicajums->execute()) {
         if (!$komplektacija->execute()) {
             $komplektacijas_pievienotas = false;
             $response['error'] = "Kļūda, pievienojot komplektācijas.";
-            break; 
+            break;
         }
     }
 
-    if ($komplektacijas_pievienotas) {
+    $bilde = $savienojums->prepare("INSERT INTO Cars_photos (`Car_ID`, `photo`) VALUES (?, ?)");
+    $bilde->bind_param("ib", $car_id, $imageData);
+
+    $bildes_pievienotas = true;
+
+    if (isset($files)) {
+        foreach ($files['tmp_name'] as $key => $tmp_name) {
+            $file_name = $files['name'][$key];
+            $file_tmp = $files['tmp_name'][$key];
+            $file_error = $files['error'][$key];
+
+            if ($file_error === UPLOAD_ERR_OK) {
+                $imageData = file_get_contents($file_tmp);
+                $imageDataString = (string) $imageData; 
+                $bilde->bind_param("is", $car_id, $imageDataString);
+
+                if (!$bilde->execute()) {
+                    $bildes_pievienotas = false;
+                    $response['error'] = "Kļuda pie foto pievienoišanas: " . $savienojums->error;
+                    break;
+                }
+            } else {
+                $bildes_pievienotas = false;
+                $response['error'] = "Kļuda pie vieno foto ieraksta!";
+                break;
+            }
+        }
+    }
+    $bilde->close();
+
+    if ($komplektacijas_pievienotas && $bildes_pievienotas) {
         $paymentUrl = "/payment/cheсkout.php?announcement=" . $car_id . "&price=" . urlencode($price) . "&table=" . urlencode($table);
         $response['success'] = true;
-        $response['message'] = "Auto un komplektācijas veiksmīgi pievienotas.";
+        $response['message'] = "Auto, komplektācijas un bildes veiksmīgi pievienotas.";
+        $response['payment_url'] = $paymentUrl;
+    } else if ($komplektacijas_pievienotas && !$bildes_pievienotas) {
+        $response['success'] = true;
+        $response['message'] = "Auto un komplektācijas veiksmīgi pievienotas, bet bija problēmas ar bilžu pievienošanu.";
+        $paymentUrl = "/payment/cheсkout.php?announcement=" . $car_id . "&price=" . urlencode($price) . "&table=" . urlencode($table);
+        $response['payment_url'] = $paymentUrl;
+    } else if (!$komplektacijas_pievienotas && !isset($response['error'])) {
+        $response['success'] = true;
+        $response['message'] = "Auto veiksmīgi pievienots, bet bija problēmas ar komplektāciju pievienošanu.";
+        $paymentUrl = "/payment/cheсkout.php?announcement=" . $car_id . "&price=" . urlencode($price) . "&table=" . urlencode($table);
         $response['payment_url'] = $paymentUrl;
     } else if (!isset($response['error'])) {
         $response['success'] = true;

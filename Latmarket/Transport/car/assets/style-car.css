@@ -286,7 +286,8 @@ align-items: center;
 }
 
 .car-filter__actions .box{
-width: 30%;
+width: 20%;
+height: 3rem;
 margin: 1.5rem 1rem;
 display: flex;
 justify-content: center;
@@ -301,11 +302,8 @@ padding: .7rem 1rem;
 cursor: pointer;
 }
 
-
 .slud-btn-box:hover i{
-
 animation: rot 1s ease-out forwards;
-
 }
 
 
