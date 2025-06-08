@@ -1,4 +1,4 @@
-# Sludinājumu vietne Latvijai 🇱🇻
+# Sludinājumu vietne Latvijai
 
 Šis ir moderns un ērts sludinājumu portāls, kur lietotāji no visas Latvijas var publicēt un apskatīt sludinājumus par preču pārdošanu — gan jaunām, gan lietotām.
 
@@ -9,19 +9,45 @@
 - ➕ Iespēja **pievienot jaunus sludinājumus** pēc apmaksas.
 - 💳 **Apmaksas integrācija** pirms sludinājuma publicēšanas.
 - ⭐ **Iespēja saglabāt sludinājumus favorītos**, lai varētu tos viegli atrast vēlāk.
-- 🗂️ **Pārskatāma sludinājumu pārlūkošana**, optimizēta dažādām ierīcēm.
-- 🇱🇻 Fokuss uz Latvijas tirgu un iedzīvotāju vajadzībām.
+- 🗂️ **Pārskatāma sludinājumu pārlūkošana**.
+- Fokuss uz Latvijas tirgu un iedzīvotāju vajadzībām.
 
 ## 🛠️ Tehnoloģijas
 
-(Pievieno, ja vēlies, piemēram:)
-- Front-end: React / Vue / HTML + CSS
-- Back-end: Node.js / Laravel / Django utt.
-- Datu bāze: MySQL / PostgreSQL / MongoDB
-- Maksājumu apstrāde: Stripe / PayPal
+- Front-end: HTML + CSS
+- Back-end: PHP.
+- Datu bāze: MySQL
+- Maksājumu apstrāde: Klix
 
-## 📦 Instalācija
+## 📦 Instalācija:
 
-1. Klonē repozitoriju:
-   ```bash
-   git clone https://github.com/tavs-lietotajvards/tavs-projekts.git
+✅ Priekšnosacījumi:
+Pārliecinies, ka Tev ir uzinstalēts:
+
+1. Docker Desktop
+
+2. DDEV
+
+
+1. Klonē repozitoriju: git clone https://github.com/Marvvvik/Latmarket-project
+
+2. Atver PowerShell (vai citu termināli)
+
+3. Ieiet projekta mapē: cd ceļš-līdz-projektam/Latmarket-project
+
+4. Inicializē DDEV vidi: ddev config
+
+5. Startē DDEV vidi: ddev start
+
+6. Atver projektu pārlūkā: ddev launch 
+
+
+![Sakumlapa](images/1.png)
+
+![Kategorijas](images/2.png)
+
+![Filtracija](images/4.png)
+
+![Sludinajumi](images/3.png)
+
+
