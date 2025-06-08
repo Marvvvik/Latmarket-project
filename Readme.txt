@@ -42,12 +42,3 @@ Pārliecinies, ka Tev ir uzinstalēts:
 6. Atver projektu pārlūkā: ddev launch 
 
 
-![Sakumlapa](images/1.png)
-
-![Kategorijas](images/2.png)
-
-![Filtracija](images/4.png)
-
-![Sludinajumi](images/3.png)
-
-
