@@ -88,7 +88,7 @@ while ($atsakmes = $atsakmesResult->fetch_assoc()) {
                         <div class='repTextarea'>
                             <label>Apraksts</label>
                             <textarea id='rep_text'></textarea>
-                            <input id='atsakmes_id' type='hidden' value='{$atsakmes['atsakmes_id']}'>
+                            <input id='atsauksme' type='hidden' value='{$atsakmes['atsakmes_id']}'>
                         </div>
                         <button class='repbtn' type='submit'><i class='fas fa-paper-plane'></i>Iesniegt</button>
                     </form>

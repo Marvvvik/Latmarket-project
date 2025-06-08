@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../../assets/style-main.css">
     <link rel="stylesheet" href="assets/style-apskate.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script src="assets/filter-ajax.js" defer></script>
     <script src="assets/car-script.js" defer></script>
     <script src="../../assets/script-main.js" defer></script>
     <script src="../../assets/script-ajax.js" defer></script>
@@ -300,6 +299,55 @@ require "database/car-parskate-izvade.php";
             <p id="price">Cena: <?php echo $Car['Cena']?> €</p>
 
         </div>
+
+        <?php if (session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['lietotajvardsHOMIK'])) { ?>
+
+        <div class="fav-rep">
+
+            <i class='fa fa-ban' title='Ziņot' id="ReportButton"></i>
+
+            <div class="report-Modal" id="ReportModal"> 
+                <div class="report-box">
+                    <i class='fas fa-close close-Modal' id='closeReport'></i>
+                    <div class='repText'>
+                        <h1>Ziņot par sludinājumu</h1>
+                    </div>
+                    <form id="sludRepForm">
+                        <div class="selectReport">
+                            <label>Pārkāpuma kategorija</label>
+                            <select id='adv_rep_title'>
+                                <option value='' hidden>Izvēlieties sūdzības iemeslu</option>
+                                <option value='Nekorekta cena'>Nekorekta cena</option>
+                                <option value='Nepatiesa informācija'>Nepatiesa informācija</option>
+                                <option value='Dublikāts'>Sludinājuma dublikāts</option>
+                                <option value='Prece nav pieejama'>Prece nav pieejama</option>
+                                <option value='Krāpšana'>Krāpšana</option>
+                                <option value='Aizliegta prece/pakalpojums'>Aizliegta prece/pakalpojums</option>
+                                <option value='Personas datu pārkāpums'>Personas datu pārkāpums</option>
+                                <option value='Spams/Reklāma'>Spams/Reklāma</option>
+                                <option value='Cits iemesls'>Cits iemesls</option>
+                            </select>
+                        </div>
+                        <div class="reportTextarea">
+                            <label>Apraksts</label>
+                            <textarea id="reportText"></textarea>
+                            <input id="Sludinajums" type="hidden" value="<?php echo $Car['Cars_ID']?>">
+                            <input id="SludinajumsKategori" type="hidden" value="Car">
+                        </div>
+                        <button class="report-Button" type="submit"><i class="fas fa-paper-plane"></i>Iesniegt</button>
+                    </form>
+                </div>
+            </div>
+
+            <form class='favoriti'>
+                <input type='hidden' class='tb_name' value='Cars'>
+                <input type='hidden' class='item_id' value='<?php echo $Car['Cars_ID']?>'>
+                <button class='favBtn' title="Pievienot favorītos"><?php echo $starIcon ?></button>
+            </form>
+        
+        </div>
+
+        <?php }; ?>
 
     </div>
 

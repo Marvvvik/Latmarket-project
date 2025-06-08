@@ -289,7 +289,7 @@ require "database/con_db_transports.php";
                 <img src='../../image/icons/Piedzinas-icon.png'>
                 <p>Piedziņa: <span class="info-value"></span></p>
                 <select required id="piedzSelect">
-                    <option value='' id="name" hidden></option>
+                    <option value='' hidden></option>
                     <option value="Priekšējā piedziņa">Priekšējā piedziņa</option>
                     <option value="Aizmugurējā piedziņa">Aizmugurējā piedziņa</option>
                     <option value="Pilnpiedziņa">Pilnpiedziņa</option>

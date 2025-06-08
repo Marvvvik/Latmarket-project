@@ -135,6 +135,28 @@
             </div>
         </div>
 
+        <div class="category-card">
+            <img src="image/atputa.jpg" class="category-image" alt="Lauksaimniecība">
+            <div class="category-content">
+                <div class="category-title">
+                    <div class="category-icon"><img src="image/icons/w-camp.png" alt="Traktora ikona"></div>
+                    <h2>Atpūta</h2>
+                </div>
+                <p>Vietas un iespējas atpūtai dabā, kempingos un tūrisma objektos</p>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <img src="image/hobby.jpg" class="category-image" alt="Lauksaimniecība">
+            <div class="category-content">
+                <div class="category-title">
+                    <div class="category-icon"><img src="image/icons/w-hantel.png" alt="Traktora ikona"></div>
+                    <h2>Hobiji</h2>
+                </div>
+                <p>Radošām nodarbēm un vaļaspriekiem paredzēti piederumi un aprīkojums</p>
+            </div>
+        </div>
+
         <div class="stats-container">
             <div class="stats-card">
                 <h1>16</h1>

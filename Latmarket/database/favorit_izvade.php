@@ -10,29 +10,32 @@ $page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
 $offset = ($page - 1) * $limit;
 $FavoriteHTML = '';
 
-$countQuery = "SELECT COUNT(*) AS total FROM favoriti";
-$countResult = $savienojums->query($countQuery);
+$countQuery = "SELECT COUNT(*) AS total FROM favoriti WHERE lietotaja_id = ?";
+$count = $savienojums->prepare($countQuery);
+$count->bind_param("i", $_SESSION['IdHOMIK']);
+$count->execute();
+$countResult = $count->get_result();
 $totalRows = $countResult->fetch_assoc()['total'];
 $totalPages = ceil($totalRows / $limit);
 
 // ---------------------------------------------------- Izvade
 
 $favoritSQL = "SELECT * FROM favoriti WHERE lietotaja_id = ? LIMIT ? OFFSET ?";
-$stmt = $savienojums->prepare($favoritSQL);
-$stmt->bind_param("iii", $_SESSION['IdHOMIK'], $limit, $offset);
-$stmt->execute();
-$favoritResult = $stmt->get_result();
+$favoriti = $savienojums->prepare($favoritSQL);
+$favoriti->bind_param("iii", $_SESSION['IdHOMIK'], $limit, $offset);
+$favoriti->execute();
+$favoritResult = $favoriti->get_result();
 
 while ($favorit = $favoritResult->fetch_assoc()) {
     
     $tableName = $favorit['table_name']; 
     $itemId = $favorit['item_id'];
 
-    $favIzvadeSQL = "SELECT * FROM $tableName WHERE Cars_ID = ?";
-    $stmt = $savienojums->prepare($favIzvadeSQL);
-    $stmt->bind_param("i", $itemId);
-    $stmt->execute();
-    $FavIzvadeResult = $stmt->get_result();
+    $CarfavIzvadeSQL = "SELECT * FROM $tableName WHERE Cars_ID = ?";
+    $Car = $savienojums->prepare($CarfavIzvadeSQL);
+    $Car->bind_param("i", $itemId);
+    $Car->execute();
+    $FavIzvadeResult = $Car->get_result();
 
     
     while ($Favizvade = $FavIzvadeResult->fetch_assoc()) {
@@ -42,10 +45,10 @@ while ($favorit = $favoritResult->fetch_assoc()) {
         // ----------------------------------------photo
 
         $photosSQL = "SELECT photo FROM Cars_photos WHERE car_id = ? LIMIT 1";
-        $stmt = $savienojums->prepare($photosSQL);
-        $stmt->bind_param("i", $car_id_p);
-        $stmt->execute();
-        $photosResult = $stmt->get_result();
+        $photo = $savienojums->prepare($photosSQL);
+        $photo->bind_param("i", $car_id_p);
+        $photo->execute();
+        $photosResult = $photo->get_result();
     
         $photoHTML = '';  
         $buttonsHTML = ''; 

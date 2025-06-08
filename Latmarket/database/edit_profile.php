@@ -69,7 +69,7 @@ $hashedPassword = null;
 
 if ($editPassActive) {
     if (empty($editParole1) || empty($editParole2)) {
-        $response['error'] = "Lūdzu, ievadiet abas paroles.";
+        $response['error'] = "Lūdzu, ievadiet paroli.";
         echo json_encode($response);
         exit;
     }

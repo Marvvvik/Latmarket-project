@@ -29,7 +29,7 @@ if (!empty($rep_title)) {
 
                 if ($vaicajums->execute()) {
                     $response['success'] = true;
-                    $response['message'] = "Atsauksme veiksmīgi izvietota!";
+                    $response['message'] = "Ziņojums veiksmīgi izvietota!";
                 } else {
                     $response['success'] = false;
                     $response['error'] = "Sistēmas kļūda.";

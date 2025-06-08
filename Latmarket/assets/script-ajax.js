@@ -456,14 +456,21 @@ $(document).on('click', '#closeRep', function () {
 $(document).on('submit', '.reportForm', function(e) {
     e.preventDefault();
 
-    const atsakmes_id = $('#atsakmes_id').val();
-    const rep_title = $('#rep_title').val();
-    const rep_text = $('#rep_text').val();
+    const $form = $(this); // Сохраняем текущую форму
+
+    const atsakmes_id = $form.find('#atsauksme').val();
+    const rep_title = $form.find('#rep_title').val();
+    const rep_text = $form.find('#rep_text').val();
 
     const formData = new FormData();
     formData.append('atsakmes_id', atsakmes_id);
     formData.append('rep_title', rep_title);
     formData.append('rep_text', rep_text);
+
+    // console.log('Данные FormData перед отправкой:');
+    // for (const pair of formData.entries()) {
+    //     console.log(pair[0] + ', ' + pair[1]);
+    // }
 
     const addUrl = '/database/report_add.php';
 
@@ -472,8 +479,8 @@ $(document).on('submit', '.reportForm', function(e) {
         url: addUrl,
         data: formData,
         dataType: 'json',
-        processData: false,  
-        contentType: false, 
+        processData: false,
+        contentType: false,
         success: response => {
             const messageType = response.success ? "success" : "error";
             const messageText = response.success ? response.message : response.error;
@@ -482,19 +489,19 @@ $(document).on('submit', '.reportForm', function(e) {
 
             $('.linemess').remove();
 
-            const messageBox = `<div class="linemess ${messageType}">
-                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
-
-                                    <div class="mesinfobox">
-                                        <i class="fas ${iconClass}"></i>
-
-                                        <div class="mesinfo">
-                                            <h2>${titleText}</h2>
-                                            <p>${messageText}</p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline"></div>
-                                </div>`;
+            const messageBox = $(`
+                <div class="linemess ${messageType}">
+                    <i class="fas fa-close close-Modal" id="mesclose"></i>
+                    <div class="mesinfobox">
+                        <i class="fas ${iconClass}"></i>
+                        <div class="mesinfo">
+                            <h2>${titleText}</h2>
+                            <p>${messageText}</p>
+                        </div>
+                    </div>
+                    <div class="timeline"></div>
+                </div>
+            `);
 
             $('body').append(messageBox);
 
@@ -505,19 +512,21 @@ $(document).on('submit', '.reportForm', function(e) {
         error: function (jqXHR, textStatus, errorThrown) {
             console.error('Kļuda pie datu nosūtīšanas:', errorThrown);
             $('.linemess').remove();
-            const errorMessage = `<div class="linemess error">
-                                    <i class="fas fa-close close-Modal" id="mesclose"></i>
 
-                                    <div class="mesinfobox">
-                                        <i class="fas fa-close"></i>
+            const errorMessage = $(`
+                <div class="linemess error">
+                    <i class="fas fa-close close-Modal" id="mesclose"></i>
+                    <div class="mesinfobox">
+                        <i class="fas fa-close"></i>
+                        <div class="mesinfo">
+                            <h2>Ne veiksmīgi!</h2>
+                            <p>Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
+                        </div>
+                    </div>
+                    <div class="timeline"></div>
+                </div>
+            `);
 
-                                        <div class="mesinfo">
-                                            <h2>Ne veiksmīgi!</h2>
-                                            <p>Kļūda sistēmā! Lūdzu, mēģiniet vēlreiz.</p>
-                                        </div>
-                                    </div>
-                                    <div class="timeline"></div>
-                                </div>`;
             $('body').append(errorMessage);
             setTimeout(() => {
                 $('.linemess').fadeOut(300, function () { $(this).remove(); });
@@ -525,7 +534,6 @@ $(document).on('submit', '.reportForm', function(e) {
         }
     });
 });
-
 // ------------------------------------------------------------Favorit add un izvade
 
 $(document).on('submit', '.favoriti', function (e) {

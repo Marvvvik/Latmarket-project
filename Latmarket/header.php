@@ -5,11 +5,10 @@
 
     <nav class="navigation-menu">
         <a href="/#search" class="nav-link"><i class="fas fa-search"></i>Meklēt</a>
-        <a href="/#news" class="nav-link"><i class="fas fa-newspaper"></i>Jaunumi</a>
         <a href="/atsaukmes.php" class="nav-link"><i class="far fa-comment"></i>Atsauksmes</a>
 
         <?php if (!isset($_SESSION['lietotajvardsHOMIK'])){ ?>
-            <button id="openLoginModal" class="btn-login"><i class="fas fa-user"></i>Autorizēties</button>
+            <button id="openLoginModal" class="btn-login"><i class="fas fa-user"></i>Pieslēgties</button>
         <?php } if(session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['lietotajvardsHOMIK'])){ ?>
             <div class="profile-settings">
                 <div class="profile-image-header" data-target="#profileMenu">
@@ -20,7 +19,6 @@
                     <button id="settingsBtn"><i class="fas fa-cog" id="spin"></i>Iestatījumi</button>
                     <button id="favoritesBtn"><i class="fas fa-star"  id="spin"></i>Favorīti</button>
                     <button id="offerBtn"><i class="fas fa-money-bill-wave" id="rotate-spin"></i>Sludinājumi</button>
-                    <button id="messagesBtn"><i class="fas fa-message" id="rotate-spin"></i>Sarakstes</button>
                     <a href="/database/logout.php" id="logoutBtn"><i class="fa fa-sign-out"></i>Iziet</a>
                 </div>
             </div>
@@ -36,7 +34,7 @@
         <i class="fas fa-close close-Modal" id="closeAuth"></i>
 
         <div class="auth-toggle-buttons">
-            <button class="active" id="login-tab-button">Autorizēties</button>
+            <button class="active" id="login-tab-button">Pieslēgties</button>
             <button id="register-tab-button">Reģistrēties</button>
         </div>
 
@@ -154,7 +152,6 @@
                 <button class="profile-nav-btn" id="settingsSectionBtn"><i class="fas fa-cog" id="spin"></i>Iestatījumi</button>
                 <button class="profile-nav-btn" id="favoritesSectionBtn"><i class="fas fa-star" id="spin"></i>Favorīti</button>
                 <button class="profile-nav-btn" id="offersSectionBtn"><i class="fas fa-money-bill-wave" id="rotate-spin"></i>Sludinājumi</button>
-                <button class="profile-nav-btn" id="messagesSectionBtn"><i class="fas fa-message" id="rotate-spin"></i>Sarakstes</button>
                 <a href="/database/logout.php" class="logout-link"><i class="fa fa-sign-out"></i>Iziet</a>
             </div>
         </div>
@@ -205,8 +202,8 @@
                 </div>
 
                 <div class="info-Change" id="passwordChange">
-                    <div class="password-Chanege-Switcher" data-target="#onPasswordChange" id="onPasswordChange"><p>Manit paroli</p></div>
-                    <i class="fas fa-close close-Modal" data-target="#onPasswordChange"></i>
+                    <div class="password-Chanege-Switcher" id="onPasswordChange"><p>Manit paroli</p></div>
+                    <i class="fas fa-close close-Modal" id="ClosePasswordEdit"></i>
 
                     <div class="input-lable">
                         <label>Parole:</label>
@@ -228,7 +225,7 @@
 
                 <div class="car-filter__select-box">
                     <div class= "filt-cont">
-                        <select id="filter-brand" name="brand" class="car-filter__select">
+                        <select id="filter-kfdjkfd"  class="car-filter__select">
                             <option value="" disabled selected hidden>Kategorija</option>
 
                             <optgroup label="Transport">
@@ -303,7 +300,7 @@
 
                 <div class="car-filter__select-box">
                     <div class= "filt-cont">
-                        <select id="filter-brand" name="brand" class="car-filter__select">
+                        <select id="filter-asgfasg" class="car-filter__select">
                             <option value="datums_desc">Datums (jaunākie)</option>
                             <option value="datums_asc">Datums (vecākie)</option>
                             <option value="cena_asc">Cena (zemākā)</option>
@@ -325,7 +322,7 @@
 
                 <div class="car-filter__select-box">
                     <div class= "filt-cont">
-                        <select id="filter-brand" name="brand" class="car-filter__select">
+                        <select id="filter-agdfg" class="car-filter__select">
                             <option value="" disabled selected hidden>Kategorija</option>
 
                             <optgroup label="Transport">
@@ -400,7 +397,7 @@
 
                 <div class="car-filter__select-box">
                     <div class= "filt-cont">
-                        <select id="filter-brand" name="brand" class="car-filter__select">
+                        <select id="filter-asfas" class="car-filter__select">
                             <option value="datums_desc">Datums (jaunākie)</option>
                             <option value="datums_asc">Datums (vecākie)</option>
                             <option value="cena_asc">Cena (zemākā)</option>
@@ -413,36 +410,6 @@
 
             <div class="slud-buttons"></div>
             <div class="slud-container" id="slud-container"></div>
-        </div>
-
-        <div id="messagesSection" class="profile-section">
-
-            <div class="contacts-Container">
-                <div class="contacts-Header">
-                    <form id="contactsSearch">
-                        <div class="input-Icon">
-                            <i class="fa fa-search"></i><input type="">
-                        </div>
-                    </form>
-                </div>
-
-                <div class="contacts-List">
-                    <div class="box active"><div class="avatar-Container"></div><div class="contacts-Name"><h1>Maksims Viktorovs</h1></div></div>
-                    <div class="box"><div class="avatar-Container"></div><div class="contacts-Name"><h1>Maksims Viktorovs</h1></div></div>
-                    <div class="box"><div class="avatar-Container"></div><div class="contacts-Name"><h1>Maksims Viktorovs</h1></div></div>
-                </div>
-            </div>
-
-            <div class="chat-Container">
-                <div class="chatInfo"></div>
-                <div class="chatText"></div>
-                <div class="inputChat">
-                    <form>
-                        <input type="text">
-                        <button class="sarBtn"><i class="fas fa-paper-plane"></i>Nosutīt</button>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 </div>

@@ -93,6 +93,8 @@ function FilterCarList(page = 1) {
         page: page
     };
 
+    console.log("Отправляемые данные:", requestData);
+
     $.ajax({
         type: "POST",
         url: "database/car-izvade.php",

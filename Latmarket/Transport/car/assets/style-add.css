@@ -361,6 +361,7 @@ opacity: 100%;
 display: flex;
 justify-content: center;
 align-items: center;
+flex-direction: column;
 padding: 2rem 1rem;
 }
 
@@ -533,4 +534,22 @@ transform: rotate(0deg);
 transform: rotate(720deg);
 }
 
+}
+
+#redButton{
+background: var(--secondcolor);
+color: var(--textcolor-2);
+padding: .5rem .7rem;
+margin-top: 2rem;
+font-size: 1.3rem;
+border-radius: .5rem;
+cursor: pointer;
+}
+
+#redButton i{
+margin-right: .5rem;
+}
+
+#redButton:hover{
+background: var(--hover);
 }

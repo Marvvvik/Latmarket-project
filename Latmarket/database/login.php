@@ -51,10 +51,16 @@ if (isset($_POST["login"])) {
             exit;
 
         } else {
-            $_SESSION['log_paz'] = "Nepareizs logins vai parole!";
+            $_SESSION['loginMessage'] = "Nepareizs logins vai parole!";
+            $redirect_url = !empty($_POST['redirect']) ? $_POST['redirect'] : '../';
+            header('Location: ' . $redirect_url);
+            exit;
         }
     } else {
-        $_SESSION['log_paz'] = "Visi lauki nav aizpildīti!";
+        $_SESSION['loginMessage'] = "Visi lauki nav aizpildīti!";
+        $redirect_url = !empty($_POST['redirect']) ? $_POST['redirect'] : '../';
+        header('Location: ' . $redirect_url);
+        exit;
     }
     
     $vaicajums->close();

@@ -20,7 +20,7 @@ foreach ($adTables as $tableName) {
     } 
 
     if (!empty($userIdColumn)) {
-        $sql = "SELECT * FROM $tableName WHERE $userIdColumn = ?";
+        $sql = "SELECT * FROM $tableName WHERE $userIdColumn = ? AND Statuss = 'active'";
         $stmt = $savienojums->prepare($sql);
         if ($stmt) {
             $stmt->bind_param("i", $lietotajaId);
@@ -114,7 +114,7 @@ foreach ($pagedUserAds as $ad) {
                 }
                     $outputHTML .= "
                 </form>
-                <form id='editForm'>"; 
+                <form id='editForm' method='POST' action='/Transport/car/car-edit.php'>"; 
                 if ($tableName === 'Cars' && isset($ad['Cars_ID'])) {
                     $outputHTML .= "<button type='submit' value='{$ad['Cars_ID']}' name='carizvele'><i class='fas fa-pen'></i></button>";
                 } elseif ($tableName === 'Moto' && isset($ad['Moto_ID'])) {

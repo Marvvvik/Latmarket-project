@@ -103,6 +103,7 @@ $totalPages = ceil($totalRows / $limit);
 $params[] = $limit;
 $params[] = $offset;
 $types .= "ii";
+$starIcon = "";
 
 // ----------------------------------------Izvade
 
@@ -116,16 +117,18 @@ while ($Cars = $result->fetch_assoc()) {
 
     // ----------------------------------------Favorit icon
 
-    $starIcon = 'far fa-star fav';
-    $favoritSQL = "SELECT * FROM favoriti WHERE lietotaja_id = ? AND table_name = 'Cars' AND item_id = ?";
-    $favorit = $savienojums->prepare($favoritSQL);
-    $favorit->bind_param("ii", $_SESSION['IdHOMIK'], $Cars['Cars_ID']);
-    $favorit->execute();
-    $favoritResult = $favorit->get_result();
-    if ($favoritResult->num_rows > 0) {
-        $starIcon = 'fa fa-star fav';
-    }
+    if (session_status() === PHP_SESSION_ACTIVE && isset($_SESSION['lietotajvardsHOMIK'])) {
 
+        $starIcon = "<i class='far fa-star fav'></i>";
+        $favoritSQL = "SELECT * FROM favoriti WHERE lietotaja_id = ? AND table_name = 'Cars' AND item_id = ?";
+        $favorit = $savienojums->prepare($favoritSQL);
+        $favorit->bind_param("ii", $_SESSION['IdHOMIK'], $Cars['Cars_ID']);
+        $favorit->execute();
+        $favoritResult = $favorit->get_result();
+        if ($favoritResult->num_rows > 0) {
+            $starIcon = "<i class='fa fa-star fav'></i>";
+        }
+    }
     // ----------------------------------------fomated
 
     $formattedDzinejs = number_format($Cars['Dzinejs'], 1);
@@ -189,7 +192,7 @@ while ($Cars = $result->fetch_assoc()) {
                             <form class='favoriti'>
                                 <input type='hidden' class='tb_name' value='Cars'>
                                 <input type='hidden' class='item_id' value='{$Cars['Cars_ID']}'>
-                                <button class='favBtn'><i class='{$starIcon}'></i></button>
+                                <button class='favBtn' title='Pievienot favorītos'>$starIcon</button>
                             </form>
                         </div>
                     </div>

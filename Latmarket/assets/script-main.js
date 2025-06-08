@@ -5,16 +5,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const logModal = document.querySelector(".auth-modal");
     const closeButton = document.getElementById("closeAuth");
 
-    if (openButton && logModal) {
-        openButton.addEventListener("click", function () {
+    function openModal() {
+        if (logModal) {
             logModal.classList.add("active");
-        });
+            localStorage.setItem("authModalOpen", "true"); 
+        }
+    }
+
+    function closeModal() {
+        if (logModal) {
+            logModal.classList.remove("active");
+            localStorage.removeItem("authModalOpen"); 
+        }
+    }
+
+    if (logModal) {
+        if (localStorage.getItem("authModalOpen") === "true") {
+            openModal();
+        }
+    }
+
+    if (openButton && logModal) {
+        openButton.addEventListener("click", openModal);
     }
 
     if (closeButton && logModal) {
-        closeButton.addEventListener("click", function () {
-            logModal.classList.remove("active");
-        });
+        closeButton.addEventListener("click", closeModal);
     }
 
     const loginBtn = document.getElementById('login-tab-button');
@@ -25,22 +41,23 @@ document.addEventListener("DOMContentLoaded", function () {
     if (loginBtn && registerBtn && logForm && regForm) {
         loginBtn.addEventListener('click', () => toggleActive(loginBtn));
         registerBtn.addEventListener('click', () => toggleActive(registerBtn));
+        const activeState = localStorage.getItem('active');
 
-        window.addEventListener('load', function () {
-            const activeState = localStorage.getItem('active');
+        if (activeState === 'login') {
+            logForm.classList.add('active');
+            regForm.classList.remove('active');
+            loginBtn.classList.add('active');
+            registerBtn.classList.remove('active');
+        } else if (activeState === 'register') {
+            regForm.classList.add('active');
+            logForm.classList.remove('active');
+            registerBtn.classList.add('active');
+            loginBtn.classList.remove('active');
+        } else {
+            logForm.classList.add('active');
+            loginBtn.classList.add('active');
+        }
 
-            if (activeState === 'login') {
-                logForm.classList.add('active');
-                regForm.classList.remove('active');
-                loginBtn.classList.add('active');
-                registerBtn.classList.remove('active');
-            } else if (activeState === 'register') {
-                regForm.classList.add('active');
-                logForm.classList.remove('active');
-                registerBtn.classList.add('active');
-                loginBtn.classList.remove('active');
-            }
-        });
 
         function toggleActive(button) {
             if (button.id === 'login-tab-button') {
@@ -179,7 +196,6 @@ document.addEventListener("DOMContentLoaded", function () {
         settingsBtn: "settingsSection",
         favoritesBtn: "favoritesSection",
         offerBtn: "offerSection",
-        messagesBtn: "messagesSection"
     };
 
     const profelimenu = document.querySelector(".modal");
@@ -217,18 +233,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const settingsBtn = document.getElementById('settingsSectionBtn');
     const favoritiBtn = document.getElementById('favoritesSectionBtn');
     const sludinajumiBtn = document.getElementById('offersSectionBtn');
-    const sarakstiBtn = document.getElementById('messagesSectionBtn');
   
     const settingsMenu = document.getElementById('settingsSection');
     const favoritiMenu = document.getElementById('favoritesSection');
     const sludMenu = document.getElementById('offerSection');
-    const sarMenu = document.getElementById('messagesSection');
   
     function setActiveMenu(activeButton, activeMenu) {
         settingsMenu.classList.remove('active');
         favoritiMenu.classList.remove('active');
         sludMenu.classList.remove('active');
-        sarMenu.classList.remove('active');
   
         activeMenu.classList.add('active');
     }
@@ -248,12 +261,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (sludinajumiBtn && sludMenu) {
         sludinajumiBtn.addEventListener('click', function() {
             setActiveMenu(this, sludMenu);
-        });
-    }
-  
-    if (sarakstiBtn && sarMenu) {
-        sarakstiBtn.addEventListener('click', function() {
-            setActiveMenu(this, sarMenu);
         });
     }
 
@@ -292,6 +299,20 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const onEditPass = document.getElementById('onPasswordChange');
+    const closeEditPass = document.getElementById('ClosePasswordEdit');
+
+    onEditPass.addEventListener('click', () => {
+        onEditPass.classList.add('active');
+    });
+
+    closeEditPass.addEventListener('click', () => {
+        onEditPass.classList.remove('active');
+    });
 });
 
 // --------------------------------------------------------------------------Mes-Modal-close

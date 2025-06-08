@@ -53,13 +53,18 @@ if(isset($_POST['carizvele'])){
     $car_photo->execute();
     $photosResult = $car_photo->get_result();
 
-    $carfoto_id = 1;
     $photoHTML = ""; 
     $fotoSliderHtml = "";
+    $sliderPhotosHTML = "";
     while ($photo = $photosResult->fetch_assoc()) {
         $base64Image = base64_encode($photo['photo']);
-        $photoHTML .= "<img src='data:image/jpeg;base64,{$base64Image}' alt='Car Photo'/>";
-        $fotoSliderHtml .="<div class='sliderFotos'><img src='data:image/jpeg;base64,{$base64Image}' alt='Car Photo'/></div>";
+        $imageSrc = "data:image/jpeg;base64,{$base64Image}";
+        $photoHTML .= "<img src='{$imageSrc}' alt='Car Photo'/>";
+        $fotoSliderHtml .= "<div class='sliderFotos'><img src='{$imageSrc}' alt='Car Photo'/></div>";
+
+        $sliderPhotosHTML .= '<div class="slide-item">';
+        $sliderPhotosHTML .= '<img src="' . htmlspecialchars($imageSrc) . '" class="preview">';
+        $sliderPhotosHTML .= '</div>';
     }
     
     $tehniska_apskate_izvade = ($Car['Tehniska_apskate'] == 0) ? "Nav" : $Car['Tehniska_apskate'];
@@ -77,6 +82,15 @@ if(isset($_POST['carizvele'])){
         $active_ids[] = $row['Komplektacijas_id'];
     } 
 
+    $starIcon = "<i class='far fa-star fav'></i>";
+    $favoritSQL = "SELECT * FROM favoriti WHERE lietotaja_id = ? AND table_name = 'Cars' AND item_id = ?";
+    $favorit = $savienojums->prepare($favoritSQL);
+    $favorit->bind_param("ii", $_SESSION['IdHOMIK'], $Car['Cars_ID']);
+    $favorit->execute();
+    $favoritResult = $favorit->get_result();
+    if ($favoritResult->num_rows > 0) {
+        $starIcon = "<i class='fa fa-star fav'></i>";
+    }
 
 }
 
